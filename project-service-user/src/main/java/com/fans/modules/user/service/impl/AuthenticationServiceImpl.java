@@ -42,10 +42,12 @@ public class AuthenticationServiceImpl implements IAuthenticationService {
     @Resource(type = UserDao.class)
     private UserDao userDao;
 
+    @Resource(type = RestTemplate.class)
+    private RestTemplate restTemplate;
+
     @Override
     public String code2Session(String code) {
         String url = MessageFormat.format(this.code2SessionUrl, this.appId, this.appSecret, code);
-        RestTemplate restTemplate = new RestTemplate();
         WeChatBO weChatBO = null;
         try {
             String result = restTemplate.getForObject(url, String.class);

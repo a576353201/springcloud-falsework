@@ -1,5 +1,6 @@
 package com.fans.core.datasource.config;
 
+import com.fans.core.conditionals.DynamicDataConditional;
 import com.fans.core.datasource.properties.DataSourceProperties;
 import com.fans.core.datasource.properties.DynamicDataSourceProperties;
 import com.fans.utils.JsonUtils;
@@ -9,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Conditional;
 import org.springframework.context.annotation.Configuration;
 
 import javax.annotation.Resource;
@@ -22,6 +24,7 @@ import java.util.Map;
  * @description 多数据源配置
  * @date 2018-08-04 02:09
  **/
+@Conditional(value = DynamicDataConditional.class)
 @Configuration
 @EnableConfigurationProperties(value = DynamicDataSourceProperties.class)
 @Slf4j
