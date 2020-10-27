@@ -1,0 +1,92 @@
+spring:
+  application:
+    name: user-service
+  profiles:
+    active: dev
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+      enabled: true
+  jackson:
+    default-property-inclusion: non_null
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    # 蛇形名称格式  banner_id
+    property-naming-strategy: SNAKE_CASE
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: true
+  ############################################################
+  #
+  # 邮箱配置
+  #
+  ############################################################
+  mail:
+    #邮件发送者
+    mailSender: 5219824@qq.com
+    # smtp.163.com
+    host: smtp.qq.com
+    username: 5219824@qq.com
+    #QQ邮箱的授权码 163是邮箱密码
+    password: gprsxzwvhaucbhbf
+    default-encoding: UTF-8
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+  thymeleaf:
+    check-template-location: false
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML
+    encoding: UTF-8
+    servlet:
+      content-type: text/html;charset=utf-8
+    # 关闭缓存, 即时刷新, 上线生产环境需要改为true
+    cache: false
+  freemarker:
+    check-template-location: false
+    charset: UTF-8
+    content-type: text/html;charset=utf-8
+    expose-request-attributes: true
+    expose-session-attributes: true
+    expose-spring-macro-helpers: true
+    suffix: .ftl
+    cache: false
+    template-loader-path: classpath:/templates
+    settings:
+      datetime_format: yyyy-MM-dd HH:mm:ss
+      default_encoding: UTF-8
+    allow-session-override: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+#mybatis
+mybatis-plus:
+  mapper-locations: classpath*:/mappers/*.xml
+  #实体扫描，多个package用逗号或者分号分隔
+  type-aliases-package: com.fans.modules.*.entity
+  global-config:
+    #数据库相关配置
+    db-config:
+      #主键类型  AUTO:"数据库ID自增", INPUT:"用户输入ID", ID_WORKER:"全局唯一ID (数字类型唯一ID)", UUID:"全局唯一ID UUID";
+      id-type: AUTO
+      logic-delete-value: -1
+      logic-not-delete-value: 0
+    banner: false
+  #原生配置
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+    call-setters-on-nulls: true
+    jdbc-type-for-null: 'null'
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+wechat:
+  appid: wxb596d23b0c9f5dd2
+  appsecret: ac919349bf19abdcd5c834c42a631a4a
+  code2session: https://api.weixin.qq.com/sns/jscode2session?appid={0}&secret={1}&js_code={2}&grant_type=authorization_code

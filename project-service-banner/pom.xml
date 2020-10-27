@@ -11,5 +11,11 @@
 
     <artifactId>project-service-banner</artifactId>
 
-
+    <dependencies>
+        <dependency>
+            <groupId>com.fans</groupId>
+            <artifactId>project-service-api</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 </project>

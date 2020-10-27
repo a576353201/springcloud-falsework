@@ -1,0 +1,87 @@
+2020-10-27 10:22:49.430 [main] INFO  com.fans.modules.banner.service.BannerServiceTest - Starting BannerServiceTest on DESKTOP-3U8JFKN with PID 9024 (started by Administrator in C:\work\project\springcloud-falsework\project-service-banner)
+2020-10-27 10:22:49.431 [main] INFO  com.fans.modules.banner.service.BannerServiceTest - The following profiles are active: dev
+2020-10-27 10:22:53.667 [main] INFO  com.fans.core.datasource.config.DynamicDataSourceConfig - 
+--> Let's inspect the dataSource provided by Spring Boot to project: 
+{
+  "defaultDatabase":"系统默认数据源",
+  "cloudy":"Security框架",
+  "security":"Rbac框架"
+}
+2020-10-27 10:23:22.745 [main] INFO  com.fans.threadpool.basic.PoolRegister - 
+--> PoolRegister init() @2020-10-27 10:23:22
+2020-10-27 10:23:22.746 [main] INFO  com.fans.threadpool.basic.PoolRegister - 
+--> 可用线程队列列表(poolRegister.executeHandler(eventBean)) : 
+[
+  "The 【MessageBean】 queue ready !!!  Action : 消息执行器,发送消息专用",
+  "The 【PayBean】 queue ready !!!  Action : 支付执行器,支付后执行逻辑 例如扣库存"
+]
+--> 私有线程池列表(ThreadPoolProxyFactory.getThreadPoolProxy()) : 
+[
+  "The ThreadPool 【ThreadPoolProxy】 init() @ success !!! Description : 本地线程池"
+]
+--> 私有缓存池列表(LocalCacheProxyFactory.getLocalCacheProxy()) : 
+[
+  "The LoadingCache 【LocalCacheProxy】 init() @ success !!! Description : 本地缓存"
+]
+2020-10-27 10:23:26.000 [main] INFO  com.fans.modules.banner.service.BannerServiceTest - Started BannerServiceTest in 37.137 seconds (JVM running for 39.283)
+2020-10-27 10:25:43.979 [main] INFO  com.fans.modules.banner.service.IBannerServiceTest - Starting IBannerServiceTest on DESKTOP-3U8JFKN with PID 20768 (started by Administrator in C:\work\project\springcloud-falsework\project-service-banner)
+2020-10-27 10:25:43.980 [main] INFO  com.fans.modules.banner.service.IBannerServiceTest - The following profiles are active: dev
+2020-10-27 10:25:47.999 [main] INFO  com.fans.core.datasource.config.DynamicDataSourceConfig - 
+--> Let's inspect the dataSource provided by Spring Boot to project: 
+{
+  "defaultDatabase":"系统默认数据源",
+  "cloudy":"Security框架",
+  "security":"Rbac框架"
+}
+2020-10-27 10:26:14.008 [main] INFO  com.fans.threadpool.basic.PoolRegister - 
+--> PoolRegister init() @2020-10-27 10:26:13
+2020-10-27 10:26:14.008 [main] INFO  com.fans.threadpool.basic.PoolRegister - 
+--> 可用线程队列列表(poolRegister.executeHandler(eventBean)) : 
+[
+  "The 【MessageBean】 queue ready !!!  Action : 消息执行器,发送消息专用",
+  "The 【PayBean】 queue ready !!!  Action : 支付执行器,支付后执行逻辑 例如扣库存"
+]
+--> 私有线程池列表(ThreadPoolProxyFactory.getThreadPoolProxy()) : 
+[
+  "The ThreadPool 【ThreadPoolProxy】 init() @ success !!! Description : 本地线程池"
+]
+--> 私有缓存池列表(LocalCacheProxyFactory.getLocalCacheProxy()) : 
+[
+  "The LoadingCache 【LocalCacheProxy】 init() @ success !!! Description : 本地缓存"
+]
+2020-10-27 10:26:16.477 [main] INFO  com.fans.modules.banner.service.IBannerServiceTest - Started IBannerServiceTest in 32.935 seconds (JVM running for 35.711)
+2020-10-27 10:28:19.241 [main] INFO  com.fans.modules.banner.service.BannerServiceTest - Starting BannerServiceTest on DESKTOP-3U8JFKN with PID 9024 (started by Administrator in C:\work\project\springcloud-falsework\project-service-banner)
+2020-10-27 10:28:19.242 [main] INFO  com.fans.modules.banner.service.BannerServiceTest - The following profiles are active: dev
+2020-10-27 10:28:26.050 [main] INFO  com.fans.core.datasource.config.DynamicDataSourceConfig - 
+--> Let's inspect the dataSource provided by Spring Boot to project: 
+{
+  "defaultDatabase":"系统默认数据源",
+  "cloudy":"Security框架",
+  "security":"Rbac框架"
+}
+2020-10-27 10:28:55.840 [main] INFO  com.fans.threadpool.basic.PoolRegister - 
+--> PoolRegister init() @2020-10-27 10:28:55
+2020-10-27 10:28:55.840 [main] INFO  com.fans.threadpool.basic.PoolRegister - 
+--> 可用线程队列列表(poolRegister.executeHandler(eventBean)) : 
+[
+  "The 【PayBean】 queue ready !!!  Action : 支付执行器,支付后执行逻辑 例如扣库存",
+  "The 【MessageBean】 queue ready !!!  Action : 消息执行器,发送消息专用"
+]
+--> 私有线程池列表(ThreadPoolProxyFactory.getThreadPoolProxy()) : 
+[
+  "The ThreadPool 【ThreadPoolProxy】 init() @ success !!! Description : 本地线程池"
+]
+--> 私有缓存池列表(LocalCacheProxyFactory.getLocalCacheProxy()) : 
+[
+  "The LoadingCache 【LocalCacheProxy】 init() @ success !!! Description : 本地缓存"
+]
+2020-10-27 10:28:58.606 [main] INFO  com.fans.modules.banner.service.BannerServiceTest - Started BannerServiceTest in 39.969 seconds (JVM running for 42.871)
+2020-10-27 10:30:06.320 [main] INFO  com.fans.modules.banner.service.BannerServiceTest - Starting BannerServiceTest on DESKTOP-3U8JFKN with PID 4564 (started by Administrator in C:\work\project\springcloud-falsework\project-service-banner)
+2020-10-27 10:30:06.321 [main] INFO  com.fans.modules.banner.service.BannerServiceTest - The following profiles are active: dev
+2020-10-27 10:30:11.852 [main] INFO  com.fans.core.datasource.config.DynamicDataSourceConfig - 
+--> Let's inspect the dataSource provided by Spring Boot to project: 
+{
+  "defaultDatabase":"系统默认数据源",
+  "cloudy":"Security框架",
+  "security":"Rbac框架"
+}

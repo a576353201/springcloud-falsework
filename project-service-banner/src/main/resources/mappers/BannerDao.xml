@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fans.modules.banner.dao.BannerDao">
+
+    <!-- 基础Map -->
+    <resultMap type="com.fans.modules.banner.entity.BannerEntity" id="bannerMap">
+                                    <id column="id" property="id"/>
+                                                <result column="name" property="name"/>
+                                                <result column="description" property="description"/>
+                                                <result column="create_time" property="createTime"/>
+                                                <result column="update_time" property="updateTime"/>
+                                                <result column="delete_time" property="deleteTime"/>
+                                                <result column="title" property="title"/>
+                                                <result column="img" property="img"/>
+                        </resultMap>
+    <!-- 基础字段 -->
+    <sql id="Base_Column_List">
+            id,name,description,create_time,update_time,delete_time,title,img
+    </sql>
+
+    <select id="findAll" resultType="com.fans.modules.banner.entity.BannerEntity">
+        select
+        <include refid="Base_Column_List"/>
+        from banner
+    </select>
+
+    <select id="selectByPrimaryKey" resultMap="bannerMap">
+        select
+        <include refid="Base_Column_List"/>
+        from banner
+        where id = #{id}
+    </select>
+
+    <delete id="deleteByPrimaryKey">
+        delete
+        from banner
+        where id = #{id}
+    </delete>
+
+    <insert id="insertSelective" parameterType="com.fans.modules.banner.entity.BannerEntity" useGeneratedKeys="true" keyProperty="id">
+        insert into banner
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                            <if test="id != null">
+                    id,
+                </if>
+                            <if test="name != null">
+                    name,
+                </if>
+                            <if test="description != null">
+                    description,
+                </if>
+                            <if test="createTime != null">
+                    create_time,
+                </if>
+                            <if test="updateTime != null">
+                    update_time,
+                </if>
+                            <if test="deleteTime != null">
+                    delete_time,
+                </if>
+                            <if test="title != null">
+                    title,
+                </if>
+                            <if test="img != null">
+                    img,
+                </if>
+                    </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                            <if test="id != null">
+                    #{id},
+                </if>
+                            <if test="name != null">
+                    #{name},
+                </if>
+                            <if test="description != null">
+                    #{description},
+                </if>
+                            <if test="createTime != null">
+                    #{createTime},
+                </if>
+                            <if test="updateTime != null">
+                    #{updateTime},
+                </if>
+                            <if test="deleteTime != null">
+                    #{deleteTime},
+                </if>
+                            <if test="title != null">
+                    #{title},
+                </if>
+                            <if test="img != null">
+                    #{img},
+                </if>
+                    </trim>
+    </insert>
+
+    <insert id="insertBatch">
+        insert into banner
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                                                                            name,
+                                                                description,
+                                                                create_time,
+                                                                update_time,
+                                                                delete_time,
+                                                                title,
+                                                                img,
+                                    </trim>
+        values
+        <foreach collection="bannerEntityList" item="item" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+                                                                                                #{item.name},
+                                                                                #{item.description},
+                                                                                #{item.createTime},
+                                                                                #{item.updateTime},
+                                                                                #{item.deleteTime},
+                                                                                #{item.title},
+                                                                                #{item.img},
+                                                </trim>
+        </foreach>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.fans.modules.banner.entity.BannerEntity">
+        update banner
+        <set>
+                                                                            <if test="name != null">
+                        name = #{name},
+                    </if>
+                                                                <if test="description != null">
+                        description = #{description},
+                    </if>
+                                                                <if test="createTime != null">
+                        create_time = #{createTime},
+                    </if>
+                                                                <if test="updateTime != null">
+                        update_time = #{updateTime},
+                    </if>
+                                                                <if test="deleteTime != null">
+                        delete_time = #{deleteTime},
+                    </if>
+                                                                <if test="title != null">
+                        title = #{title},
+                    </if>
+                                                                <if test="img != null">
+                        img = #{img},
+                    </if>
+                                    </set>
+        where id = #{id}    </update>
+
+    <update id="updateBatchByPrimaryKeySelective">
+        update banner
+        <trim prefix="set" suffixOverrides=",">
+                                                                            <trim prefix="name =case" suffix="end,">
+                        <foreach collection="bannerEntityList" item="item" index="index">
+                            when id = #{item.id} then #{item.name}                         </foreach>
+                    </trim>
+                                                                <trim prefix="description =case" suffix="end,">
+                        <foreach collection="bannerEntityList" item="item" index="index">
+                            when id = #{item.id} then #{item.description}                         </foreach>
+                    </trim>
+                                                                <trim prefix="create_time =case" suffix="end,">
+                        <foreach collection="bannerEntityList" item="item" index="index">
+                            when id = #{item.id} then #{item.createTime}                         </foreach>
+                    </trim>
+                                                                <trim prefix="update_time =case" suffix="end,">
+                        <foreach collection="bannerEntityList" item="item" index="index">
+                            when id = #{item.id} then #{item.updateTime}                         </foreach>
+                    </trim>
+                                                                <trim prefix="delete_time =case" suffix="end,">
+                        <foreach collection="bannerEntityList" item="item" index="index">
+                            when id = #{item.id} then #{item.deleteTime}                         </foreach>
+                    </trim>
+                                                                <trim prefix="title =case" suffix="end,">
+                        <foreach collection="bannerEntityList" item="item" index="index">
+                            when id = #{item.id} then #{item.title}                         </foreach>
+                    </trim>
+                                                                <trim prefix="img =case" suffix="end,">
+                        <foreach collection="bannerEntityList" item="item" index="index">
+                            when id = #{item.id} then #{item.img}                         </foreach>
+                    </trim>
+                                    </trim>
+        where id in         <foreach collection="bannerEntityList" index="index" item="item" separator="," open="(" close=")">
+            #{item.id}        </foreach>
+    </update>
+</mapper>
