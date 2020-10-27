@@ -1,4 +1,4 @@
-package com.fans.modules.banner;
+package com.fans.modules.banner.controller;
 
 import com.fans.modules.banner.mo.FriendLinkMO;
 import com.fans.modules.banner.vo.BannerVO;

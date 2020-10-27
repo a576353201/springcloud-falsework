@@ -4,7 +4,6 @@ package com.fans.modules.user.controller;
 import com.fans.annotations.Verify;
 import com.fans.enumeration.LoginType;
 import com.fans.exception.http.NotFountException;
-import com.fans.modules.user.AuthenticationControllerApi;
 import com.fans.modules.user.dto.LoginDTO;
 import com.fans.modules.user.dto.TokenDTO;
 import com.fans.modules.user.service.IAuthenticationService;

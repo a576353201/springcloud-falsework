@@ -1,4 +1,4 @@
-package com.fans.modules.user;
+package com.fans.modules.user.controller;
 
 import com.fans.annotations.Verify;
 import com.fans.modules.user.dto.LoginDTO;

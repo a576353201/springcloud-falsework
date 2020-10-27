@@ -4,7 +4,6 @@ package com.fans.modules.banner.controller;
 import com.fans.constant.CacheKeyConstants;
 import com.fans.core.configuration.RabbitmqConfiguration;
 import com.fans.exception.http.NotFountException;
-import com.fans.modules.banner.BannerControllerApi;
 import com.fans.modules.banner.entity.BannerEntity;
 import com.fans.modules.banner.mo.FriendLinkMO;
 import com.fans.modules.banner.repository.MongoDbRepository;
