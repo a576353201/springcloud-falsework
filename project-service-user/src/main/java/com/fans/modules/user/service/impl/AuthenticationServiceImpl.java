@@ -2,12 +2,14 @@ package com.fans.modules.user.service.impl;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.fans.bo.WeChatBO;
+import com.fans.constant.CacheKeyConstants;
 import com.fans.exception.http.ParameterException;
 import com.fans.modules.user.dao.UserDao;
 import com.fans.modules.user.entity.UserEntity;
 import com.fans.modules.user.service.IAuthenticationService;
 import com.fans.utils.JsonUtils;
 import com.fans.utils.JwtTokenUtils;
+import com.fans.utils.RedisUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
@@ -71,10 +73,23 @@ public class AuthenticationServiceImpl implements IAuthenticationService {
                     .openid(openId)
                     .build();
             userDao.insert(insert);
-            return JwtTokenUtils.makeToken(insert.getId());
+            String token = JwtTokenUtils.makeToken(insert.getId());
+            if (StringUtils.isNotBlank(token)) {
+                setUserInfoToRedis(insert.getId(), userInfo);
+            }
+            return token;
         }
         //返回jwt令牌
-        return JwtTokenUtils.makeToken(userInfo.getId());
+        String token = JwtTokenUtils.makeToken(userInfo.getId());
+        if (StringUtils.isNotBlank(token)) {
+            setUserInfoToRedis(userInfo.getId(), userInfo);
+        }
+        return token;
+    }
+
+    private void setUserInfoToRedis(Long uid, UserEntity userInfo) {
+        //存储登录用户到redis缓存
+        RedisUtils.saveCache(CacheKeyConstants.KAPOK, JsonUtils.obj2String(userInfo), 0, uid + StringUtils.EMPTY);
     }
 
 

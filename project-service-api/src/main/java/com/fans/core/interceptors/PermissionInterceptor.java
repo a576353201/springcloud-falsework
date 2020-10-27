@@ -2,9 +2,15 @@ package com.fans.core.interceptors;
 
 import com.auth0.jwt.interfaces.Claim;
 import com.fans.annotations.ScopeLevel;
+import com.fans.constant.CacheKeyConstants;
 import com.fans.exception.http.ForbiddenException;
 import com.fans.exception.http.UnAuthenticatedException;
+import com.fans.modules.user.entity.UserEntity;
+import com.fans.threadlocal.LocalUser;
+import com.fans.utils.ApplicationContextHelper;
+import com.fans.utils.JsonUtils;
 import com.fans.utils.JwtTokenUtils;
+import com.fans.utils.RedisUtils;
 import com.google.common.base.Splitter;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.method.HandlerMethod;
@@ -129,15 +135,12 @@ public class PermissionInterceptor extends HandlerInterceptorAdapter {
      * @date 2020/06/14 23:06
      **/
     private void setToThreadLocal(Map<String, Claim> map) {
-        //TODO
-//        Long uid = map.get(JwtTokenUtils.getUID()).asLong();
-//        Integer scope = map.get(JwtTokenUtils.getSCOPE()).asInt();
-//        UserDao userDao = ApplicationContextHelper.popBean(UserDao.class);
-//        assert userDao != null;
-//        UserEntity userEntity = userDao.selectById(uid);
-//        if (Optional.ofNullable(userEntity).isPresent()) {
-//            LocalUser.set(userEntity, scope);
-//        }
+        Long uid = map.get(JwtTokenUtils.getUID()).asLong();
+        Integer scope = map.get(JwtTokenUtils.getSCOPE()).asInt();
+        UserEntity userEntity = RedisUtils.getFromCache(CacheKeyConstants.KAPOK, UserEntity.class, uid + StringUtils.EMPTY);
+        if (Optional.ofNullable(userEntity).isPresent()) {
+            LocalUser.set(userEntity, scope);
+        }
     }
 
 }
