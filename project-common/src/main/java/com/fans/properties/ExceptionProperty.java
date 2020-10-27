@@ -1,4 +1,4 @@
-package com.fans.core.configuration;
+package com.fans.properties;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import java.util.Map;
 
 /**
- * className: ExceptionConfiguration
+ * className: ExceptionProperty
  *
  * @author k
  * @version 1.0
@@ -21,7 +21,7 @@ import java.util.Map;
 @PropertySource(value = "classpath:config/exception-code.properties")
 @Setter
 @Getter
-public class ExceptionConfiguration {
+public class ExceptionProperty {
 
     private Map<Integer, String> codes;
 

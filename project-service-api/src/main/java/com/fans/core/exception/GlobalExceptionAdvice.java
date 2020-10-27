@@ -1,8 +1,8 @@
 package com.fans.core.exception;
 
-import com.fans.core.configuration.ExceptionConfiguration;
 import com.fans.exception.ValidatorException;
 import com.fans.exception.http.HttpException;
+import com.fans.properties.ExceptionProperty;
 import com.fans.vo.JsonData;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -33,8 +33,8 @@ import java.util.List;
 @Slf4j
 public class GlobalExceptionAdvice {
 
-    @Resource(type = ExceptionConfiguration.class)
-    private ExceptionConfiguration exceptionConfiguration;
+    @Resource(type = ExceptionProperty.class)
+    private ExceptionProperty exceptionProperty;
 
     @ExceptionHandler(value = Exception.class)
     @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
@@ -50,7 +50,7 @@ public class GlobalExceptionAdvice {
         String uri = request.getRequestURI();
         String method = request.getMethod();
         JsonData<?> jsonData = JsonData.failCodeMsg(httpException.getCode(),
-                exceptionConfiguration.getMessage(httpException.getCode()),
+                exceptionProperty.getMessage(httpException.getCode()),
                 method + StringUtils.SPACE + uri);
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);

@@ -1,6 +1,9 @@
 package com.fans.core.configuration;
 
 import com.fans.core.interceptors.PermissionInterceptor;
+import com.fans.properties.InterceptorProperty;
+import com.fans.properties.bean.InterceptorBean;
+import com.fans.utils.ApplicationContextHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -8,10 +11,14 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
+import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+
+import javax.annotation.Resource;
+import java.util.Map;
 
 /**
  * className: WebConfig
@@ -25,9 +32,22 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 @Slf4j
 public class WebConfig implements WebMvcConfigurer {
 
+    @Resource(name = "interceptorProperty")
+    private InterceptorProperty interceptorProperty;
+
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(this.permissionInterceptor());
+        Map<String, InterceptorBean> beanMap = interceptorProperty.getBeans();
+        if (beanMap != null && !beanMap.isEmpty()) {
+            beanMap.forEach((beanName, interceptorBean) -> {
+                Object interceptor = ApplicationContextHelper.popBean(beanName);
+                if (interceptor != null) {
+                    registry.addInterceptor((HandlerInterceptor) interceptor)
+                            .addPathPatterns(interceptorBean.getAddPathPatterns())
+                            .excludePathPatterns(interceptorBean.getExcludePathPatterns());
+                }
+            });
+        }
     }
 
     @Override

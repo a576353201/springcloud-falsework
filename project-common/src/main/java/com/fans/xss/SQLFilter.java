@@ -5,7 +5,7 @@ import org.apache.commons.lang3.StringUtils;
 /**
  * className: SQLFilter
  *
- * @author  k
+ * @author k
  * @version 1.0
  * @description SQL过滤
  * @date 2020-10-25 14:47:34

@@ -1,7 +1,7 @@
 package com.fans.core.datasource.config;
 
-import com.fans.core.datasource.properties.Hikari;
 import com.fans.core.datasource.properties.DataSourceProperties;
+import com.fans.core.datasource.properties.Hikari;
 import com.zaxxer.hikari.HikariDataSource;
 import lombok.extern.slf4j.Slf4j;
 

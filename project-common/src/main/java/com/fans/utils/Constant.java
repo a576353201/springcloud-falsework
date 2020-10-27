@@ -3,7 +3,7 @@ package com.fans.utils;
 /**
  * className: Constant
  *
- * @author  k
+ * @author k
  * @version 1.0
  * @description 常量配置
  * @date 2020-10-25 14:47:34

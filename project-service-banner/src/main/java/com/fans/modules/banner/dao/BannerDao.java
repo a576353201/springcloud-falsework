@@ -21,9 +21,9 @@ public interface BannerDao extends BaseMapper<BannerEntity> {
 
     List<BannerEntity> findAll();
 
-    BannerEntity selectByPrimaryKey(@Param("id")  Integer id);
+    BannerEntity selectByPrimaryKey(@Param("id") Integer id);
 
-    int deleteByPrimaryKey(@Param("id")  Integer id);
+    int deleteByPrimaryKey(@Param("id") Integer id);
 
     int insertSelective(BannerEntity bannerEntity);
 

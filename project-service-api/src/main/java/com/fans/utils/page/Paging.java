@@ -44,58 +44,58 @@ public class Paging<T> implements Serializable {
      * @param list       列表数据
      */
     public Paging(int totalCount, int pageSize, int currPage, List<T> list) {
-            this.totalCount = totalCount;
-            this.pageSize = pageSize;
-            this.currPage = currPage;
-            this.list = list;
-            this.totalPage = (int) Math.ceil((double) totalCount / pageSize);
+        this.totalCount = totalCount;
+        this.pageSize = pageSize;
+        this.currPage = currPage;
+        this.list = list;
+        this.totalPage = (int) Math.ceil((double) totalCount / pageSize);
     }
 
     public Paging(IPage<T> page) {
-            this.list = page.getRecords();
-            this.totalCount = (int) page.getTotal();
-            this.pageSize = (int) page.getSize();
-            this.currPage = (int) page.getCurrent();
-            this.totalPage = (int) page.getPages();
+        this.list = page.getRecords();
+        this.totalCount = (int) page.getTotal();
+        this.pageSize = (int) page.getSize();
+        this.currPage = (int) page.getCurrent();
+        this.totalPage = (int) page.getPages();
     }
 
     public int getTotalCount() {
-            return totalCount;
+        return totalCount;
     }
 
     public void setTotalCount(int totalCount) {
-            this.totalCount = totalCount;
+        this.totalCount = totalCount;
     }
 
     public int getPageSize() {
-            return pageSize;
+        return pageSize;
     }
 
     public void setPageSize(int pageSize) {
-            this.pageSize = pageSize;
+        this.pageSize = pageSize;
     }
 
     public int getTotalPage() {
-            return totalPage;
+        return totalPage;
     }
 
     public void setTotalPage(int totalPage) {
-            this.totalPage = totalPage;
+        this.totalPage = totalPage;
     }
 
     public int getCurrPage() {
-            return currPage;
+        return currPage;
     }
 
     public void setCurrPage(int currPage) {
-            this.currPage = currPage;
+        this.currPage = currPage;
     }
 
     public List<T> getList() {
-            return list;
+        return list;
     }
 
     public void setList(List<T> list) {
-            this.list = list;
+        this.list = list;
     }
 }

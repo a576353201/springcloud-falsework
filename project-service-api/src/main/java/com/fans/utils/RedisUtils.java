@@ -1,7 +1,7 @@
 package com.fans.utils;
 
-import com.fans.core.configuration.RedisPool;
 import com.fans.constant.CacheKeyConstants;
+import com.fans.core.configuration.RedisPool;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.google.common.base.Joiner;
 import com.google.common.collect.Maps;
