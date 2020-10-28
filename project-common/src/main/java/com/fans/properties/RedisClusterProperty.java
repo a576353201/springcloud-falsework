@@ -1,5 +1,6 @@
 package com.fans.properties;
 
+import com.google.common.collect.Lists;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -20,5 +21,5 @@ import java.util.List;
 @Getter
 @ConfigurationProperties(prefix = "spring.redis.sharded-cluster")
 public class RedisClusterProperty {
-    private List<String> nodes;
+    private List<String> nodes = Lists.newArrayList();
 }

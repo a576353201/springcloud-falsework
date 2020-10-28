@@ -5,6 +5,8 @@
 ############################################################
 server:
   port: ${port:7000}
+  tomcat:
+    uri-encoding: UTF-8
 spring:
   application:
     name: eureka

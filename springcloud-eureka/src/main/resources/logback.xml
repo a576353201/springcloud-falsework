@@ -9,7 +9,7 @@
 <configuration scan="true" scanPeriod="60 seconds" debug="false">
     <property name="log.path" value="./springcloud-eureka"/>
     <!-- project name -->
-    <property name="projectName" value="user-service"/>
+    <property name="projectName" value="eureka"/>
     <!-- 日志最大的历史 30天 -->
     <property name="maxHistory" value="30"/>
     <!-- 彩色日志格式 -->

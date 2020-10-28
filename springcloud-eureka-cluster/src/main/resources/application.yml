@@ -6,6 +6,8 @@
 ############################################################
 server:
   port: ${port:7001}
+  tomcat:
+    uri-encoding: UTF-8
 spring:
   application:
     name: springcloud-eureka-cluster-${server.port}

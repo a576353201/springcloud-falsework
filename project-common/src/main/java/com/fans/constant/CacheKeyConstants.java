@@ -14,5 +14,10 @@ public enum CacheKeyConstants {
      */
     KAPOK,
     SYSTEM_ACL,
-    USER_ACL;
+    USER_ACL,
+    /**
+     * ip限流
+     */
+    CLICK_COUNTS,
+    LIMIT_TIMES
 }
