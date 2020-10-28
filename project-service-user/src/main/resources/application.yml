@@ -13,7 +13,7 @@ spring:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
     # 蛇形名称格式  banner_id
-    property-naming-strategy: SNAKE_CASE
+    #    property-naming-strategy: SNAKE_CASE
     serialization:
       WRITE_DATES_AS_TIMESTAMPS: true
   ############################################################
@@ -114,3 +114,21 @@ eureka:
     lease-renewal-interval-in-seconds: 3
     # eureka 举例最近的一次心跳等待提出的时间，默认90s
     lease-expiration-duration-in-seconds: 5
+# 配置hystrix
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            # 设置hystrix超时时间，超过2秒触发降级
+            timeoutInMilliseconds: 2000
+            # 配置断路器
+      circuitBreaker:
+        enabled: true
+        # 触发熔断最小请求次数，默认：20
+        requestVolumeThreshold: 10
+        # 熔断后过几秒后尝试半开状态（请求重试），默认：5s
+        sleepWindowInMilliseconds: 15000
+        # 触发熔断的失败率（异常率/阈值），默认：50
+        errorThresholdPercentage: 50

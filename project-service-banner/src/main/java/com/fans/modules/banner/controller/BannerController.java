@@ -8,7 +8,9 @@ import com.fans.modules.banner.entity.BannerEntity;
 import com.fans.modules.banner.mo.FriendLinkMO;
 import com.fans.modules.banner.repository.MongoDbRepository;
 import com.fans.modules.banner.service.IBannerService;
+import com.fans.modules.banner.stream.StreamProducer;
 import com.fans.modules.banner.vo.BannerVO;
+import com.fans.modules.user.entity.UserEntity;
 import com.fans.utils.FileUtils;
 import com.fans.utils.RedisUtils;
 import com.fans.utils.page.PageUtils;
@@ -170,6 +172,24 @@ public class BannerController implements BannerControllerApi {
     @Override
     public void test() {
         throw new NotFountException(10000);
+    }
+
+    @Override
+    public JsonData<UserEntity> getUser() {
+        UserEntity userEntity = bannerService.getUser(1L);
+        return JsonData.success(userEntity);
+    }
+
+
+    @Resource(name = "streamProducer")
+    private StreamProducer streamProducer;
+
+    @Override
+    public JsonData<String> stream() {
+        for (int i = 0; i < 10; i++) {
+            streamProducer.sendMessage(i + 1 + "");
+        }
+        return JsonData.success("吃饺子成功, 我进行了group配置 你们不能争抢了，同时消息也被持久化了~~~~");
     }
 
 }

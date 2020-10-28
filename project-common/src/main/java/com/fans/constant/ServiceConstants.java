@@ -12,6 +12,6 @@ public class ServiceConstants {
     /**
      * 用户服务
      */
-    public static final String SERVICE_BANNER = "service-banner";
-    public static final String SERVICE_USER = "service-user";
+    public static final String SERVICE_BANNER = "banner-service";
+    public static final String SERVICE_USER = "user-service";
 }

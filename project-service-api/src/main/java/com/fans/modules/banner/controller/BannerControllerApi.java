@@ -2,6 +2,7 @@ package com.fans.modules.banner.controller;
 
 import com.fans.modules.banner.mo.FriendLinkMO;
 import com.fans.modules.banner.vo.BannerVO;
+import com.fans.modules.user.entity.UserEntity;
 import com.fans.utils.page.Paging;
 import com.fans.vo.JsonData;
 import io.swagger.annotations.*;
@@ -83,4 +84,12 @@ public interface BannerControllerApi {
     @GetMapping(value = "/test")
     @ApiOperation(value = "test", notes = "test")
     void test();
+
+    @GetMapping(value = "/getUser")
+    @ApiOperation(value = "跨服务调用 getUserinfoById ", notes = "跨服务调用 getUserinfoById ")
+    JsonData<UserEntity> getUser();
+
+    @GetMapping(value = "/stream")
+    @ApiOperation(value = "跨服务消息通道stream测试", notes = "跨服务消息通道stream测试")
+    JsonData<String> stream();
 }

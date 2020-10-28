@@ -13,7 +13,7 @@ spring:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
     # 蛇形名称格式  banner_id
-    property-naming-strategy: SNAKE_CASE
+    #    property-naming-strategy: SNAKE_CASE
     serialization:
       WRITE_DATES_AS_TIMESTAMPS: true
   ############################################################
@@ -110,3 +110,29 @@ eureka:
     lease-renewal-interval-in-seconds: 3
     # eureka 举例最近的一次心跳等待提出的时间，默认90s
     lease-expiration-duration-in-seconds: 5
+############################################################
+#
+# ribbon与feign 配置信息
+#
+############################################################
+# ribbon客户端负载均衡配置
+# 当请求到某个微服务5s，超时后会进行重试，先重试连接自己当前的这个实例 如果当前重试失败1次，则会切换到访问集群中的下一个微服务实例，切换最大为2次
+ribbon:
+  # 创建连接的超时时间，单位：ms
+  ConnectTimeout: 5000
+  # 在连接创建好以后，调用接口的超时时间，单位：ms
+  ReadTimeout: 5000
+  # 最大重试次数
+  MaxAutoRetries: 1
+  # 切换到下个微服务实例的重试次数
+  MaxAutoRetriesNextServer: 2
+# 配置feign
+feign:
+  client:
+    config:
+      # 配置服务提供方的名称
+      user-service:
+        loggerLevel: FULL
+  hystrix:
+    # 打开feign客户端的内置hystrix
+    enabled: true

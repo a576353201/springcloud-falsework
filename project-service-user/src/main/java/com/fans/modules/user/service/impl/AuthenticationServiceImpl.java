@@ -60,6 +60,11 @@ public class AuthenticationServiceImpl implements IAuthenticationService {
         return registerUser(weChatBO);
     }
 
+    @Override
+    public UserEntity getUserinfoById(Long uid) {
+        return userDao.selectById(uid);
+    }
+
 
     private String registerUser(WeChatBO weChatBO) {
         String openId = weChatBO.getOpenid();

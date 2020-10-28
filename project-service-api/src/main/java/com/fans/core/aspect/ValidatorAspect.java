@@ -29,7 +29,7 @@ import java.util.LinkedHashMap;
 @Slf4j
 public class ValidatorAspect {
 
-    @Before("execution(* com.fans.modules..*.*(..))")
+    @Before("execution(* com.fans.modules..*.controller..*.*(..))")
     public void verifyParam(JoinPoint joinPoint) throws NoSuchMethodException {
         Object[] args = joinPoint.getArgs();
         if (args == null || args.length == 0) {

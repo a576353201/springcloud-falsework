@@ -6,6 +6,7 @@ import com.fans.enumeration.LoginType;
 import com.fans.exception.http.NotFountException;
 import com.fans.modules.user.dto.LoginDTO;
 import com.fans.modules.user.dto.TokenDTO;
+import com.fans.modules.user.entity.UserEntity;
 import com.fans.modules.user.service.IAuthenticationService;
 import com.fans.utils.EnumUtils;
 import com.fans.utils.JwtTokenUtils;
@@ -13,8 +14,11 @@ import com.fans.validator.ValidatorUtils;
 import com.fans.validator.group.AddGroup;
 import com.fans.validator.group.LoginGroup;
 import com.fans.vo.AuthenticationInfoVO;
+import com.fans.vo.JsonData;
 import com.fans.vo.TokenVerifyResultVO;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,10 +33,16 @@ import javax.annotation.Resource;
  * @date 2020-06-14 10:58
  **/
 @RestController
+//熔断方式一 不太实用 @DefaultProperties(defaultFallback = "defaultFallback")
 public class AuthenticationController implements AuthenticationControllerApi {
 
     @Resource(name = "iAuthenticationService")
     private IAuthenticationService iAuthenticationService;
+
+    public JsonData<Object> defaultFallback() {
+        return JsonData.fail("全局降级");
+    }
+
 
     @Override
     public AuthenticationInfoVO login(@RequestBody @Verify(groups = {LoginGroup.class, AddGroup.class}) LoginDTO loginDTO) {
@@ -67,4 +77,27 @@ public class AuthenticationController implements AuthenticationControllerApi {
                 .build();
     }
 
+    @Value(value = "${server.port}")
+    private Integer port;
+
+    @HystrixCommand //熔断方式（二）粒度更细 推荐使用 (fallbackMethod = "getUserinfoByIdFallback")
+    @Override
+    public JsonData<UserEntity> getUserinfoById(Long uid) {
+        System.err.println("服务端口:" + port);
+//        int i = 1 / 0;
+//        try {
+//            Thread.sleep(6000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+        return JsonData.success(iAuthenticationService.getUserinfoById(uid));
+    }
+
+    public JsonData<UserEntity> getUserinfoByIdFallback(Long uid) {
+        System.err.println("uid:" + uid);
+        System.err.println("服务 getUserinfoById降级");
+        return JsonData.success(UserEntity.builder()
+                .nickname("hahahahaah")
+                .build());
+    }
 }

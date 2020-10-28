@@ -1,5 +1,7 @@
 package com.fans.modules.user.service;
 
+import com.fans.modules.user.entity.UserEntity;
+
 /**
  * interfaceName: IAuthenticationService
  *
@@ -16,4 +18,6 @@ public interface IAuthenticationService {
      * @return 认证用的token
      */
     String code2Session(String code);
+
+    UserEntity getUserinfoById(Long uid);
 }

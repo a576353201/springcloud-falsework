@@ -7,12 +7,18 @@ import com.fans.modules.banner.dao.BannerDao;
 import com.fans.modules.banner.entity.BannerEntity;
 import com.fans.modules.banner.service.IBannerService;
 import com.fans.modules.banner.vo.BannerVO;
+import com.fans.modules.user.controller.AuthenticationControllerApi;
+import com.fans.modules.user.entity.UserEntity;
+import com.fans.utils.JsonUtils;
 import com.fans.utils.page.PageUtils;
 import com.fans.utils.page.Paging;
 import com.fans.utils.page.Query;
+import com.fans.vo.JsonData;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.Resource;
 import java.util.Map;
@@ -39,5 +45,41 @@ public class BannerServiceImpl extends ServiceImpl<BannerDao, BannerEntity> impl
                 new QueryWrapper<>()
         );
         return PageUtils.page(page, BannerVO.class);
+    }
+
+    @Resource(type = AuthenticationControllerApi.class)
+    private AuthenticationControllerApi authenticationControllerApi;
+
+    @Resource(name = "discoveryClient")
+    private DiscoveryClient discoveryClient;
+
+    @Resource(type = RestTemplate.class)
+    private RestTemplate restTemplate;
+
+
+    @SuppressWarnings("rawtypes")
+    @Override
+    public UserEntity getUser(long uid) {
+        JsonData<UserEntity> body = authenticationControllerApi.getUserinfoById(1L);
+
+        //*********************直接使用服务名调用******************
+        //String url = "http://" + ServiceConstants.SERVICE_USER + "/query?uid=" + uid;
+        //ResponseEntity<JsonData> result = restTemplate.postForEntity(url, null, JsonData.class);
+        //JsonData body = result.getBody();
+        //*********************end******************************
+
+        //*********************DiscoveryClient******************
+//        List<ServiceInstance> discoveryClientInstances = discoveryClient.getInstances(ServiceConstants.SERVICE_USER);
+//        ServiceInstance serviceInstance = discoveryClientInstances.get(0);
+//        String url = "http://" + serviceInstance.getServiceId() + ":" + serviceInstance.getPort() + "/query?uid=" + uid;
+//        ResponseEntity<JsonData> result = restTemplate.postForEntity(url, null, JsonData.class);
+//        JsonData body = result.getBody();
+        //*********************end******************************
+        if (body != null) {
+            if (body.getCode() == 200) {
+                return JsonUtils.string2Obj(JsonUtils.obj2String(body.getBody()), UserEntity.class);
+            }
+        }
+        return null;
     }
 }
