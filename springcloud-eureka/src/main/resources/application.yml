@@ -3,32 +3,8 @@
 # 配置项目信息
 #
 ############################################################
-server:
-  port: ${port:7000}
-  tomcat:
-    uri-encoding: UTF-8
 spring:
   application:
     name: eureka
-############################################################
-#
-# eureka 配置信息
-#
-############################################################
-eureka:
-  instance:
-    # eureka 实例的hostname，可以是hostname，也可以自定义配置hostname 可以为ip [hostname: 127.0.0.1]
-    hostname: eureka
-  client:
-    # 是否腰包当前eureka server注册到自己
-    register-with-eureka: false
-    # 从注册中心获得检索服务实例，server没有必要 直接false即可
-    fetch-registry: false
-    # 单实例配置自己的服务地址，高可用则配置多个地址
-    service-url:
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
-  server:
-    # 关闭eureka的自我保护功能
-    enable-self-preservation: true
-    # 清理无效节点的时间，可以缩短为5s，默认60s
-    eviction-interval-timer-in-ms: 5000
+  profiles:
+    active: dev

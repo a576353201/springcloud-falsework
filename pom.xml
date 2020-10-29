@@ -16,6 +16,7 @@
         <module>springcloud-eureka</module>
         <module>springcloud-eureka-cluster</module>
         <module>springcloud-zuul</module>
+        <module>springcloud-config</module>
     </modules>
     <packaging>pom</packaging>
 
