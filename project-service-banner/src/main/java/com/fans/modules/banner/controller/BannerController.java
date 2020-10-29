@@ -1,9 +1,9 @@
 package com.fans.modules.banner.controller;
 
 
-import com.fans.constant.CacheKeyConstants;
+import com.fans.modules.constant.CacheKeyConstants;
 import com.fans.core.configuration.RabbitmqConfiguration;
-import com.fans.exception.http.NotFountException;
+import com.fans.modules.exception.http.NotFountException;
 import com.fans.modules.banner.entity.BannerEntity;
 import com.fans.modules.banner.mo.FriendLinkMO;
 import com.fans.modules.banner.repository.MongoDbRepository;
@@ -11,11 +11,11 @@ import com.fans.modules.banner.service.IBannerService;
 import com.fans.modules.banner.stream.StreamProducer;
 import com.fans.modules.banner.vo.BannerVO;
 import com.fans.modules.user.entity.UserEntity;
-import com.fans.utils.FileUtils;
+import com.fans.modules.utils.FileUtils;
 import com.fans.utils.RedisUtils;
 import com.fans.utils.page.PageUtils;
 import com.fans.utils.page.Paging;
-import com.fans.vo.JsonData;
+import com.fans.modules.vo.JsonData;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.mongodb.client.gridfs.GridFSBucket;
 import io.swagger.annotations.ApiParam;

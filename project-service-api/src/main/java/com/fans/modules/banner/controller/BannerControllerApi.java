@@ -4,7 +4,7 @@ import com.fans.modules.banner.mo.FriendLinkMO;
 import com.fans.modules.banner.vo.BannerVO;
 import com.fans.modules.user.entity.UserEntity;
 import com.fans.utils.page.Paging;
-import com.fans.vo.JsonData;
+import com.fans.modules.vo.JsonData;
 import io.swagger.annotations.*;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

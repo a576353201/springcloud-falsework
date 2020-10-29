@@ -1,21 +1,21 @@
 package com.fans.modules.user.controller;
 
 
-import com.fans.annotations.Verify;
-import com.fans.enumeration.LoginType;
-import com.fans.exception.http.NotFountException;
+import com.fans.modules.annotations.Verify;
+import com.fans.modules.enumeration.LoginType;
+import com.fans.modules.exception.http.NotFountException;
 import com.fans.modules.user.dto.LoginDTO;
 import com.fans.modules.user.dto.TokenDTO;
 import com.fans.modules.user.entity.UserEntity;
 import com.fans.modules.user.service.IAuthenticationService;
-import com.fans.utils.EnumUtils;
-import com.fans.utils.JwtTokenUtils;
-import com.fans.validator.ValidatorUtils;
-import com.fans.validator.group.AddGroup;
-import com.fans.validator.group.LoginGroup;
-import com.fans.vo.AuthenticationInfoVO;
-import com.fans.vo.JsonData;
-import com.fans.vo.TokenVerifyResultVO;
+import com.fans.modules.utils.EnumUtils;
+import com.fans.modules.utils.JwtTokenUtils;
+import com.fans.modules.validator.ValidatorUtils;
+import com.fans.modules.validator.group.AddGroup;
+import com.fans.modules.validator.group.LoginGroup;
+import com.fans.modules.vo.AuthenticationInfoVO;
+import com.fans.modules.vo.JsonData;
+import com.fans.modules.vo.TokenVerifyResultVO;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Value;

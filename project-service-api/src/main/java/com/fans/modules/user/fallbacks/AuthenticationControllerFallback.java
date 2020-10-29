@@ -4,9 +4,9 @@ import com.fans.modules.user.controller.AuthenticationControllerApi;
 import com.fans.modules.user.dto.LoginDTO;
 import com.fans.modules.user.dto.TokenDTO;
 import com.fans.modules.user.entity.UserEntity;
-import com.fans.vo.AuthenticationInfoVO;
-import com.fans.vo.JsonData;
-import com.fans.vo.TokenVerifyResultVO;
+import com.fans.modules.vo.AuthenticationInfoVO;
+import com.fans.modules.vo.JsonData;
+import com.fans.modules.vo.TokenVerifyResultVO;
 import feign.hystrix.FallbackFactory;
 import org.springframework.stereotype.Component;
 

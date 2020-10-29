@@ -1,6 +1,6 @@
 package com.fans.modules.banner;
 
-import com.fans.constant.ServiceConstants;
+import com.fans.modules.constant.ServiceConstants;
 import com.rule.MyRule;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
