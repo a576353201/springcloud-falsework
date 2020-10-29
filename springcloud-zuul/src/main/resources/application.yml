@@ -3,10 +3,6 @@
 # 配置项目信息
 #
 ############################################################
-server:
-  port: ${port:7070}
-  tomcat:
-    uri-encoding: UTF-8
 spring:
   application:
     name: zuul

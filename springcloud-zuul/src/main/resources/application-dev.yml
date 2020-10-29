@@ -1,27 +1,13 @@
-############################################################
-#
-# 配置项目信息
-#
-############################################################
 server:
   port: ${port:7070}
   tomcat:
     uri-encoding: UTF-8
   error:
-    path: /error
+    # 修改默认页面，否则会影响zuul掉用 /error 接口
+    path: /err
+    whitelabel:
+      enabled: false
 spring:
-  application:
-    name: zuul
-  cloud:
-    config:
-      label: master
-      name: zuul
-      profile: dev
-      discovery:
-        enabled: true
-        service-id: config
-      # config服务地址
-      #uri: http://127.0.0.1:7080
   cache:
     type: redis
     redis:
@@ -109,5 +95,12 @@ zuul:
     #service-id: banner-service
     # 请求转发到指定的微服务所在的ip地址 service-id可替换为url
     #url: http://127.0.0.1:8001
+blackIp:
+  # ip连续点击次数
+  continueCounts: ${counts:10}
+  # ip连续点击限制时间 单位：秒
+  timeInterval: ${interval:10}
+  # ip限制访问时间 单位：秒
+  limitTimes: ${times:15}
 swagger:
   enable: true

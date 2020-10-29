@@ -19,11 +19,12 @@ import javax.servlet.http.HttpServletRequest;
 @Api(value = "配置中心api", tags = "配置中心api")
 public interface ZuulServerControllerApi {
 
-    @ApiOperation(value = "zuul网关错误拦截", notes = "zuul网关错误拦截", httpMethod = "GET")
-    @GetMapping(value = "/error")
-    JsonData<?> error(HttpServletRequest request);
-
     @ApiOperation(value = "刷新所有云端配置api刷 需要配置rabbitMq", notes = "刷新所有云端配置api 需要配置rabbitMq", httpMethod = "POST")
     @PostMapping(value = "/refreshAll")
     JsonData<String> refreshAll();
+
+    @ApiOperation(value = "zuul网关错误拦截", notes = "zuul网关错误拦截", httpMethod = "GET", hidden = true)
+    @GetMapping(value = "/error")
+    JsonData<?> error(HttpServletRequest request);
+
 }
