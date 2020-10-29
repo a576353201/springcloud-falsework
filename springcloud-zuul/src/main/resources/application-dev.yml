@@ -79,14 +79,17 @@ zuul:
     # 由于路由id和微服务实例id相同，我们可以简化转发的配置
     banner-service: /banner-service/**
     # 配置微服务的路由id，微服务的实例id
-    # service-article:
+    #service-article:
     # 请求路径(前缀)
     # 请求转发的微服务实例id
-    # path: /banner-service/**
-    # service-id: banner-service
+    #path: /banner-service/**
+    #service-id: banner-service
     # 请求转发到指定的微服务所在的ip地址 service-id可替换为url
-    # url: http://127.0.0.1:8001
+    #url: http://127.0.0.1:8001
 blackIp:
-  continueCounts: ${counts:10} # ip连续点击次数
-  timeInterval: ${interval:10} # ip连续点击限制时间 单位：秒
-  limitTimes: ${times:15} # ip限制访问时间 单位：秒
+  # ip连续点击次数
+  continueCounts: ${counts:10}
+  # ip连续点击限制时间 单位：秒
+  timeInterval: ${interval:10}
+  # ip限制访问时间 单位：秒
+  limitTimes: ${times:15}
