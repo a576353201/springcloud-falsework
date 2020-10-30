@@ -10,6 +10,8 @@ import com.fans.modules.vo.TokenVerifyResultVO;
 import feign.hystrix.FallbackFactory;
 import org.springframework.stereotype.Component;
 
+import javax.servlet.http.HttpServletResponse;
+
 /**
  * className: AuthenticationControllerFallback
  *
@@ -33,6 +35,11 @@ public class AuthenticationControllerFallback implements FallbackFactory<Authent
             @Override
             public TokenVerifyResultVO verify(TokenDTO tokenDTO) {
                 return null;
+            }
+
+            @Override
+            public void captcha(String uuid, HttpServletResponse response) {
+
             }
 
             @Override

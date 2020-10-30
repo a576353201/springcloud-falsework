@@ -61,6 +61,10 @@
             <groupId>redis.clients</groupId>
             <artifactId>jedis</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.github.axet</groupId>
+            <artifactId>kaptcha</artifactId>
+        </dependency>
         <!-- springCloud相关 -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>

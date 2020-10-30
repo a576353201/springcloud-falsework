@@ -2,6 +2,8 @@ package com.fans.modules.user.service;
 
 import com.fans.modules.user.entity.UserEntity;
 
+import java.awt.image.BufferedImage;
+
 /**
  * interfaceName: IAuthenticationService
  *
@@ -20,4 +22,6 @@ public interface IAuthenticationService {
     String code2Session(String code);
 
     UserEntity getUserinfoById(Long uid);
+
+    BufferedImage getCaptcha(String uuid);
 }

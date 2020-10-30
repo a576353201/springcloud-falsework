@@ -16,9 +16,12 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * interfaceName: AuthenticationControllerApi
@@ -40,9 +43,16 @@ public interface AuthenticationControllerApi {
     @PostMapping(value = "/verify")
     @ApiOperation(value = "token是否有效认证", notes = "token是否有效认证")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "token", value = "认证token", paramType = "query", dataType = "string")
+            @ApiImplicitParam(name = "token", value = "认证token", paramType = "query", dataType = "object")
     })
     TokenVerifyResultVO verify(TokenDTO tokenDTO);
+
+    @GetMapping(value = "/captcha.jpg")
+    @ApiOperation(value = "生成验证码", notes = "生成验证码")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "uuid", value = "与前端约定的uuid值，用于后续的验证 例如将uuid作为key存入redis", paramType = "query", dataType = "string")
+    })
+    void captcha(@Verify String uuid, HttpServletResponse response);
 
     @PostMapping(value = "/query")
     @ApiOperation(value = "查询用户信息通过id", notes = "查询用户信息通过id", httpMethod = "POST")

@@ -23,6 +23,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import javax.imageio.ImageIO;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 /**
  * className: AuthenticationController
@@ -75,6 +80,19 @@ public class AuthenticationController implements AuthenticationControllerApi {
         return TokenVerifyResultVO.builder()
                 .isValid(valid)
                 .build();
+    }
+
+    @Override
+    public void captcha(String uuid, HttpServletResponse response) {
+        response.setHeader("Cache-Control", "no-store, no-cache");
+        response.setContentType("image/jpeg");
+        //获取图片验证码
+        BufferedImage image = iAuthenticationService.getCaptcha(uuid);
+        try (ServletOutputStream out = response.getOutputStream()) {
+            ImageIO.write(image, "jpg", out);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Value(value = "${server.port}")

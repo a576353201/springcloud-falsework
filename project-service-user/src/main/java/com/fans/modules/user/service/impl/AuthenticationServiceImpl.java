@@ -10,6 +10,7 @@ import com.fans.modules.user.service.IAuthenticationService;
 import com.fans.modules.utils.JsonUtils;
 import com.fans.modules.utils.JwtTokenUtils;
 import com.fans.utils.RedisUtils;
+import com.google.code.kaptcha.Producer;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.Resource;
+import java.awt.image.BufferedImage;
 import java.text.MessageFormat;
 import java.util.Optional;
 
@@ -38,6 +40,9 @@ public class AuthenticationServiceImpl implements IAuthenticationService {
     private String appSecret;
     @Value(value = "${wechat.code2session}")
     private String code2SessionUrl;
+
+    @Resource(type = Producer.class)
+    private Producer producer;
 
     @Resource(type = UserDao.class)
     private UserDao userDao;
@@ -63,6 +68,14 @@ public class AuthenticationServiceImpl implements IAuthenticationService {
     @Override
     public UserEntity getUserinfoById(Long uid) {
         return userDao.selectById(uid);
+    }
+
+    @Override
+    public BufferedImage getCaptcha(String uuid) {
+        //生成文字验证码
+        String code = producer.createText();
+        RedisUtils.saveCache(CacheKeyConstants.KAPTCHA, code, 300, uuid);
+        return producer.createImage(code);
     }
 
 

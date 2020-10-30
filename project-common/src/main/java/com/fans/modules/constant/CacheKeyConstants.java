@@ -19,5 +19,9 @@ public enum CacheKeyConstants {
      * ip限流
      */
     CLICK_COUNTS,
-    LIMIT_TIMES
+    LIMIT_TIMES,
+    /**
+     * 验证码验证
+     */
+    KAPTCHA
 }

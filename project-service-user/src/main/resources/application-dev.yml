@@ -128,3 +128,6 @@ dynamic:
       username: root
       password: root
       desc: Rbac框架
+kaptcha:
+  border: 'no'
+  text-producer-char-string: 1234567890
