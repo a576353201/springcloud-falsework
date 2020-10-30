@@ -4,6 +4,7 @@ import com.fans.modules.threadpool.basic.PoolRegister;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.maven.model.Model;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.ApplicationContext;
@@ -39,7 +40,13 @@ public class ThreadPoolConfiguration {
             Arrays.sort(beanNames);
             List<String> beanNameList = Lists.newArrayList(beanNames);
             Model mavenModel = getMavenModel();
-            beanNameList = beanNameList.stream().filter(beanName -> applicationContext.getBean(beanName).getClass().getName().contains(mavenModel.getGroupId())).collect(Collectors.toList());
+            beanNameList = beanNameList.stream().filter(beanName ->{
+                String groupId = mavenModel.getGroupId();
+                if (StringUtils.isBlank(groupId)) {
+                    groupId = mavenModel.getParent() == null ? StringUtils.EMPTY : mavenModel.getParent().getGroupId();
+                }
+                return applicationContext.getBean(beanName).getClass().getName().contains(groupId);
+            }).collect(Collectors.toList());
             ImmutableMap.Builder<String, String> builder = ImmutableMap.builder();
             beanNameList.forEach(beanName -> {
                 Object bean = applicationContext.getBean(beanName);

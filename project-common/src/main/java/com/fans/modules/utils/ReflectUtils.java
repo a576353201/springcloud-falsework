@@ -4,10 +4,13 @@ import com.google.common.collect.ImmutableSet;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.maven.model.Model;
 import org.apache.maven.model.io.xpp3.MavenXpp3Reader;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.JarURLConnection;
 import java.net.URL;
 import java.net.URLDecoder;
@@ -137,8 +140,8 @@ public class ReflectUtils {
      */
     public static Model getMavenModel() {
         try {
-            File file = new File("pom.xml");
-            FileInputStream fileInputStream = new FileInputStream(file);
+            Resource resource = new ClassPathResource("/pom.xml");
+            InputStream fileInputStream = resource.getInputStream();
             MavenXpp3Reader mavenXpp3Reader = new MavenXpp3Reader();
             return mavenXpp3Reader.read(fileInputStream);
         } catch (Exception e) {

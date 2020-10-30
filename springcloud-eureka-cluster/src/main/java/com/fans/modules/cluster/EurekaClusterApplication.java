@@ -1,4 +1,4 @@
-package com.fans.cluster;
+package com.fans.modules.cluster;
 
 import com.baomidou.mybatisplus.autoconfigure.MybatisPlusAutoConfiguration;
 import org.springframework.boot.SpringApplication;

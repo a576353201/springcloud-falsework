@@ -148,6 +148,9 @@ public class PoolRegister<T> {
         try {
             Model mavenModel = getMavenModel();
             String groupId = mavenModel.getGroupId();
+            if (StringUtils.isBlank(groupId)) {
+                groupId = mavenModel.getParent() == null ? StringUtils.EMPTY : mavenModel.getParent().getGroupId();
+            }
             reflections = new Reflections(groupId);
         } catch (Exception e) {
             log.error("-->  PoolRegister init() Fail", e);

@@ -1,4 +1,4 @@
-package com.fans.eureka;
+package com.fans.modules.eureka;
 
 import com.baomidou.mybatisplus.autoconfigure.MybatisPlusAutoConfiguration;
 import org.springframework.boot.SpringApplication;
