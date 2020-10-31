@@ -31,28 +31,28 @@ public class ValidatorAspect {
 
     @Before("execution(* com.fans.modules..*.controller..*.*(..))")
     public void verifyParam(JoinPoint joinPoint) throws NoSuchMethodException {
+        MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
+        Method method = methodSignature.getMethod();
+        String[] parameterNames = methodSignature.getParameterNames();
         Object[] args = joinPoint.getArgs();
         if (args == null || args.length == 0) {
             return;
         }
-        MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
-        Method method = methodSignature.getMethod();
         Class<?>[] interfaces = joinPoint.getTarget().getClass().getInterfaces();
         for (Class<?> aClass : interfaces) {
             Method fatherMethod = aClass.getMethod(method.getName(), method.getParameterTypes());
-            executeVerify(args, fatherMethod);
+            executeVerify(parameterNames, args, fatherMethod);
         }
-        executeVerify(args, method);
-
-
+        executeVerify(parameterNames, args, method);
     }
 
-    private void executeVerify(Object[] args, Method method) {
+    private void executeVerify(String[] parameterNames, Object[] args, Method method) {
         Annotation[][] annotations = method.getParameterAnnotations();
         for (int i = 0; i < annotations.length; i++) {
             Object param = args[i];
+            String paramName = parameterNames[i];
             Annotation[] paramAnnotation = annotations[i];
-            if (param == null || paramAnnotation == null || paramAnnotation.length == 0) {
+            if (paramAnnotation == null || paramAnnotation.length == 0) {
                 continue;
             }
             for (Annotation annotation : paramAnnotation) {
@@ -60,7 +60,13 @@ public class ValidatorAspect {
                     //获取被代理的对象
                     InvocationHandler invocationHandler = Proxy.getInvocationHandler(annotation);
                     LinkedHashMap<String, Object> memberValues = getFieldValue(invocationHandler, "memberValues");
-                    ValidatorUtils.check(param, (Class<?>[]) memberValues.get("groups"));
+                    Object groups = memberValues.get("groups");
+                    String message = (String) memberValues.get("message");
+                    if (groups.getClass() != null && groups.getClass().getClassLoader() == null) {
+                        ValidatorUtils.checkBasePram(param, paramName, message);
+                    } else {
+                        ValidatorUtils.check(param, (Class<?>[]) groups);
+                    }
                     break;
                 }
             }

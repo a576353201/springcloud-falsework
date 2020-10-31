@@ -2,6 +2,7 @@ package com.fans.modules.validator;
 
 import com.alibaba.fastjson.JSONObject;
 import com.fans.modules.exception.ValidatorException;
+import com.fans.modules.utils.JsonUtils;
 import com.google.common.base.Joiner;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Maps;
@@ -39,6 +40,15 @@ public class ValidatorUtils {
                 errors.put(violation.getPropertyPath().toString(), violation.getMessage());
             }
             return errors;
+        }
+    }
+
+    public static void checkBasePram(Object param, String paramName, String message) {
+        LinkedHashMap<String, String> errors = Maps.newLinkedHashMap();
+        String target = JsonUtils.obj2String(param);
+        if (StringUtils.isBlank(target)) {
+            errors.put(paramName, message);
+            throw new ValidatorException(Joiner.on("; ").useForNull(StringUtils.EMPTY).withKeyValueSeparator(":").join(errors));
         }
     }
 

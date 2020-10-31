@@ -52,7 +52,7 @@ public interface AuthenticationControllerApi {
     @ApiImplicitParams({
             @ApiImplicitParam(name = "uuid", value = "与前端约定的uuid值，用于后续的验证 例如将uuid作为key存入redis", paramType = "query", dataType = "string")
     })
-    void captcha(@RequestParam @Verify String uuid, HttpServletResponse response);
+    void captcha(@RequestParam @Verify(message = "不能为空！！！") String uuid, HttpServletResponse response);
 
     @PostMapping(value = "/query")
     @ApiOperation(value = "查询用户信息通过id", notes = "查询用户信息通过id", httpMethod = "POST")
