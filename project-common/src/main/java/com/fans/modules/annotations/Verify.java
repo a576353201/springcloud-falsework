@@ -7,8 +7,7 @@ import java.lang.annotation.*;
 @Documented
 public @interface Verify {
 
-    String message() default "入参不合法，请检查！！！";
-
     Class<?>[] groups() default {};
 
 }
+

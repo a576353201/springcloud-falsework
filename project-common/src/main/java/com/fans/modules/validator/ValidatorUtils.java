@@ -15,6 +15,7 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
+import java.lang.reflect.Method;
 import java.util.*;
 
 /**
@@ -43,11 +44,15 @@ public class ValidatorUtils {
         }
     }
 
-    public static void checkBasePram(Object param, String paramName, String message) {
+    public static <T> void checkParam(String paramName, T t, Method method, Object[] parameterValues, Class<?>... groups) {
         LinkedHashMap<String, String> errors = Maps.newLinkedHashMap();
-        String target = JsonUtils.obj2String(param);
-        if (StringUtils.isBlank(target)) {
-            errors.put(paramName, message);
+        Validator validator = VALIDATOR_FACTORY.getValidator();
+        Set<ConstraintViolation<Object>> validateResult = validator.forExecutables()
+                .validateParameters(t, method, parameterValues, groups);
+        if (!validateResult.isEmpty()) {
+            for (ConstraintViolation<?> violation : validateResult) {
+                errors.put(paramName, violation.getMessage());
+            }
             throw new ValidatorException(Joiner.on("; ").useForNull(StringUtils.EMPTY).withKeyValueSeparator(":").join(errors));
         }
     }

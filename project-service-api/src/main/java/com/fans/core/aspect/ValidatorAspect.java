@@ -30,10 +30,15 @@ import java.util.LinkedHashMap;
 public class ValidatorAspect {
 
     @Before("execution(* com.fans.modules..*.controller..*.*(..))")
-    public void verifyParam(JoinPoint joinPoint) throws NoSuchMethodException {
+    public void verifyParam(JoinPoint joinPoint) throws NoSuchMethodException, IllegalAccessException, InstantiationException {
         MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
+        //获取被切的controller
+        Class<?> declaringType = joinPoint.getSignature().getDeclaringType();
         Method method = methodSignature.getMethod();
+        //获取方法中所有参数名称
         String[] parameterNames = methodSignature.getParameterNames();
+        //获取方法中所有参数类型
+        Class<?>[] parameterTypes = methodSignature.getParameterTypes();
         Object[] args = joinPoint.getArgs();
         if (args == null || args.length == 0) {
             return;
@@ -41,15 +46,16 @@ public class ValidatorAspect {
         Class<?>[] interfaces = joinPoint.getTarget().getClass().getInterfaces();
         for (Class<?> aClass : interfaces) {
             Method fatherMethod = aClass.getMethod(method.getName(), method.getParameterTypes());
-            executeVerify(parameterNames, args, fatherMethod);
+            executeVerify(parameterTypes, parameterNames, args, declaringType.newInstance(), fatherMethod);
         }
-        executeVerify(parameterNames, args, method);
+        executeVerify(parameterTypes, parameterNames, args, declaringType.newInstance(), method);
     }
 
-    private void executeVerify(String[] parameterNames, Object[] args, Method method) {
+    private void executeVerify(Class<?>[] parameterTypes, String[] parameterNames, Object[] args, Object declaringObj, Method method) {
         Annotation[][] annotations = method.getParameterAnnotations();
         for (int i = 0; i < annotations.length; i++) {
             Object param = args[i];
+            Class<?> paramType = parameterTypes[i];
             String paramName = parameterNames[i];
             Annotation[] paramAnnotation = annotations[i];
             if (paramAnnotation == null || paramAnnotation.length == 0) {
@@ -61,9 +67,8 @@ public class ValidatorAspect {
                     InvocationHandler invocationHandler = Proxy.getInvocationHandler(annotation);
                     LinkedHashMap<String, Object> memberValues = getFieldValue(invocationHandler, "memberValues");
                     Object groups = memberValues.get("groups");
-                    String message = (String) memberValues.get("message");
-                    if (groups.getClass() != null && groups.getClass().getClassLoader() == null) {
-                        ValidatorUtils.checkBasePram(param, paramName, message);
+                    if (paramType != null && paramType.getClassLoader() == null) {
+                        ValidatorUtils.checkParam(paramName,declaringObj, method, args, (Class<?>[]) groups);
                     } else {
                         ValidatorUtils.check(param, (Class<?>[]) groups);
                     }
