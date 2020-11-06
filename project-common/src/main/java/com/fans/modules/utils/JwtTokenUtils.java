@@ -29,7 +29,7 @@ public class JwtTokenUtils implements Serializable {
     /**
      * 过期时间 两小时
      */
-    private final static Long EXPIRED_TIME_IN = 2L * 3600L;
+    private final static Long EXPIRED_TIME_IN = 2L * 60L * 60L * 1000L;
     /**
      * 用户等级
      */
