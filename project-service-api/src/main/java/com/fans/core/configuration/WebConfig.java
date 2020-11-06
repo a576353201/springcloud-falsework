@@ -40,7 +40,12 @@ public class WebConfig implements WebMvcConfigurer {
         Map<String, InterceptorBean> beanMap = interceptorProperty.getBeans();
         if (beanMap != null && !beanMap.isEmpty()) {
             beanMap.forEach((beanName, interceptorBean) -> {
-                Object interceptor = ApplicationContextHelper.popBean(beanName);
+                Object interceptor = null;
+                try {
+                    interceptor = ApplicationContextHelper.popBean(beanName);
+                } catch (Exception ignored) {
+                    log.warn("No bean named '{}' available", beanName);
+                }
                 if (interceptor != null) {
                     registry.addInterceptor((HandlerInterceptor) interceptor)
                             .addPathPatterns(interceptorBean.getAddPathPatterns())
