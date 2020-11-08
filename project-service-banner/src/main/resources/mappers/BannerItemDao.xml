@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.fans.modules.banner.dao.BannerItemDao">
+<mapper namespace="com.fans.banner.dao.BannerItemDao">
 
     <!-- 基础Map -->
-    <resultMap type="com.fans.modules.banner.entity.BannerItemEntity" id="bannerItemMap">
+    <resultMap type="com.fans.banner.entity.BannerItemEntity" id="bannerItemMap">
         <id column="id" property="id"/>
         <result column="img" property="img"/>
         <result column="keyword" property="keyword"/>
@@ -21,7 +21,7 @@
         ,img,keyword,type,create_time,update_time,delete_time,banner_id,name
     </sql>
 
-    <select id="findAll" resultType="com.fans.modules.banner.entity.BannerItemEntity">
+    <select id="findAll" resultType="com.fans.banner.entity.BannerItemEntity">
         select
         <include refid="Base_Column_List"/>
         from banner_item
@@ -40,7 +40,7 @@
         where id = #{id}
     </delete>
 
-    <insert id="insertSelective" parameterType="com.fans.modules.banner.entity.BannerItemEntity" useGeneratedKeys="true"
+    <insert id="insertSelective" parameterType="com.fans.banner.entity.BannerItemEntity" useGeneratedKeys="true"
             keyProperty="id">
         insert into banner_item
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -130,7 +130,7 @@
         </foreach>
     </insert>
 
-    <update id="updateByPrimaryKeySelective" parameterType="com.fans.modules.banner.entity.BannerItemEntity">
+    <update id="updateByPrimaryKeySelective" parameterType="com.fans.banner.entity.BannerItemEntity">
         update banner_item
         <set>
             <if test="img != null">

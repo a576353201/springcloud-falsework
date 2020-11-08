@@ -25,7 +25,7 @@ public class ControllerAspect {
      * AfterThrowing 执行之后 包括抛出异常
      * Around 包含之前的三种 常用
      */
-    @Around("execution(* com.fans.modules.banner.controller.BannerControllerApi.*(..))")
+    @Around("execution(* com.fans.banner.controller.BannerControllerApi.*(..))")
     public Object handlerControllerMethod(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
         log.info("********** controller aspect start **********");
         Object[] objects = proceedingJoinPoint.getArgs();

@@ -1,7 +1,7 @@
 package com.fans.core.configuration;
 
 import com.fans.core.conditionals.RedisConditional;
-import com.fans.modules.properties.RedisClusterProperty;
+import com.fans.properties.RedisClusterProperty;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.PropertyAccessor;

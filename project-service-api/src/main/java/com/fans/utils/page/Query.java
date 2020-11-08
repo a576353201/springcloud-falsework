@@ -3,8 +3,8 @@ package com.fans.utils.page;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.metadata.OrderItem;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.fans.modules.utils.Constant;
-import com.fans.modules.xss.SQLFilter;
+import com.fans.utils.Constant;
+import com.fans.xss.SQLFilter;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Map;

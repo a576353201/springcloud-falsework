@@ -1,7 +1,7 @@
 package com.fans.utils.page;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.fans.modules.utils.ObjectUtils;
+import com.fans.utils.ObjectUtils;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
@@ -24,7 +24,7 @@ public class PageUtils {
      * description: 返回分页数据
      *
      * @param page 分页数据
-     * @return com.fans.modules.Paging<S>
+     * @return com.fans.Paging<S>
      * @author k
      * @date 2020/06/03 15:37
      **/
@@ -37,7 +37,7 @@ public class PageUtils {
      *
      * @param page   分页数据
      * @param tClass 要转化的VO源类
-     * @return com.fans.modules.Paging<T>
+     * @return com.fans.Paging<T>
      * @author k
      * @date 2020/06/03 15:37
      **/

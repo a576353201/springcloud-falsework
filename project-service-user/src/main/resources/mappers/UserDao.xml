@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.fans.modules.user.dao.UserDao">
+<mapper namespace="com.fans.user.dao.UserDao">
 
     <!-- 基础Map -->
-    <resultMap type="com.fans.modules.user.entity.UserEntity" id="userMap">
+    <resultMap type="com.fans.user.entity.UserEntity" id="userMap">
         <id column="id" property="id"/>
         <result column="openid" property="openid"/>
         <result column="nickname" property="nickname"/>
@@ -23,7 +23,7 @@
         ,openid,nickname,unify_uid,email,password,mobile,wx_profile,create_time,update_time,delete_time
     </sql>
 
-    <select id="findAll" resultType="com.fans.modules.user.entity.UserEntity">
+    <select id="findAll" resultType="com.fans.user.entity.UserEntity">
         select
         <include refid="Base_Column_List"/>
         from user
@@ -42,7 +42,7 @@
         where id = #{id}
     </delete>
 
-    <insert id="insertSelective" parameterType="com.fans.modules.user.entity.UserEntity" useGeneratedKeys="true"
+    <insert id="insertSelective" parameterType="com.fans.user.entity.UserEntity" useGeneratedKeys="true"
             keyProperty="id">
         insert into user
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -148,7 +148,7 @@
         </foreach>
     </insert>
 
-    <update id="updateByPrimaryKeySelective" parameterType="com.fans.modules.user.entity.UserEntity">
+    <update id="updateByPrimaryKeySelective" parameterType="com.fans.user.entity.UserEntity">
         update user
         <set>
             <if test="openid != null">

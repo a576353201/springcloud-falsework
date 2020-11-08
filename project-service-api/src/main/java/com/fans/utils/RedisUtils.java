@@ -1,10 +1,10 @@
 package com.fans.utils;
 
-import com.fans.modules.constant.CacheKeyConstants;
 import com.fans.core.configuration.RedisPool;
-import com.fans.modules.utils.ApplicationContextHelper;
-import com.fans.modules.utils.JsonUtils;
-import com.fans.modules.utils.ObjectSerializeUtils;
+import com.fans.constant.CacheKeyConstants;
+import com.fans.utils.ApplicationContextHelper;
+import com.fans.utils.JsonUtils;
+import com.fans.utils.ObjectSerializeUtils;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.google.common.base.Joiner;
 import com.google.common.collect.Maps;

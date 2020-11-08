@@ -1,6 +1,6 @@
 package com.fans.core.configuration;
 
-import com.fans.modules.threadpool.basic.PoolRegister;
+import com.fans.threadpool.basic.PoolRegister;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
@@ -15,7 +15,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.fans.modules.utils.ReflectUtils.getMavenModel;
+import static com.fans.utils.ReflectUtils.getMavenModel;
 
 /**
  * className: ThreadPoolConfiguration
@@ -40,7 +40,7 @@ public class ThreadPoolConfiguration {
             Arrays.sort(beanNames);
             List<String> beanNameList = Lists.newArrayList(beanNames);
             Model mavenModel = getMavenModel();
-            beanNameList = beanNameList.stream().filter(beanName ->{
+            beanNameList = beanNameList.stream().filter(beanName -> {
                 String groupId = mavenModel.getGroupId();
                 if (StringUtils.isBlank(groupId)) {
                     groupId = mavenModel.getParent() == null ? StringUtils.EMPTY : mavenModel.getParent().getGroupId();

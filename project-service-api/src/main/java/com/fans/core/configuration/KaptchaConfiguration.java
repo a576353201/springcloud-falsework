@@ -1,6 +1,6 @@
 package com.fans.core.configuration;
 
-import com.fans.modules.properties.KaptchaProperty;
+import com.fans.properties.KaptchaProperty;
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import com.google.code.kaptcha.util.Config;
 import org.springframework.context.annotation.Bean;

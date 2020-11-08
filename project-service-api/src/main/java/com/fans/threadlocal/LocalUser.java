@@ -1,7 +1,7 @@
 package com.fans.threadlocal;
 
 import com.alibaba.fastjson.JSONObject;
-import com.fans.modules.user.entity.UserEntity;
+import com.fans.user.entity.UserEntity;
 
 /**
  * className: LocalUser

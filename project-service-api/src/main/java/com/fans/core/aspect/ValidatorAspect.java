@@ -1,7 +1,7 @@
 package com.fans.core.aspect;
 
-import com.fans.modules.annotations.Verify;
-import com.fans.modules.validator.ValidatorUtils;
+import com.fans.annotations.Verify;
+import com.fans.validator.ValidatorUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
@@ -29,7 +29,7 @@ import java.util.LinkedHashMap;
 @Slf4j
 public class ValidatorAspect {
 
-    @Before("execution(* com.fans.modules..*.controller..*.*(..))")
+    @Before("execution(* com.fans..*.controller..*.*(..))")
     public void verifyParam(JoinPoint joinPoint) throws NoSuchMethodException, IllegalAccessException, InstantiationException {
         MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
         //获取被切的controller
@@ -68,7 +68,7 @@ public class ValidatorAspect {
                     LinkedHashMap<String, Object> memberValues = getFieldValue(invocationHandler, "memberValues");
                     Object groups = memberValues.get("groups");
                     if (paramType != null && paramType.getClassLoader() == null) {
-                        ValidatorUtils.checkParam(paramName,declaringObj, method, args, (Class<?>[]) groups);
+                        ValidatorUtils.checkParam(paramName, declaringObj, method, args, (Class<?>[]) groups);
                     } else {
                         ValidatorUtils.check(param, (Class<?>[]) groups);
                     }
