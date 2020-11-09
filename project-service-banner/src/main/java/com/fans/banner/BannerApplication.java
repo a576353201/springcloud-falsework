@@ -2,6 +2,8 @@ package com.fans.banner;
 
 import com.fans.constant.ServiceConstants;
 import com.rule.MyRule;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
@@ -9,6 +11,8 @@ import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.cloud.netflix.ribbon.RibbonClient;
 import org.springframework.cloud.netflix.ribbon.RibbonClients;
 import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.scheduling.annotation.EnableAsync;
 
 @SpringBootApplication(scanBasePackages = {"com.fans"})
@@ -20,10 +24,23 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @RibbonClients(value = {
         @RibbonClient(value = ServiceConstants.SERVICE_USER, configuration = MyRule.class)
 })
+@Slf4j
 public class BannerApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(BannerApplication.class, args);
+        ConfigurableApplicationContext context = SpringApplication.run(BannerApplication.class, args);
+        ConfigurableEnvironment environment = context.getEnvironment();
+        Boolean isOpenSwagger = environment.getProperty("swagger.enable", Boolean.class);
+        String port = environment.getProperty("server.port");
+        String path = environment.getProperty("server.servlet.context-path");
+        if (StringUtils.isNotBlank(path) && path.length() == 1) {
+            path = StringUtils.EMPTY;
+        }
+        if (isOpenSwagger != null && isOpenSwagger) {
+            log.info("--> swagger url is http://localhost:{}{}/doc.html",
+                    StringUtils.isNotBlank(port) ? port : "8080",
+                    path);
+        }
     }
 
 }

@@ -1,5 +1,7 @@
 package com.fans.utils;
 
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.support.spring.PropertyPreFilters;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
@@ -19,6 +21,7 @@ import static com.sun.org.apache.xalan.internal.xsltc.compiler.Constants.STRING;
  * @description 对象与字符串转换工具
  * @date 2018-11-06 12:41
  **/
+@SuppressWarnings("unchecked")
 @Slf4j
 public class JsonUtils {
 
@@ -30,7 +33,7 @@ public class JsonUtils {
                 .setVisibility(FIELD, ANY);
     }
 
-    public static <T> String obj2String(T src) {
+    public static <T> String obj2String(T src, String... excludeFilters) {
         if (src == null) {
             return null;
         }
@@ -38,7 +41,14 @@ public class JsonUtils {
             if (src instanceof String) {
                 return (String) src;
             } else {
-                return OBJECT_MAPPER.writeValueAsString(src);
+                if (excludeFilters != null && excludeFilters.length > 0) {
+                    PropertyPreFilters filters = new PropertyPreFilters();
+                    PropertyPreFilters.MySimplePropertyPreFilter excludeFilter = filters.addFilter();
+                    excludeFilter.addExcludes(excludeFilters);
+                    return JSONObject.toJSONString(src, excludeFilter);
+                } else {
+                    return OBJECT_MAPPER.writeValueAsString(src);
+                }
             }
         } catch (Exception e) {
             log.warn("parse object to String exception, error:{}", e.getMessage(), e);
@@ -46,11 +56,11 @@ public class JsonUtils {
         }
     }
 
-    public static <T> String obj2FormattingString(T src) {
+    public static <T> String obj2FormattingString(T src, String... excludeFilters) {
         if (src == null) {
             return null;
         }
-        return prettyPrint(obj2String(src));
+        return prettyPrint(obj2String(src, excludeFilters));
     }
 
     public static <T> T string2Obj(String src, TypeReference<T> typeReference) {
@@ -138,12 +148,6 @@ public class JsonUtils {
         return sb.toString();
     }
 
-    /**
-     * 在新行开始处用缩进
-     *
-     * @param indentLevel
-     * @param stringBuilder
-     */
     /**
      * description:
      *

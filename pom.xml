@@ -45,7 +45,7 @@
         <reflections.version>0.9.11</reflections.version>
         <maven.version>3.6.1</maven.version>
         <easyexcel.version>2.2.3</easyexcel.version>
-        <fastjson.version>1.2.62</fastjson.version>
+        <fastjson.version>1.2.75</fastjson.version>
         <cloning.version>1.9.12</cloning.version>
         <dozer.version>6.5.0</dozer.version>
         <jwt.version>3.10.3</jwt.version>
