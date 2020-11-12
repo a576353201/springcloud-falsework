@@ -45,14 +45,15 @@ public class LogAspect {
     @Before(value = "controllerPointcut()")
     public void before(JoinPoint joinPoint) {
         //开始打印日志请求
-        HttpServletRequest request = WebInitialize.request;
+        WebInitialize webInitialize = new WebInitialize();
+        HttpServletRequest request = webInitialize.getRequest();
         Signature signature = joinPoint.getSignature();
         String methodName = signature.getName();
         String controllerName = joinPoint.getSignature().getDeclaringType().getSimpleName();
         // 打印请求信息
         log.info("------------- 【{}】-【{}】方法开始 -------------", controllerName, methodName);
         log.info("--> 请求服务地址: 【{}】-【{}】", request.getMethod(), request.getRequestURL().toString());
-        log.info("--> 请求来源: 【{}】", WebInitialize.getOrigin());
+        log.info("--> 请求来源: 【{}】", webInitialize.getOrigin());
         log.info("--> 远程IP: 【{}】", request.getRemoteAddr());
         // 打印请求参数
         Object[] args = joinPoint.getArgs();

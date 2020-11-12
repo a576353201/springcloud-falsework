@@ -18,16 +18,17 @@ import javax.servlet.http.HttpSession;
  **/
 @Data
 public class WebInitialize {
-    public static HttpServletRequest request;
-    public static HttpServletResponse response;
-    public static HttpSession session;
 
-    static {
+    private HttpServletRequest request;
+    private HttpServletResponse response;
+    private HttpSession session;
+
+    public WebInitialize() {
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         assert attributes != null;
-        request = attributes.getRequest();
-        response = attributes.getResponse();
-        session = request.getSession();
+        this.request = attributes.getRequest();
+        this.response = attributes.getResponse();
+        this.session = request.getSession();
     }
 
     /**
@@ -35,7 +36,7 @@ public class WebInitialize {
      *
      * @return domain信息
      */
-    public static String getDomain() {
+    public String getDomain() {
         StringBuffer url = request.getRequestURL();
         return url.delete(url.length() - request.getRequestURI().length(), url.length()).toString();
     }
@@ -45,11 +46,11 @@ public class WebInitialize {
      *
      * @return origin
      */
-    public static String getOrigin() {
+    public String getOrigin() {
         return request.getHeader("Origin");
     }
 
-    public static String getIp() {
+    public String getIp() {
         return NetWorkUtils.getIpAddress(request);
     }
 
