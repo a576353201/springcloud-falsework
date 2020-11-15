@@ -1,7 +1,7 @@
 package com.fans.core.aspect;
 
-import com.fans.utils.JsonUtils;
-import com.fans.utils.WebInitialize;
+import com.fans.common.utils.JsonUtils;
+import com.fans.common.utils.WebInitialize;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;

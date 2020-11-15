@@ -2,13 +2,13 @@ package com.fans.user.service.impl;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.fans.bo.WeChatBO;
-import com.fans.constant.CacheKeyConstants;
-import com.fans.exception.http.ParameterException;
+import com.fans.common.constant.CacheKeyConstants;
+import com.fans.common.exception.http.ParameterException;
 import com.fans.user.dao.UserDao;
 import com.fans.user.entity.UserEntity;
 import com.fans.user.service.IAuthenticationService;
-import com.fans.utils.JsonUtils;
-import com.fans.utils.JwtTokenUtils;
+import com.fans.common.utils.JsonUtils;
+import com.fans.common.utils.JwtTokenUtils;
 import com.fans.utils.RedisUtils;
 import com.google.code.kaptcha.Producer;
 import lombok.extern.slf4j.Slf4j;

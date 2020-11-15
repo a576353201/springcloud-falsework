@@ -1,6 +1,6 @@
 package com.fans.zuul.filters;
 
-import com.fans.exception.http.RateLimiterException;
+import com.fans.common.exception.http.RateLimiterException;
 import com.google.common.util.concurrent.RateLimiter;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;

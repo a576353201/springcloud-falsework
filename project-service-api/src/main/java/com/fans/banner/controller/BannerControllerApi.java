@@ -3,7 +3,7 @@ package com.fans.banner.controller;
 import com.fans.banner.mo.FriendLinkMO;
 import com.fans.banner.vo.BannerVO;
 import com.fans.user.entity.UserEntity;
-import com.fans.vo.JsonData;
+import com.fans.common.vo.JsonData;
 import com.fans.utils.page.Paging;
 import io.swagger.annotations.*;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,16 +1,16 @@
 package com.fans.user.controller;
 
-import com.fans.annotations.Verify;
-import com.fans.constant.ServiceConstants;
+import com.fans.common.annotations.Verify;
+import com.fans.common.constant.ServiceConstants;
 import com.fans.user.dto.LoginDTO;
 import com.fans.user.dto.TokenDTO;
 import com.fans.user.entity.UserEntity;
 import com.fans.user.fallbacks.AuthenticationControllerFallback;
-import com.fans.validator.group.AddGroup;
-import com.fans.validator.group.LoginGroup;
-import com.fans.vo.AuthenticationInfoVO;
-import com.fans.vo.JsonData;
-import com.fans.vo.TokenVerifyResultVO;
+import com.fans.common.validator.group.AddGroup;
+import com.fans.common.validator.group.LoginGroup;
+import com.fans.common.vo.AuthenticationInfoVO;
+import com.fans.common.vo.JsonData;
+import com.fans.common.vo.TokenVerifyResultVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;

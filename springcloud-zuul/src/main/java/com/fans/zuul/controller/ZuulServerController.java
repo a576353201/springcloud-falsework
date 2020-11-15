@@ -1,7 +1,7 @@
 package com.fans.zuul.controller;
 
-import com.fans.constant.ServiceConstants;
-import com.fans.vo.JsonData;
+import com.fans.common.constant.ServiceConstants;
+import com.fans.common.vo.JsonData;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
 import org.springframework.web.bind.annotation.RestController;

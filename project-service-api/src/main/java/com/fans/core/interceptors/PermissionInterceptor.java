@@ -1,12 +1,12 @@
 package com.fans.core.interceptors;
 
 import com.auth0.jwt.interfaces.Claim;
-import com.fans.annotations.ScopeLevel;
-import com.fans.constant.CacheKeyConstants;
-import com.fans.exception.http.ForbiddenException;
-import com.fans.exception.http.UnAuthenticatedException;
+import com.fans.common.annotations.ScopeLevel;
+import com.fans.common.constant.CacheKeyConstants;
+import com.fans.common.exception.http.ForbiddenException;
+import com.fans.common.exception.http.UnAuthenticatedException;
 import com.fans.user.entity.UserEntity;
-import com.fans.utils.JwtTokenUtils;
+import com.fans.common.utils.JwtTokenUtils;
 import com.fans.threadlocal.LocalUser;
 import com.fans.utils.RedisUtils;
 import com.google.common.base.Splitter;

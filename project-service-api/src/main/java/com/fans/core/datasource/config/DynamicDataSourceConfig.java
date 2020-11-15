@@ -3,7 +3,7 @@ package com.fans.core.datasource.config;
 import com.fans.core.conditionals.DynamicDataConditional;
 import com.fans.core.datasource.properties.DataSourceProperties;
 import com.fans.core.datasource.properties.DynamicDataSourceProperties;
-import com.fans.utils.JsonUtils;
+import com.fans.common.utils.JsonUtils;
 import com.google.common.collect.Maps;
 import com.zaxxer.hikari.HikariDataSource;
 import lombok.extern.slf4j.Slf4j;

@@ -1,7 +1,7 @@
 package com.fans.utils.page;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.fans.utils.ObjectUtils;
+import com.fans.common.utils.ObjectUtils;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 

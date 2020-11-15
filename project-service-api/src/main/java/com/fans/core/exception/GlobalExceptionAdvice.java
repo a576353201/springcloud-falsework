@@ -1,9 +1,9 @@
 package com.fans.core.exception;
 
-import com.fans.exception.ValidatorException;
-import com.fans.exception.http.HttpException;
-import com.fans.properties.ExceptionProperty;
-import com.fans.vo.JsonData;
+import com.fans.common.exception.ValidatorException;
+import com.fans.common.exception.http.HttpException;
+import com.fans.common.properties.ExceptionProperty;
+import com.fans.common.vo.JsonData;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpHeaders;

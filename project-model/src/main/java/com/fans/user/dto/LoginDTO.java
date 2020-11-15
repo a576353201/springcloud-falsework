@@ -1,9 +1,9 @@
 package com.fans.user.dto;
 
 
-import com.fans.annotations.Password;
-import com.fans.validator.group.AddGroup;
-import com.fans.validator.group.LoginGroup;
+import com.fans.common.annotations.Password;
+import com.fans.common.validator.group.AddGroup;
+import com.fans.common.validator.group.LoginGroup;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;

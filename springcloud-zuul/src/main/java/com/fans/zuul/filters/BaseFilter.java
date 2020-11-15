@@ -1,9 +1,9 @@
 package com.fans.zuul.filters;
 
-import com.fans.exception.http.HttpException;
-import com.fans.properties.ExceptionProperty;
-import com.fans.utils.JsonUtils;
-import com.fans.vo.JsonData;
+import com.fans.common.exception.http.HttpException;
+import com.fans.common.properties.ExceptionProperty;
+import com.fans.common.utils.JsonUtils;
+import com.fans.common.vo.JsonData;
 import com.google.common.base.Charsets;
 import com.netflix.zuul.context.RequestContext;
 import org.apache.commons.lang3.StringUtils;

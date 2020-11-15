@@ -1,8 +1,8 @@
 package com.fans.zuul.filters;
 
-import com.fans.constant.CacheKeyConstants;
-import com.fans.exception.http.RateLimiterException;
-import com.fans.utils.NetWorkUtils;
+import com.fans.common.constant.CacheKeyConstants;
+import com.fans.common.exception.http.RateLimiterException;
+import com.fans.common.utils.NetWorkUtils;
 import com.fans.utils.RedisUtils;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;

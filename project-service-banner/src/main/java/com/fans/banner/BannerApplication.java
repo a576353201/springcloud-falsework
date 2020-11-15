@@ -1,6 +1,6 @@
 package com.fans.banner;
 
-import com.fans.constant.ServiceConstants;
+import com.fans.common.constant.ServiceConstants;
 import com.rule.MyRule;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;

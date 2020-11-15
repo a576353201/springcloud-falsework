@@ -1,7 +1,7 @@
 package com.fans.core.aspect;
 
-import com.fans.annotations.Verify;
-import com.fans.validator.ValidatorUtils;
+import com.fans.common.annotations.Verify;
+import com.fans.common.validator.ValidatorUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;

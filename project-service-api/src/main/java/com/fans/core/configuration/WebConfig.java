@@ -1,9 +1,9 @@
 package com.fans.core.configuration;
 
 import com.fans.core.interceptors.PermissionInterceptor;
-import com.fans.properties.InterceptorProperty;
-import com.fans.properties.bean.InterceptorBean;
-import com.fans.utils.ApplicationContextHelper;
+import com.fans.common.properties.InterceptorProperty;
+import com.fans.common.properties.bean.InterceptorBean;
+import com.fans.common.utils.ApplicationContextHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
