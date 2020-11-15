@@ -45,7 +45,7 @@ public class AuthenticationControllerFallback implements FallbackFactory<Authent
             @Override
             public JsonData<UserEntity> getUserinfoById(Long uid) {
                 return JsonData.success(UserEntity.builder()
-                        .nickname("sssss" )
+                        .nickname("sssss")
                         .build());
             }
         };

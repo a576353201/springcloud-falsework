@@ -75,7 +75,7 @@ public class ReadXml<T> {
                 }));
             }
         } catch (Exception e) {
-            log.error("--> 读取xml到list集合出错：{}" , e.getMessage(), e);
+            log.error("--> 读取xml到list集合出错：{}", e.getMessage(), e);
             return Lists.newArrayList();
         }
         return list;

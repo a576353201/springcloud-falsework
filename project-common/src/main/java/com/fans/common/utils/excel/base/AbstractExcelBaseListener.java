@@ -36,7 +36,7 @@ public abstract class AbstractExcelBaseListener<T> extends AnalysisEventListener
      */
     @Override
     public void invoke(T data, AnalysisContext context) {
-        log.info("--> 当前行数：{}" , context.readRowHolder().getRowIndex());
+        log.info("--> 当前行数：{}", context.readRowHolder().getRowIndex());
         if (data != null) {
             dataList.add(data);
         }
@@ -50,8 +50,8 @@ public abstract class AbstractExcelBaseListener<T> extends AnalysisEventListener
     @Override
     public void doAfterAllAnalysed(AnalysisContext context) {
         //解析结束销毁不用的资源
-        log.info("--> {} 条数据，开始存储数据库等等操作 !" , dataList.size());
-        log.info("--> 所有数据解析完成！用时{}ms" , System.currentTimeMillis() - startTime);
+        log.info("--> {} 条数据，开始存储数据库等等操作 !", dataList.size());
+        log.info("--> 所有数据解析完成！用时{}ms", System.currentTimeMillis() - startTime);
     }
 
     /**

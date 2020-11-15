@@ -22,7 +22,7 @@ import java.util.stream.Stream;
  **/
 public class SheetBaseHandler implements SheetWriteHandler {
 
-    public final String[] trueOrFalse = Stream.of("是" , "否" ).toArray(String[]::new);
+    public final String[] trueOrFalse = Stream.of("是", "否").toArray(String[]::new);
 
     @Override
     public void beforeSheetCreate(WriteWorkbookHolder writeWorkbookHolder, WriteSheetHolder writeSheetHolder) {
@@ -81,7 +81,7 @@ public class SheetBaseHandler implements SheetWriteHandler {
         DataValidationConstraint explicitListConstraint = helper.createExplicitListConstraint(parent);
         CellRangeAddressList cellRangeAddressList = new CellRangeAddressList(linkageParam.getFirstRow(), linkageParam.getLastRow(), startAndEndCol - 1, startAndEndCol - 1);
         DataValidation dataValidation = helper.createValidation(explicitListConstraint, cellRangeAddressList);
-        dataValidation.createErrorBox("error" , linkageParam.getErrorMsg());
+        dataValidation.createErrorBox("error", linkageParam.getErrorMsg());
         dataValidation.setShowErrorBox(true);
         dataValidation.setSuppressDropDownArrow(true);
         currentSheet.addValidationData(dataValidation);
@@ -139,7 +139,7 @@ public class SheetBaseHandler implements SheetWriteHandler {
      */
     private static void setDataValidation(DataValidationHelper helper, String offset, Sheet sheet, int rowNum, int colNum) {
         DataValidation dataValidationList = getDataValidationByFormula(
-                "INDIRECT($" + offset + (rowNum) + ")" , rowNum, colNum, helper);
+                "INDIRECT($" + offset + (rowNum) + ")", rowNum, colNum, helper);
         sheet.addValidationData(dataValidationList);
     }
 
@@ -173,7 +173,7 @@ public class SheetBaseHandler implements SheetWriteHandler {
         validation.setSuppressDropDownArrow(true);
         validation.setShowErrorBox(true);
         // 设置输入信息提示信息
-        validation.createPromptBox("下拉选择提示" , "请使用下拉方式选择合适的值！" );
+        validation.createPromptBox("下拉选择提示", "请使用下拉方式选择合适的值！");
         // 设置输入错误提示信息
         //data_validation_list.createErrorBox("选择错误提示", "你输入的值未在备选列表中，请下拉选择合适的值！");
         return validation;
@@ -195,7 +195,7 @@ public class SheetBaseHandler implements SheetWriteHandler {
         // 转为大写字符串
         String upperLetter = letter.toUpperCase();
         // 检查是否符合，不能包含非字母字符
-        if (!upperLetter.matches("[A-Z]+" )) {
+        if (!upperLetter.matches("[A-Z]+")) {
             return -1;
         }
         // 存放结果数值
@@ -241,7 +241,7 @@ public class SheetBaseHandler implements SheetWriteHandler {
     }
 
     public static void main(String[] args) {
-        System.out.println(letterToNumber("d" ));
+        System.out.println(letterToNumber("d"));
     }
 
     /**

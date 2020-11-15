@@ -32,7 +32,7 @@ public class DynamicDataSourceConfig {
 
     private static final String DB_PREFIX = "spring.datasource";
 
-    @Resource(name = "dynamicDataSourceProperties" )
+    @Resource(name = "dynamicDataSourceProperties")
     private DynamicDataSourceProperties properties;
 
     private final Map<String, String> contextMap = Maps.newLinkedHashMap();
@@ -54,12 +54,12 @@ public class DynamicDataSourceConfig {
             hikariDataSource = DynamicDataSourceFactory.build(properties.getDatasource().entrySet().iterator().next().getValue());
         } else {
             hikariDataSource = DynamicDataSourceFactory.build(dataSourceProperties);
-            contextMap.put("defaultDatabase" , dataSourceProperties.getDesc() == null ? "未配置描述内容（desc）" : dataSourceProperties.getDesc());
+            contextMap.put("defaultDatabase", dataSourceProperties.getDesc() == null ? "未配置描述内容（desc）" : dataSourceProperties.getDesc());
         }
         DynamicDataSource dataSource = new DynamicDataSource();
         dataSource.setTargetDataSources(getDynamicDataSource());
         dataSource.setDefaultTargetDataSource(hikariDataSource);
-        log.info("\r\n--> Let's inspect the dataSource provided by Spring Boot to project: \r\n{}" , JsonUtils.obj2FormattingString(contextMap));
+        log.info("\r\n--> Let's inspect the dataSource provided by Spring Boot to project: \r\n{}", JsonUtils.obj2FormattingString(contextMap));
         return dataSource;
     }
 

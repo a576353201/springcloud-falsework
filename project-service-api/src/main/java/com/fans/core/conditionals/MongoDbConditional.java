@@ -20,7 +20,7 @@ public class MongoDbConditional implements Condition {
     @Override
     public boolean matches(ConditionContext conditionContext, AnnotatedTypeMetadata annotatedTypeMetadata) {
         Environment environment = conditionContext.getEnvironment();
-        String mongoDbUri = environment.getProperty("spring.data.mongodb.uri" );
+        String mongoDbUri = environment.getProperty("spring.data.mongodb.uri");
         return StringUtils.isNotBlank(mongoDbUri);
     }
 }

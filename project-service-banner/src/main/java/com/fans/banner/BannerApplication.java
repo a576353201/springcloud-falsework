@@ -30,15 +30,15 @@ public class BannerApplication {
     public static void main(String[] args) {
         ConfigurableApplicationContext context = SpringApplication.run(BannerApplication.class, args);
         ConfigurableEnvironment environment = context.getEnvironment();
-        Boolean isOpenSwagger = environment.getProperty("swagger.enable" , Boolean.class);
-        String port = environment.getProperty("server.port" );
-        String path = environment.getProperty("server.servlet.context-path" );
+        Boolean isOpenSwagger = environment.getProperty("swagger.enable", Boolean.class);
+        String port = environment.getProperty("server.port");
+        String path = environment.getProperty("server.servlet.context-path");
         if (StringUtils.isNotBlank(path) && path.length() == 1) {
             path = StringUtils.EMPTY;
         }
         if (isOpenSwagger != null && isOpenSwagger) {
-            log.info("--> swagger url is http://localhost:{}{}/doc.html" ,
-                    StringUtils.isNotBlank(port) ? port : "8080" ,
+            log.info("--> swagger url is http://localhost:{}{}/doc.html",
+                    StringUtils.isNotBlank(port) ? port : "8080",
                     path);
         }
     }

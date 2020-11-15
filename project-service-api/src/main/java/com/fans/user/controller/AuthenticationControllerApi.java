@@ -32,30 +32,30 @@ import javax.validation.constraints.NotBlank;
  * @description 认证相关api
  * @date 2020-10-26 21:25
  **/
-@Api(value = "登录认证-api" , tags = "登录认证-api" )
+@Api(value = "登录认证-api", tags = "登录认证-api")
 // 客户端（调用方）熔断 如果服务直接挂掉将会走这里   feign内置的熔断机制 由客户端配置
 @FeignClient(value = ServiceConstants.SERVICE_USER, fallbackFactory = AuthenticationControllerFallback.class)
 public interface AuthenticationControllerApi {
 
-    @PostMapping(value = "/login" )
-    @ApiOperation(value = "登录认证 0 邮箱 1 微信 2 手机号" , notes = "登录认证 0 邮箱 1 微信 2 手机号" )
+    @PostMapping(value = "/login")
+    @ApiOperation(value = "登录认证 0 邮箱 1 微信 2 手机号", notes = "登录认证 0 邮箱 1 微信 2 手机号")
     AuthenticationInfoVO login(@RequestBody @Verify(groups = {LoginGroup.class, AddGroup.class}) LoginDTO loginDTO);
 
-    @PostMapping(value = "/verify" )
-    @ApiOperation(value = "token是否有效认证" , notes = "token是否有效认证" )
+    @PostMapping(value = "/verify")
+    @ApiOperation(value = "token是否有效认证", notes = "token是否有效认证")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "token" , value = "认证token" , paramType = "query" , dataType = "object" )
+            @ApiImplicitParam(name = "token", value = "认证token", paramType = "query", dataType = "object")
     })
     TokenVerifyResultVO verify(TokenDTO tokenDTO);
 
-    @GetMapping(value = "/captcha.jpg" )
-    @ApiOperation(value = "生成验证码" , notes = "生成验证码" )
+    @GetMapping(value = "/captcha.jpg")
+    @ApiOperation(value = "生成验证码", notes = "生成验证码")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "uuid" , value = "与前端约定的uuid值，用于后续的验证 例如将uuid作为key存入redis" , paramType = "query" , dataType = "string" )
+            @ApiImplicitParam(name = "uuid", value = "与前端约定的uuid值，用于后续的验证 例如将uuid作为key存入redis", paramType = "query", dataType = "string")
     })
     void captcha(@RequestParam @Verify @NotBlank String uuid, HttpServletResponse response);
 
-    @PostMapping(value = "/query" )
-    @ApiOperation(value = "查询用户信息通过id" , notes = "查询用户信息通过id" , httpMethod = "POST" )
+    @PostMapping(value = "/query")
+    @ApiOperation(value = "查询用户信息通过id", notes = "查询用户信息通过id", httpMethod = "POST")
     JsonData<UserEntity> getUserinfoById(@RequestParam Long uid);
 }

@@ -29,7 +29,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @Configuration
 @EnableSwagger2
 @Data
-@ConfigurationProperties(prefix = "swagger" )
+@ConfigurationProperties(prefix = "swagger")
 @Slf4j
 public class SwaggerConfiguration {
     //原路径访问地址：http://localhost:8080/swagger-ui.html
@@ -59,7 +59,7 @@ public class SwaggerConfiguration {
     /**
      * 联系方式
      */
-    private Contact contact = new Contact("kapok" , serviceUrl, "5219824@qq.com" );
+    private Contact contact = new Contact("kapok", serviceUrl, "5219824@qq.com");
 
     @Bean
     public Docket createRestApiV1() {
@@ -69,7 +69,7 @@ public class SwaggerConfiguration {
                 .contact(contact)
                 .description(description)
                 .termsOfServiceUrl(serviceUrl)
-                .version("1.0" )
+                .version("1.0")
                 .build();
         //noinspection Guava
         return new Docket(DocumentationType.SWAGGER_2)
@@ -91,10 +91,10 @@ public class SwaggerConfiguration {
                 .contact(contact)
                 .description(description)
                 .termsOfServiceUrl(serviceUrl)
-                .version("2.0" )
+                .version("2.0")
                 .build();
         return new Docket(DocumentationType.SWAGGER_2)
-                .groupName("版本-2.0" )
+                .groupName("版本-2.0")
                 .enable(enable)
                 .apiInfo(apiInfo)
                 .select()
@@ -102,7 +102,7 @@ public class SwaggerConfiguration {
                 .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
                 //加了RestController注解的类，生成接口文档
                 //.apis(RequestHandlerSelectors.withClassAnnotation(RestController.class))
-                .apis(RequestHandlerSelectors.basePackage("com.fans.api.v2" ))
+                .apis(RequestHandlerSelectors.basePackage("com.fans.api.v2"))
                 .paths(PathSelectors.any())
                 .build();
     }

@@ -22,22 +22,22 @@ import java.util.Date;
 @Setter
 @Getter
 @ToString
-@Document(value = "FriendLink" )
+@Document(value = "FriendLink")
 public class FriendLinkMO implements Serializable {
 
     private static final long serialVersionUID = -20201008201000L;
 
     @Id
     private String id;
-    @Field("link_name" )
+    @Field("link_name")
     private String linkName;
-    @Field("link_url" )
+    @Field("link_url")
     private String linkUrl;
-    @Field("is_delete" )
+    @Field("is_delete")
     private Integer isDelete;
-    @Field("create_time" )
+    @Field("create_time")
     private Date createTime;
-    @Field("update_time" )
+    @Field("update_time")
     private Date updateTime;
 
 }

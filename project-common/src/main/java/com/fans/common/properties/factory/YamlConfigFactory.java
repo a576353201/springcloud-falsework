@@ -19,13 +19,13 @@ import java.util.Properties;
  **/
 public class YamlConfigFactory extends DefaultPropertySourceFactory {
 
-    @SuppressWarnings("ConstantConditions" )
+    @SuppressWarnings("ConstantConditions")
     @Override
     public PropertySource<?> createPropertySource(String name, EncodedResource resource) throws IOException {
         String sourceName = name != null ? name : resource.getResource().getFilename();
         if (!resource.getResource().exists()) {
             return new PropertiesPropertySource(sourceName, new Properties());
-        } else if (sourceName.endsWith(".yml" ) || sourceName.endsWith(".yaml" )) {
+        } else if (sourceName.endsWith(".yml") || sourceName.endsWith(".yaml")) {
             Properties propertiesFromYaml = loadYml(resource);
             return new PropertiesPropertySource(sourceName, propertiesFromYaml);
         } else {

@@ -19,7 +19,7 @@ public class MailConditional implements Condition {
     @Override
     public boolean matches(ConditionContext conditionContext, AnnotatedTypeMetadata annotatedTypeMetadata) {
         Environment environment = conditionContext.getEnvironment();
-        String mailHost = environment.getProperty("spring.mail.host" );
+        String mailHost = environment.getProperty("spring.mail.host");
         return StringUtils.isNotBlank(mailHost);
     }
 }

@@ -41,7 +41,7 @@ public class BaseFilter {
                     exceptionProperty.getMessage(httpException.getCode()),
                     method + StringUtils.SPACE + uri);
         } else {
-            jsonData = JsonData.failCodeMsg(10002, "禁止访问" ,
+            jsonData = JsonData.failCodeMsg(10002, "禁止访问",
                     method + StringUtils.SPACE + uri);
         }
         // 停止zuul继续向下路由，禁止请求通信

@@ -23,6 +23,6 @@ public class TokenDTO implements Serializable {
 
     private static final long serialVersionUID = -20200614155116L;
 
-    @NotBlank(message = "{token.validate}" )
+    @NotBlank(message = "{token.validate}")
     private String token;
 }

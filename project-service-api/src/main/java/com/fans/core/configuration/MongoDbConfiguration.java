@@ -22,7 +22,7 @@ import org.springframework.context.annotation.Configuration;
 @Conditional(MongoDbConditional.class)
 public class MongoDbConfiguration {
 
-    @Value(value = "${spring.data.mongodb.database}" )
+    @Value(value = "${spring.data.mongodb.database}")
     private String databaseName;
 
     @Bean

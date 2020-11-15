@@ -15,8 +15,8 @@ import java.util.Map;
  * @description 多数据源配置属性
  * @date 2018-08-04 02:09
  **/
-@Component(value = "dynamicDataSourceProperties" )
-@ConfigurationProperties(prefix = "dynamic" )
+@Component(value = "dynamicDataSourceProperties")
+@ConfigurationProperties(prefix = "dynamic")
 @Data
 public class DynamicDataSourceProperties {
     /**

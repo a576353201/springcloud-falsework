@@ -24,7 +24,7 @@ import java.util.Map;
  * @description 服务实现层
  * @date 2020-10-25 14:47:34
  **/
-@Service("iBannerItemService" )
+@Service("iBannerItemService")
 public class BannerItemServiceImpl extends ServiceImpl<BannerItemDao, BannerItemEntity> implements IBannerItemService {
 
     @Resource(type = BannerItemDao.class)

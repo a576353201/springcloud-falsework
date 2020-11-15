@@ -59,7 +59,7 @@ public class MyFilter extends ZuulFilter {
      */
     @Override
     public Object run() throws ZuulException {
-        System.out.println("我的第一个网关过滤器" );
+        System.out.println("我的第一个网关过滤器");
         return null;
     }
 }

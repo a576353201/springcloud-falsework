@@ -31,7 +31,7 @@ import java.util.Map;
  * @description 服务实现层
  * @date 2020-10-25 14:47:34
  **/
-@Service("iBannerService" )
+@Service("iBannerService")
 public class BannerServiceImpl extends ServiceImpl<BannerDao, BannerEntity> implements IBannerService {
 
     @Resource(type = BannerDao.class)
@@ -50,14 +50,14 @@ public class BannerServiceImpl extends ServiceImpl<BannerDao, BannerEntity> impl
     @Resource(type = AuthenticationControllerApi.class)
     private AuthenticationControllerApi authenticationControllerApi;
 
-    @Resource(name = "discoveryClient" )
+    @Resource(name = "discoveryClient")
     private DiscoveryClient discoveryClient;
 
     @Resource(type = RestTemplate.class)
     private RestTemplate restTemplate;
 
 
-    @SuppressWarnings("rawtypes" )
+    @SuppressWarnings("rawtypes")
     @Override
     public UserEntity getUser(long uid) {
         JsonData<UserEntity> body = authenticationControllerApi.getUserinfoById(1L);

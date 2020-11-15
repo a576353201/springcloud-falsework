@@ -29,7 +29,7 @@ import java.util.LinkedHashMap;
 @Slf4j
 public class ValidatorAspect {
 
-    @Before("execution(* com.fans..*.controller..*.*(..))" )
+    @Before("execution(* com.fans..*.controller..*.*(..))")
     public void verifyParam(JoinPoint joinPoint) throws NoSuchMethodException, IllegalAccessException, InstantiationException {
         MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
         //获取被切的controller
@@ -65,8 +65,8 @@ public class ValidatorAspect {
                 if (annotation.annotationType().equals(Verify.class)) {
                     //获取被代理的对象
                     InvocationHandler invocationHandler = Proxy.getInvocationHandler(annotation);
-                    LinkedHashMap<String, Object> memberValues = getFieldValue(invocationHandler, "memberValues" );
-                    Object groups = memberValues.get("groups" );
+                    LinkedHashMap<String, Object> memberValues = getFieldValue(invocationHandler, "memberValues");
+                    Object groups = memberValues.get("groups");
                     if (paramType != null && paramType.getClassLoader() == null) {
                         ValidatorUtils.checkParam(paramName, declaringObj, method, args, (Class<?>[]) groups);
                     } else {
@@ -78,7 +78,7 @@ public class ValidatorAspect {
         }
     }
 
-    @SuppressWarnings("unchecked" )
+    @SuppressWarnings("unchecked")
     private static <T> LinkedHashMap<String, Object> getFieldValue(T object, String property) {
         if (object != null && property != null) {
             Class<T> currClass = (Class<T>) object.getClass();

@@ -17,8 +17,8 @@ import java.util.Map;
  * @date 2020-05-25 21:21
  **/
 @Component
-@ConfigurationProperties(prefix = "kapok" )
-@PropertySource(value = "classpath:config/exception-code.properties" )
+@ConfigurationProperties(prefix = "kapok")
+@PropertySource(value = "classpath:config/exception-code.properties")
 @Setter
 @Getter
 public class ExceptionProperty {

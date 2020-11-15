@@ -30,15 +30,15 @@ import java.util.Optional;
  * @description
  * @date 2020-06-14 11:11
  **/
-@Service(value = "iAuthenticationService" )
+@Service(value = "iAuthenticationService")
 @Slf4j
 public class AuthenticationServiceImpl implements IAuthenticationService {
 
-    @Value(value = "${wechat.appid}" )
+    @Value(value = "${wechat.appid}")
     private String appId;
-    @Value(value = "${wechat.appsecret}" )
+    @Value(value = "${wechat.appsecret}")
     private String appSecret;
-    @Value(value = "${wechat.code2session}" )
+    @Value(value = "${wechat.code2session}")
     private String code2SessionUrl;
 
     @Resource(type = Producer.class)
@@ -60,7 +60,7 @@ public class AuthenticationServiceImpl implements IAuthenticationService {
         } catch (Exception exception) {
             exception.printStackTrace();
         }
-        log.info("--> {}" , JsonUtils.obj2FormattingString(weChatBO));
+        log.info("--> {}", JsonUtils.obj2FormattingString(weChatBO));
         assert weChatBO != null;
         return registerUser(weChatBO);
     }

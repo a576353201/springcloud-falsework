@@ -30,7 +30,7 @@ import javax.servlet.http.HttpServletRequest;
 @Slf4j
 public class LogAspect {
 
-    @Pointcut("execution(* com.fans..*.controller..*.*(..))" )
+    @Pointcut("execution(* com.fans..*.controller..*.*(..))")
     public void controllerPointcut() {
 
     }
@@ -42,7 +42,7 @@ public class LogAspect {
      * AfterThrowing 执行之后 包括抛出异常
      * Around 包含之前的三种 常用
      */
-    @Before(value = "controllerPointcut()" )
+    @Before(value = "controllerPointcut()")
     public void before(JoinPoint joinPoint) {
         //开始打印日志请求
         WebInitialize webInitialize = new WebInitialize();
@@ -51,10 +51,10 @@ public class LogAspect {
         String methodName = signature.getName();
         String controllerName = joinPoint.getSignature().getDeclaringType().getSimpleName();
         // 打印请求信息
-        log.info("------------- 【{}】-【{}】方法开始 -------------" , controllerName, methodName);
-        log.info("--> 请求服务地址: 【{}】-【{}】" , request.getMethod(), request.getRequestURL().toString());
-        log.info("--> 请求来源: 【{}】" , webInitialize.getOrigin());
-        log.info("--> 远程IP: 【{}】" , request.getRemoteAddr());
+        log.info("------------- 【{}】-【{}】方法开始 -------------", controllerName, methodName);
+        log.info("--> 请求服务地址: 【{}】-【{}】", request.getMethod(), request.getRequestURL().toString());
+        log.info("--> 请求来源: 【{}】", webInitialize.getOrigin());
+        log.info("--> 远程IP: 【{}】", request.getRemoteAddr());
         // 打印请求参数
         Object[] args = joinPoint.getArgs();
         Object[] arguments = new Object[args.length];
@@ -69,17 +69,17 @@ public class LogAspect {
         // 排除字段，敏感字段或太长的字段不显示
         String[] excludeProperties = {"shard"};
         // 为空的会不打印，但是像图片等长字段也会打印
-        log.info("--> 请求参数: {}" , JsonUtils.obj2String(arguments, excludeProperties));
+        log.info("--> 请求参数: {}", JsonUtils.obj2String(arguments, excludeProperties));
     }
 
-    @Around("controllerPointcut()" )
+    @Around("controllerPointcut()")
     public Object doAround(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
         long startTime = System.currentTimeMillis();
         Object result = proceedingJoinPoint.proceed();
         // 排除字段，敏感字段或太长的字段不显示
-        String[] excludeProperties = {"password" , "shard"};
-        log.info("--> 返回结果: {}" , JsonUtils.obj2String(result, excludeProperties));
-        log.info("------------- 结束 耗时：{} ms -------------" , System.currentTimeMillis() - startTime);
+        String[] excludeProperties = {"password", "shard"};
+        log.info("--> 返回结果: {}", JsonUtils.obj2String(result, excludeProperties));
+        log.info("------------- 结束 耗时：{} ms -------------", System.currentTimeMillis() - startTime);
         return result;
     }
 }

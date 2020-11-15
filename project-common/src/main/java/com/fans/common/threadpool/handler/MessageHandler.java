@@ -16,15 +16,15 @@ import java.util.concurrent.BlockingQueue;
  * @description 消息执行器  增加 Component 是为了引用ioc管理的容器和注册中心使用
  * @date 2019-04-01 10:56
  **/
-@Component("messageHandler" )
+@Component("messageHandler")
 @Slf4j
 public class MessageHandler extends BaseEventHandler<MessageBean> {
 
 
     @Override
     public void execute(MessageBean event) {
-        log.info("--->>>> 短信执行器触发，已发送成功！！！" );
-        log.info("--> 你好" + event.getName() + "，我今年" + event.getAge() + "岁" );
+        log.info("--->>>> 短信执行器触发，已发送成功！！！");
+        log.info("--> 你好" + event.getName() + "，我今年" + event.getAge() + "岁");
 
     }
 

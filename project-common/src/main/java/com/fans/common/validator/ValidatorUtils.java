@@ -52,7 +52,7 @@ public class ValidatorUtils {
             for (ConstraintViolation<?> violation : validateResult) {
                 errors.put(paramName, violation.getMessage());
             }
-            throw new ValidatorException(Joiner.on("; " ).useForNull(StringUtils.EMPTY).withKeyValueSeparator(":" ).join(errors));
+            throw new ValidatorException(Joiner.on("; ").useForNull(StringUtils.EMPTY).withKeyValueSeparator(":").join(errors));
         }
     }
 
@@ -96,7 +96,7 @@ public class ValidatorUtils {
             map = ValidatorUtils.validate(param, groups);
         }
         if (MapUtils.isNotEmpty(map)) {
-            throw new ValidatorException(Joiner.on("; " ).useForNull(StringUtils.EMPTY).withKeyValueSeparator(":" ).join(map));
+            throw new ValidatorException(Joiner.on("; ").useForNull(StringUtils.EMPTY).withKeyValueSeparator(":").join(map));
         }
     }
 

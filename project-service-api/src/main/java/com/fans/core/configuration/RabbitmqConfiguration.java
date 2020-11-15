@@ -50,7 +50,7 @@ public class RabbitmqConfiguration {
                 // 可拼接多个 .
                 //.with("test.#")
                 // 只能拼接一个 .
-                .with("test.*" )
+                .with("test.*")
                 .noargs();
     }
 }

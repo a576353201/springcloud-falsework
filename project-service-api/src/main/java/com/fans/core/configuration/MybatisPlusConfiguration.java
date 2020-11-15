@@ -22,7 +22,7 @@ public class MybatisPlusConfiguration {
     @Bean
     public PaginationInterceptor paginationInterceptor() {
         PaginationInterceptor paginationInterceptor = new PaginationInterceptor();
-        paginationInterceptor.setDialectType("mysql" );
+        paginationInterceptor.setDialectType("mysql");
         return paginationInterceptor;
     }
 

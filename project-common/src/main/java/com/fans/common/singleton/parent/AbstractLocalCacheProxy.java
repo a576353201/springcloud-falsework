@@ -57,7 +57,7 @@ public abstract class AbstractLocalCacheProxy<T> {
             assert loadingCache != null;
             value = loadingCache.get(key);
         } catch (Exception e) {
-            log.error("--> {} get error" , aClass.getSimpleName(), e);
+            log.error("--> {} get error", aClass.getSimpleName(), e);
             value = null;
         }
         return value;
@@ -74,9 +74,9 @@ public abstract class AbstractLocalCacheProxy<T> {
             LoadingCache<String, Object> loadingCache = getLoadingCache();
             assert loadingCache != null;
             loadingCache.put(key, value);
-            log.info("--> {} put success！" , aClass.getSimpleName());
+            log.info("--> {} put success！", aClass.getSimpleName());
         } catch (Exception e) {
-            log.error("--> {} put error" , aClass.getSimpleName(), e);
+            log.error("--> {} put error", aClass.getSimpleName(), e);
         }
     }
 
@@ -92,7 +92,7 @@ public abstract class AbstractLocalCacheProxy<T> {
             assert loadingCache != null;
             return loadingCache.getAll(keys);
         } catch (Exception e) {
-            log.error("--> {} getAll error" , aClass.getSimpleName(), e);
+            log.error("--> {} getAll error", aClass.getSimpleName(), e);
             return ImmutableMap.<String, Object>builder().build();
         }
     }
@@ -109,7 +109,7 @@ public abstract class AbstractLocalCacheProxy<T> {
             assert loadingCache != null;
             return loadingCache.getAllPresent(keys);
         } catch (Exception e) {
-            log.error("--> {} getAllPresent error" , aClass.getSimpleName(), e);
+            log.error("--> {} getAllPresent error", aClass.getSimpleName(), e);
             return ImmutableMap.<String, Object>builder().build();
         }
     }
@@ -140,9 +140,9 @@ public abstract class AbstractLocalCacheProxy<T> {
         assert loadingCache != null;
         if (StringUtils.isNotBlank(key)) {
             loadingCache.invalidate(key);
-            log.info("--> {} invalidate success！" , aClass.getSimpleName());
+            log.info("--> {} invalidate success！", aClass.getSimpleName());
         } else {
-            log.error("--> {} invalidate error : The key is empty" , aClass.getSimpleName());
+            log.error("--> {} invalidate error : The key is empty", aClass.getSimpleName());
         }
     }
 
@@ -153,7 +153,7 @@ public abstract class AbstractLocalCacheProxy<T> {
         LoadingCache<String, Object> loadingCache = getLoadingCache();
         assert loadingCache != null;
         loadingCache.invalidateAll();
-        log.info("--> {} invalidateAll success！" , aClass.getSimpleName());
+        log.info("--> {} invalidateAll success！", aClass.getSimpleName());
     }
 
     /**
@@ -166,9 +166,9 @@ public abstract class AbstractLocalCacheProxy<T> {
         assert loadingCache != null;
         if (keys != null) {
             loadingCache.invalidateAll(keys);
-            log.info("--> {} invalidateAll success！" , aClass.getSimpleName());
+            log.info("--> {} invalidateAll success！", aClass.getSimpleName());
         } else {
-            log.error("--> {} invalidateAll error : Keys is null" , aClass.getSimpleName());
+            log.error("--> {} invalidateAll error : Keys is null", aClass.getSimpleName());
         }
     }
 
@@ -188,12 +188,12 @@ public abstract class AbstractLocalCacheProxy<T> {
                 if (newValue == null) {
                     put(key, oldValue);
                 }
-                log.info("--> {} refresh success！" , aClass.getSimpleName());
+                log.info("--> {} refresh success！", aClass.getSimpleName());
             } else {
-                log.warn("--> {} refresh error :  The key {} does not exist" , aClass.getSimpleName(), key);
+                log.warn("--> {} refresh error :  The key {} does not exist", aClass.getSimpleName(), key);
             }
         } else {
-            log.warn("--> {} refresh error : The key is empty" , aClass.getSimpleName());
+            log.warn("--> {} refresh error : The key is empty", aClass.getSimpleName());
         }
     }
 
@@ -236,8 +236,8 @@ public abstract class AbstractLocalCacheProxy<T> {
             ParameterizedType pt = (ParameterizedType) this.getClass().getGenericSuperclass();
             //获取泛型类型
             aClass = (Class<T>) pt.getActualTypeArguments()[0];
-            Method instance = aClass.getDeclaredMethod("getInstance" );
-            Method method = aClass.getMethod("getLocalCache" );
+            Method instance = aClass.getDeclaredMethod("getInstance");
+            Method method = aClass.getMethod("getLocalCache");
             return (LoadingCache<String, Object>) method.invoke(instance.invoke(null));
         } catch (Exception e) {
             e.printStackTrace();

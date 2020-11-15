@@ -32,7 +32,7 @@ import java.util.Map;
 @Slf4j
 public class WebConfig implements WebMvcConfigurer {
 
-    @Resource(name = "interceptorProperty" )
+    @Resource(name = "interceptorProperty")
     private InterceptorProperty interceptorProperty;
 
     @Override
@@ -44,7 +44,7 @@ public class WebConfig implements WebMvcConfigurer {
                 try {
                     interceptor = ApplicationContextHelper.popBean(beanName);
                 } catch (Exception ignored) {
-                    log.warn("No bean named '{}' available" , beanName);
+                    log.warn("No bean named '{}' available", beanName);
                 }
                 if (interceptor != null) {
                     registry.addInterceptor((HandlerInterceptor) interceptor)
@@ -58,9 +58,9 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         //映射所有资源
-        registry.addResourceHandler("/**" )
+        registry.addResourceHandler("/**")
                 //映射swagger2
-                .addResourceLocations("classpath:/META-INF/resources/" );
+                .addResourceLocations("classpath:/META-INF/resources/");
     }
 
     /**
@@ -75,16 +75,16 @@ public class WebConfig implements WebMvcConfigurer {
         // 1.添加CORS配置信息
         CorsConfiguration config = new CorsConfiguration();
         // 放行哪些原始域
-        config.addAllowedOrigin("*" );
+        config.addAllowedOrigin("*");
         // 是否发送Cookie信息
         config.setAllowCredentials(true);
         // 放行哪些原始域(请求方式)
-        config.addAllowedMethod("*" );
+        config.addAllowedMethod("*");
         // 放行哪些原始域(头部信息)
-        config.addAllowedHeader("*" );
+        config.addAllowedHeader("*");
         // 2.添加映射路径
         UrlBasedCorsConfigurationSource configSource = new UrlBasedCorsConfigurationSource();
-        configSource.registerCorsConfiguration("/**" , config);
+        configSource.registerCorsConfiguration("/**", config);
         // 3.返回新的CorsFilter
         FilterRegistrationBean<CorsFilter> bean = new FilterRegistrationBean<>(new CorsFilter(configSource));
         bean.setOrder(0);

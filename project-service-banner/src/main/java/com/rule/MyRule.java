@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
  * @description
  * @date 2020-10-28 02:20
  **/
-@SuppressWarnings("SpringFacetCodeInspection" )
+@SuppressWarnings("SpringFacetCodeInspection")
 @Configuration
 public class MyRule {
 

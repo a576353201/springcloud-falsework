@@ -28,11 +28,11 @@ import java.lang.reflect.Method;
 @Slf4j
 public class DataSourceAspect {
     @Pointcut("@annotation(com.fans.core.datasource.annotation.DataSource)" +
-            "|| @within(com.fans.core.datasource.annotation.DataSource)" )
+            "|| @within(com.fans.core.datasource.annotation.DataSource)")
     public void dataSourcePointCut() {
     }
 
-    @Around("dataSourcePointCut()" )
+    @Around("dataSourcePointCut()")
     public Object around(ProceedingJoinPoint point) throws Throwable {
         MethodSignature signature = (MethodSignature) point.getSignature();
         Class<?> targetClass = point.getTarget().getClass();
@@ -48,7 +48,7 @@ public class DataSourceAspect {
             }
             //存入
             DynamicContextHolder.push(value);
-            log.info("--> current database is 【{}】" , value);
+            log.info("--> current database is 【{}】", value);
 
         }
         try {
@@ -56,7 +56,7 @@ public class DataSourceAspect {
         } finally {
             //清理
             DynamicContextHolder.poll();
-            log.info("--> finally clean databaseContextHolder" );
+            log.info("--> finally clean databaseContextHolder");
         }
     }
 }

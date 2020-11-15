@@ -25,21 +25,21 @@ import java.io.Serializable;
 @Setter
 @Getter
 @ToString
-@ApiModel(value = "登录入参" )
+@ApiModel(value = "登录入参")
 public class LoginDTO implements Serializable {
 
     private static final long serialVersionUID = -20200604153110L;
 
-    @ApiModelProperty(value = "账号" )
-    @NotBlank(message = "账号不允许为空！！！" , groups = {AddGroup.class})
+    @ApiModelProperty(value = "账号")
+    @NotBlank(message = "账号不允许为空！！！", groups = {AddGroup.class})
     private String account;
 
-    @ApiModelProperty(value = "密码" )
-    @Password(max = 30, message = "{password.validate}" , groups = {LoginGroup.class})
+    @ApiModelProperty(value = "密码")
+    @Password(max = 30, message = "{password.validate}", groups = {LoginGroup.class})
     private String password;
     /**
      * 见 LoginType
      */
-    @ApiModelProperty(value = "登录类型 0 邮箱 1 微信 2 手机号" )
+    @ApiModelProperty(value = "登录类型 0 邮箱 1 微信 2 手机号")
     private Integer loginType;
 }

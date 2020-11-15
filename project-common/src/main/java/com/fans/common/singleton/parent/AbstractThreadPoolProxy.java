@@ -41,7 +41,7 @@ public abstract class AbstractThreadPoolProxy<T> {
             if (!threadPool.isShutdown()) {
                 return threadPool.submit(task);
             } else {
-                log.error("--> {} is shutdown" , aClass.getSimpleName());
+                log.error("--> {} is shutdown", aClass.getSimpleName());
                 return null;
             }
         } catch (Exception e) {
@@ -62,7 +62,7 @@ public abstract class AbstractThreadPoolProxy<T> {
         if (!threadPool.isShutdown()) {
             threadPool.execute(task);
         } else {
-            log.error("--> {} is shutdown" , aClass.getSimpleName());
+            log.error("--> {} is shutdown", aClass.getSimpleName());
         }
 
     }
@@ -78,7 +78,7 @@ public abstract class AbstractThreadPoolProxy<T> {
         if (!threadPool.isShutdown()) {
             threadPool.remove(task);
         } else {
-            log.error("--> {} is shutdown" , aClass.getSimpleName());
+            log.error("--> {} is shutdown", aClass.getSimpleName());
         }
     }
 
@@ -102,8 +102,8 @@ public abstract class AbstractThreadPoolProxy<T> {
             ParameterizedType pt = (ParameterizedType) this.getClass().getGenericSuperclass();
             //获取泛型类型
             aClass = (Class<T>) pt.getActualTypeArguments()[0];
-            Method instance = aClass.getDeclaredMethod("getInstance" );
-            Method method = aClass.getDeclaredMethod("getThreadPool" );
+            Method instance = aClass.getDeclaredMethod("getInstance");
+            Method method = aClass.getDeclaredMethod("getThreadPool");
             method.setAccessible(true);
             return (ThreadPoolExecutor) method.invoke(instance.invoke(null));
         } catch (Exception e) {

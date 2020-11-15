@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
  * @description 获取spring上下文工具类
  * @date 2018-12-20 14:14
  **/
-@Component("applicationContextHelper" )
+@Component("applicationContextHelper")
 public class ApplicationContextHelper implements ApplicationContextAware {
 
     private static ApplicationContext applicationContext;

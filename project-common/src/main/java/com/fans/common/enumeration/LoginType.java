@@ -12,9 +12,9 @@ public enum LoginType implements CodeEnum {
     /**
      * 0 邮箱 1 微信 2 手机号
      */
-    EMAIL(0, "邮箱登录" ),
-    WE_CHAT(1, "微信登录" ),
-    MOBILE(2, "手机号登录" );
+    EMAIL(0, "邮箱登录"),
+    WE_CHAT(1, "微信登录"),
+    MOBILE(2, "手机号登录");
 
     private final Integer code;
     private final String desc;

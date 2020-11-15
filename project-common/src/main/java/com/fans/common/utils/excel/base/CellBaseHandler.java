@@ -50,7 +50,7 @@ public class CellBaseHandler implements CellWriteHandler {
             cellStyle.setBorderTop(BorderStyle.THIN);
             cellStyle.setBorderBottom(BorderStyle.THIN);
             cellStyle.setWrapText(true);
-            font.setFontName("宋体" );
+            font.setFontName("宋体");
             font.setFontHeightInPoints((short) 14);
             font.setBold(true);
             // 这里需要指定 FillPatternType 为FillPatternType.SOLID_FOREGROUND 不然无法显示背景颜色.头默认了 FillPatternType所以可以不指定

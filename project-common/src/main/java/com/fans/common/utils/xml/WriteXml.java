@@ -58,12 +58,12 @@ public class WriteXml<T> {
             //新建xml文件
             Document doc = reader.read(file);
             Element root = doc.getRootElement();
-            generateNode(model, "" , root);
+            generateNode(model, "", root);
             writeFile(file, doc);
         } catch (Exception e) {
-            log.error("--> 写入数据到xml报错：{}" , e.getMessage(), e);
+            log.error("--> 写入数据到xml报错：{}", e.getMessage(), e);
         }
-        log.info("--> 生成[{}]文件成功，耗时：{}ms，全路径：{}" , fileName, System.currentTimeMillis() - start, file);
+        log.info("--> 生成[{}]文件成功，耗时：{}ms，全路径：{}", fileName, System.currentTimeMillis() - start, file);
     }
 
     /**
@@ -94,9 +94,9 @@ public class WriteXml<T> {
             list.forEach(t -> generateNode(t, node, root));
             writeFile(file, doc);
         } catch (Exception e) {
-            log.error("--> 写入数据到xml报错：{}" , e.getMessage(), e);
+            log.error("--> 写入数据到xml报错：{}", e.getMessage(), e);
         }
-        log.info("--> 生成[{}]文件成功，耗时：{}ms，全路径：{}" , fileName, System.currentTimeMillis() - start, file);
+        log.info("--> 生成[{}]文件成功，耗时：{}ms，全路径：{}", fileName, System.currentTimeMillis() - start, file);
     }
 
     /**
@@ -108,7 +108,7 @@ public class WriteXml<T> {
      */
     private String createXmlInit(String fileName, String parentNode) {
         Date date = new Date();
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd(HH-mm-ss)" );
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd(HH-mm-ss)");
         String suffix = ".xml";
         //默认文件名
         if (StringUtils.isBlank(fileName)) {
@@ -118,13 +118,13 @@ public class WriteXml<T> {
             fileName = fileName + suffix;
         }
         try (OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream(filePath + fileName), StandardCharsets.UTF_8)) {
-            writer.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>" );
-            writer.write("\n" );
-            writer.write("<" + parentNode + ">\n" );
-            writer.write("</" + parentNode + ">\n" );
+            writer.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
+            writer.write("\n");
+            writer.write("<" + parentNode + ">\n");
+            writer.write("</" + parentNode + ">\n");
             writer.flush();
         } catch (Exception e) {
-            log.error("--> 初始化xml文件出错：{}" , e.getMessage(), e);
+            log.error("--> 初始化xml文件出错：{}", e.getMessage(), e);
         }
         return fileName;
     }
@@ -188,7 +188,7 @@ public class WriteXml<T> {
             doc.write(writer);
             writer.flush();
         } catch (IOException e) {
-            log.error("--> 写入数据到文件报错：{}" , e.getMessage(), e);
+            log.error("--> 写入数据到文件报错：{}", e.getMessage(), e);
         }
     }
 }

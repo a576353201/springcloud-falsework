@@ -53,7 +53,7 @@ public class NoModelExcelLocalUtils {
         int headRowNumer = readExcelParam.getHeadRowNumber();
         String filePath = readExcelParam.getFilePath();
         if (StringUtils.isBlank(filePath)) {
-            throw new RuntimeException("文件绝对路径不能为空!!!" );
+            throw new RuntimeException("文件绝对路径不能为空!!!");
         }
         try (InputStream inputStream = new FileInputStream(filePath)) {
             List<Object> result = EasyExcel.read(inputStream)
@@ -63,9 +63,9 @@ public class NoModelExcelLocalUtils {
                     .doReadSync();
             return result.stream().map(o -> JSON.parseObject(JSON.toJSONString(o))).collect(Collectors.toList());
         } catch (FileNotFoundException e) {
-            log.error("--> 1、找不到文件2、文件路径错误3、文件资源被占用, 文件：{}" , filePath);
+            log.error("--> 1、找不到文件2、文件路径错误3、文件资源被占用, 文件：{}", filePath);
         } catch (IOException e) {
-            log.error("--> excel文件读取失败, 失败原因：{}" , e.getMessage(), e);
+            log.error("--> excel文件读取失败, 失败原因：{}", e.getMessage(), e);
         }
         return Lists.newArrayList();
     }
@@ -84,10 +84,10 @@ public class NoModelExcelLocalUtils {
         String filePath = readExcelParam.getFilePath();
         AbstractExcelBaseListener<JSONObject> listener = readExcelParam.getListener();
         if (StringUtils.isBlank(filePath)) {
-            throw new RuntimeException("文件绝对路径不能为空" );
+            throw new RuntimeException("文件绝对路径不能为空");
         }
         if (listener == null) {
-            throw new RuntimeException("excel解析器不能为null" );
+            throw new RuntimeException("excel解析器不能为null");
         }
         try (InputStream fileStream = new FileInputStream(filePath)) {
             EasyExcel.read(fileStream, listener)
@@ -97,9 +97,9 @@ public class NoModelExcelLocalUtils {
                     .doRead();
             return listener.getDataList();
         } catch (FileNotFoundException e) {
-            log.error("--> 1、找不到文件2、文件路径错误3、文件资源被占用, 文件：{}" , filePath);
+            log.error("--> 1、找不到文件2、文件路径错误3、文件资源被占用, 文件：{}", filePath);
         } catch (IOException e) {
-            log.error("--> excel文件读取失败, 失败原因：{}" , e.getMessage(), e);
+            log.error("--> excel文件读取失败, 失败原因：{}", e.getMessage(), e);
         }
         return Lists.newArrayList();
     }
@@ -115,7 +115,7 @@ public class NoModelExcelLocalUtils {
     public static Map<Integer, List<JSONObject>> readMoreSheet(ReadMultipleSheetParam readMultipleSheetParam) {
         String filePath = readMultipleSheetParam.getFilePath();
         if (StringUtils.isBlank(filePath)) {
-            throw new RuntimeException("文件绝对路径不能为空" );
+            throw new RuntimeException("文件绝对路径不能为空");
         }
         Map<Integer, List<JSONObject>> result = Maps.newHashMap();
         try (InputStream inputStream = new FileInputStream(filePath)) {
@@ -131,9 +131,9 @@ public class NoModelExcelLocalUtils {
                 Integer headRowNumber = sheetNoAndHeadRowNumber.get(sheetNo);
                 AbstractExcelBaseListener<?> listener = sheetNoAndListener.get(sheetNo);
                 if (listener == null) {
-                    throw new RuntimeException("excel解析器不能为null" );
+                    throw new RuntimeException("excel解析器不能为null");
                 }
-                log.info("--> sheetName : {}" , sheetName);
+                log.info("--> sheetName : {}", sheetName);
                 excelReader.read(
                         EasyExcel.readSheet(sheetNo, sheetName)
                                 .headRowNumber(headRowNumber)
@@ -143,15 +143,15 @@ public class NoModelExcelLocalUtils {
                 );
                 List<?> dataList = listener.getDataList();
                 List<JSONObject> jsonObjectList = dataList.stream().map(o -> JSON.parseObject(JSONObject.toJSONString(o))).collect(Collectors.toList());
-                log.info("--> Put data:{}" , JSONObject.toJSONString(jsonObjectList));
+                log.info("--> Put data:{}", JSONObject.toJSONString(jsonObjectList));
                 result.put(sheetNo, jsonObjectList);
             });
             excelReader.finish();
             return result;
         } catch (FileNotFoundException e) {
-            log.error("--> 1、找不到文件2、文件路径错误3、文件资源被占用, 文件：{}" , filePath);
+            log.error("--> 1、找不到文件2、文件路径错误3、文件资源被占用, 文件：{}", filePath);
         } catch (IOException e) {
-            log.error("--> excel文件读取失败, 失败原因：{}" , e.getMessage(), e);
+            log.error("--> excel文件读取失败, 失败原因：{}", e.getMessage(), e);
         }
         return Maps.newConcurrentMap();
     }
@@ -167,7 +167,7 @@ public class NoModelExcelLocalUtils {
     public static boolean writeSimpleExcel(WriteFreedomParam writeFreedomParam) {
         String filePath = writeFreedomParam.getFilePath();
         if (StringUtils.isBlank(filePath)) {
-            throw new RuntimeException("文件绝对路径不能为空" );
+            throw new RuntimeException("文件绝对路径不能为空");
         }
         try (OutputStream outputStream = new FileOutputStream(filePath)) {
             String sheetName = writeFreedomParam.getSheetName();
@@ -177,22 +177,22 @@ public class NoModelExcelLocalUtils {
             Boolean autoWidth = writeFreedomParam.getAutoWidth();
             autoWidth = autoWidth == null ? false : autoWidth;
             if (simpleHead == null) {
-                throw new RuntimeException("单行表头不能为null" );
+                throw new RuntimeException("单行表头不能为null");
             }
             if (data == null) {
-                throw new RuntimeException("数据源不能为null" );
+                throw new RuntimeException("数据源不能为null");
             }
             List<List<String>> headList = Lists.newArrayList();
             simpleHead.forEach(h -> headList.add(Collections.singletonList(h)));
             writeNoModel(writeFreedomParam, outputStream, sheetName, data, autoWidth, headList);
         } catch (FileNotFoundException e) {
-            log.error("--> 1、找不到文件2、文件路径错误3、文件资源被占用, 文件：{}" , filePath);
+            log.error("--> 1、找不到文件2、文件路径错误3、文件资源被占用, 文件：{}", filePath);
             return false;
         } catch (IOException e) {
-            log.error("--。 excel文件导出失败, 失败原因：{}" , e.getMessage(), e);
+            log.error("--。 excel文件导出失败, 失败原因：{}", e.getMessage(), e);
             return false;
         }
-        log.info("--> 生成excel文件成功，文件地址：{}" , filePath);
+        log.info("--> 生成excel文件成功，文件地址：{}", filePath);
         return true;
     }
 
@@ -207,7 +207,7 @@ public class NoModelExcelLocalUtils {
     public static boolean writeHardExcel(WriteFreedomParam writeFreedomParam) {
         String filePath = writeFreedomParam.getFilePath();
         if (StringUtils.isBlank(filePath)) {
-            throw new RuntimeException("文件绝对路径不能为空" );
+            throw new RuntimeException("文件绝对路径不能为空");
         }
         try (OutputStream outputStream = new FileOutputStream(filePath)) {
             String sheetName = writeFreedomParam.getSheetName();
@@ -217,20 +217,20 @@ public class NoModelExcelLocalUtils {
             Boolean autoWidth = writeFreedomParam.getAutoWidth();
             autoWidth = autoWidth == null ? false : autoWidth;
             if (hardHead == null) {
-                throw new RuntimeException("多行表头不能为null" );
+                throw new RuntimeException("多行表头不能为null");
             }
             if (data == null) {
-                throw new RuntimeException("数据源不能为null" );
+                throw new RuntimeException("数据源不能为null");
             }
             writeNoModel(writeFreedomParam, outputStream, sheetName, data, autoWidth, hardHead);
         } catch (FileNotFoundException e) {
-            log.error("--> 1、找不到文件2、文件路径错误3、文件资源被占用, 文件：{}" , filePath);
+            log.error("--> 1、找不到文件2、文件路径错误3、文件资源被占用, 文件：{}", filePath);
             return false;
         } catch (IOException e) {
-            log.error("--> excel文件导出失败, 失败原因：{}" , e.getMessage(), e);
+            log.error("--> excel文件导出失败, 失败原因：{}", e.getMessage(), e);
             return false;
         }
-        log.info("--> 生成excel文件成功，文件地址：{}" , filePath);
+        log.info("--> 生成excel文件成功，文件地址：{}", filePath);
         return true;
     }
 
@@ -264,12 +264,12 @@ public class NoModelExcelLocalUtils {
     public static boolean writeWithMultipleSheetNoModelSimple(WriteFreedomMultipleParam writeFreedomMultipleParam) {
         String filePath = writeFreedomMultipleParam.getFilePath();
         if (StringUtils.isBlank(filePath)) {
-            throw new RuntimeException("文件绝对路径不能为空" );
+            throw new RuntimeException("文件绝对路径不能为空");
         }
         try (OutputStream outputStream = new FileOutputStream(filePath)) {
             List<MultipleFreedomSheetProperty> multipleFreedomSheetProperties = writeFreedomMultipleParam.getMultipleFreedomSheetProperties();
             if (multipleFreedomSheetProperties == null) {
-                throw new RuntimeException("多sheet的数据源不能为null" );
+                throw new RuntimeException("多sheet的数据源不能为null");
             }
             AtomicInteger index = new AtomicInteger();
             ExcelWriter excelWriter = EasyExcel.write(outputStream)
@@ -285,10 +285,10 @@ public class NoModelExcelLocalUtils {
                 Boolean autoWidth = multipleFreedomSheetProperty.getAutoWidth();
                 autoWidth = autoWidth == null ? false : autoWidth;
                 if (simpleHead == null) {
-                    throw new RuntimeException("单行表头不能为null" );
+                    throw new RuntimeException("单行表头不能为null");
                 }
                 if (data == null) {
-                    throw new RuntimeException("数据源不能为null" );
+                    throw new RuntimeException("数据源不能为null");
                 }
                 List<List<String>> headList = Lists.newArrayList();
                 simpleHead.forEach(h -> headList.add(Collections.singletonList(h)));
@@ -309,13 +309,13 @@ public class NoModelExcelLocalUtils {
             });
             excelWriter.finish();
         } catch (FileNotFoundException e) {
-            log.error("--> 1、找不到文件2、文件路径错误3、文件资源被占用, 文件：{}" , filePath);
+            log.error("--> 1、找不到文件2、文件路径错误3、文件资源被占用, 文件：{}", filePath);
             return false;
         } catch (IOException e) {
-            log.error("--> excel文件导出失败, 失败原因：{}" , e.getMessage(), e);
+            log.error("--> excel文件导出失败, 失败原因：{}", e.getMessage(), e);
             return false;
         }
-        log.info("--> 生成excel文件成功，文件地址：{}" , filePath);
+        log.info("--> 生成excel文件成功，文件地址：{}", filePath);
         return true;
     }
 
@@ -330,12 +330,12 @@ public class NoModelExcelLocalUtils {
     public static boolean writeWithMultipleSheetNoModelHard(WriteFreedomMultipleParam writeFreedomMultipleParam) {
         String filePath = writeFreedomMultipleParam.getFilePath();
         if (StringUtils.isBlank(filePath)) {
-            throw new RuntimeException("文件绝对路径不能为空" );
+            throw new RuntimeException("文件绝对路径不能为空");
         }
         try (OutputStream outputStream = new FileOutputStream(filePath)) {
             List<MultipleFreedomSheetProperty> multipleFreedomSheetProperties = writeFreedomMultipleParam.getMultipleFreedomSheetProperties();
             if (multipleFreedomSheetProperties == null) {
-                throw new RuntimeException("多sheet的数据源不能为null" );
+                throw new RuntimeException("多sheet的数据源不能为null");
             }
             AtomicInteger index = new AtomicInteger();
             ExcelWriter excelWriter = EasyExcel.write(outputStream)
@@ -351,10 +351,10 @@ public class NoModelExcelLocalUtils {
                 Boolean autoWidth = multipleFreedomSheetProperty.getAutoWidth();
                 autoWidth = autoWidth == null ? false : autoWidth;
                 if (hardHead == null) {
-                    throw new RuntimeException("单行表头不能为null" );
+                    throw new RuntimeException("单行表头不能为null");
                 }
                 if (data == null) {
-                    throw new RuntimeException("数据源不能为null" );
+                    throw new RuntimeException("数据源不能为null");
                 }
                 ExcelWriterSheetBuilder excelWriterSheetBuilder = EasyExcel.writerSheet(index.get(), sheetName)
                         .head(hardHead);
@@ -373,13 +373,13 @@ public class NoModelExcelLocalUtils {
             });
             excelWriter.finish();
         } catch (FileNotFoundException e) {
-            log.error("--> 1、找不到文件2、文件路径错误3、文件资源被占用, 文件：{}" , filePath);
+            log.error("--> 1、找不到文件2、文件路径错误3、文件资源被占用, 文件：{}", filePath);
             return false;
         } catch (IOException e) {
-            log.error("--> excel文件导出失败, 失败原因：{}" , e.getMessage(), e);
+            log.error("--> excel文件导出失败, 失败原因：{}", e.getMessage(), e);
             return false;
         }
-        log.info("--> 生成excel文件成功，文件地址：{}" , filePath);
+        log.info("--> 生成excel文件成功，文件地址：{}", filePath);
         return true;
     }
 

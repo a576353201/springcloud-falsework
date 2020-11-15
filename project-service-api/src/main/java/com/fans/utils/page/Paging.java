@@ -17,22 +17,22 @@ import java.util.List;
  * @description 分页对象
  * @date 2020-10-25 14:47:34
  **/
-@ApiModel(value = "分页结果" )
+@ApiModel(value = "分页结果")
 @NoArgsConstructor
 @Data
 public class Paging<T> implements Serializable {
 
     private static final long serialVersionUID = -6123889349750361441L;
 
-    @ApiModelProperty(value = "总记录数" , dataType = "int" )
+    @ApiModelProperty(value = "总记录数", dataType = "int")
     private int totalCount;
-    @ApiModelProperty(value = "每页记录数" , dataType = "int" )
+    @ApiModelProperty(value = "每页记录数", dataType = "int")
     private int pageSize;
-    @ApiModelProperty(value = "总页数" , dataType = "int" )
+    @ApiModelProperty(value = "总页数", dataType = "int")
     private int totalPage;
-    @ApiModelProperty(value = "当前页数" , dataType = "int" )
+    @ApiModelProperty(value = "当前页数", dataType = "int")
     private int currPage;
-    @ApiModelProperty(value = "列表数据" , dataType = "list" )
+    @ApiModelProperty(value = "列表数据", dataType = "list")
     private List<T> list;
 
     /**

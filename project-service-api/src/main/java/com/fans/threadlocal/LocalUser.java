@@ -17,17 +17,17 @@ public class LocalUser {
 
     public static void set(UserEntity user, Integer scope) {
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("user" , user);
-        jsonObject.put("scope" , scope);
+        jsonObject.put("user", user);
+        jsonObject.put("scope", scope);
         THREAD_LOCAL.set(jsonObject);
     }
 
     public static UserEntity getUser() {
-        return THREAD_LOCAL.get().getObject("user" , UserEntity.class);
+        return THREAD_LOCAL.get().getObject("user", UserEntity.class);
     }
 
     public static Integer getScope() {
-        return THREAD_LOCAL.get().getInteger("scope" );
+        return THREAD_LOCAL.get().getInteger("scope");
     }
 
     public static void clear() {

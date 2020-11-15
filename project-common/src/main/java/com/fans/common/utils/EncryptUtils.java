@@ -64,10 +64,10 @@ public class EncryptUtils {
      */
     private static byte[] aesEncode(String content, String encryptKey) {
         try {
-            KeyGenerator keyGenerator = KeyGenerator.getInstance("AES" );
+            KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");
             keyGenerator.init(128, new SecureRandom(encryptKey.getBytes()));
-            Cipher cipher = Cipher.getInstance("AES" );
-            cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(keyGenerator.generateKey().getEncoded(), "AES" ));
+            Cipher cipher = Cipher.getInstance("AES");
+            cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(keyGenerator.generateKey().getEncoded(), "AES"));
             return cipher.doFinal(content.getBytes(StandardCharsets.UTF_8));
         } catch (Exception e) {
             e.printStackTrace();
@@ -105,11 +105,11 @@ public class EncryptUtils {
      */
     private static String aesDecode(byte[] encryptBytes, String decryptKey) {
         try {
-            KeyGenerator keyGenerator = KeyGenerator.getInstance("AES" );
+            KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");
             keyGenerator.init(128, new SecureRandom(decryptKey.getBytes()));
 
-            Cipher cipher = Cipher.getInstance("AES" );
-            cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(keyGenerator.generateKey().getEncoded(), "AES" ));
+            Cipher cipher = Cipher.getInstance("AES");
+            cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(keyGenerator.generateKey().getEncoded(), "AES"));
             byte[] decryptBytes = cipher.doFinal(encryptBytes);
             return new String(decryptBytes);
         } catch (Exception e) {
@@ -195,7 +195,7 @@ public class EncryptUtils {
         }
         String res = "";
         try {
-            res = new BASE64Encoder().encode(s.getBytes("GBK" ));
+            res = new BASE64Encoder().encode(s.getBytes("GBK"));
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
@@ -217,7 +217,7 @@ public class EncryptUtils {
         BASE64Decoder decoder = new BASE64Decoder();
         try {
             byte[] b = decoder.decodeBuffer(s);
-            return new String(b, "GBK" );
+            return new String(b, "GBK");
         } catch (Exception e) {
             return null;
         }

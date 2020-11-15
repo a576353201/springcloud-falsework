@@ -53,7 +53,7 @@ public class CustomLocalCache {
     static {
         CACHE_DATA = new ConcurrentHashMap<>(DEFAULT_SIZE);
         executorService = new ScheduledThreadPoolExecutor(1, new ThreadFactoryBuilder()
-                .setNameFormat("scheduledLocalCache-task-runner-%d" )
+                .setNameFormat("scheduledLocalCache-task-runner-%d")
                 .build());
     }
 

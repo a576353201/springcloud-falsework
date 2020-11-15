@@ -49,19 +49,19 @@ public class Constant {
         /**
          * 目录
          */
-        CATALOG("0" ),
+        CATALOG("0"),
         /**
          * 菜单
          */
-        MENU("1" ),
+        MENU("1"),
         /**
          * 按钮
          */
-        BUTTON("2" ),
+        BUTTON("2"),
         /**
          * 其他
          */
-        OTHER("3" );
+        OTHER("3");
 
         private String value;
 
@@ -130,15 +130,15 @@ public class Constant {
         /**
          * 冻结
          */
-        FREEZE("0" ),
+        FREEZE("0"),
         /**
          * 正常
          */
-        NORMAL("1" ),
+        NORMAL("1"),
         /**
          * 删除
          */
-        DELETE("2" );
+        DELETE("2");
 
         private String value;
 

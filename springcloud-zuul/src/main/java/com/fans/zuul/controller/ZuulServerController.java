@@ -28,13 +28,13 @@ public class ZuulServerController implements ZuulServerControllerApi {
     @Override
     public JsonData<String> refreshAll() {
         try {
-            String url = "http://" + ServiceConstants.CONFIG.concat("/actuator/bus-refresh" );
+            String url = "http://" + ServiceConstants.CONFIG.concat("/actuator/bus-refresh");
             restTemplate.postForEntity(url, null, Object.class);
         } catch (RestClientException e) {
             e.printStackTrace();
             return JsonData.fail(e.getMessage());
         }
-        return JsonData.success("所有云端服务以刷新！！！" );
+        return JsonData.success("所有云端服务以刷新！！！");
     }
 
     @Override
@@ -43,6 +43,6 @@ public class ZuulServerController implements ZuulServerControllerApi {
         String method = request.getMethod();
         RequestContext requestContext = RequestContext.getCurrentContext();
         ZuulException zuulException = (ZuulException) requestContext.getThrowable();
-        return JsonData.failCodeMsg(10001, zuulException.getMessage().substring(zuulException.getMessage().indexOf("." ) + 1), method + " " + requestUrl);
+        return JsonData.failCodeMsg(10001, zuulException.getMessage().substring(zuulException.getMessage().indexOf(".") + 1), method + " " + requestUrl);
     }
 }
