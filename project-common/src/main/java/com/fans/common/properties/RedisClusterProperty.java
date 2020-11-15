@@ -19,7 +19,7 @@ import java.util.List;
 @Component
 @Setter
 @Getter
-@ConfigurationProperties(prefix = "spring.redis.sharded-cluster")
+@ConfigurationProperties(prefix = "spring.redis.sharded-cluster" )
 public class RedisClusterProperty {
     private List<String> nodes = Lists.newArrayList();
 }

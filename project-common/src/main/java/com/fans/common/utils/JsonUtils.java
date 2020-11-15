@@ -21,7 +21,7 @@ import static com.sun.org.apache.xalan.internal.xsltc.compiler.Constants.STRING;
  * @description 对象与字符串转换工具
  * @date 2018-11-06 12:41
  **/
-@SuppressWarnings("unchecked")
+@SuppressWarnings("unchecked" )
 @Slf4j
 public class JsonUtils {
 
@@ -51,7 +51,7 @@ public class JsonUtils {
                 }
             }
         } catch (Exception e) {
-            log.warn("parse object to String exception, error:{}", e.getMessage(), e);
+            log.warn("parse object to String exception, error:{}" , e.getMessage(), e);
             return null;
         }
     }
@@ -74,7 +74,7 @@ public class JsonUtils {
                 return OBJECT_MAPPER.readValue(src, typeReference);
             }
         } catch (Exception e) {
-            log.warn("parse String to Object exception, String:{}, TypeReference<T>:{}, error:{}", src, typeReference.getType(), e);
+            log.warn("parse String to Object exception, String:{}, TypeReference<T>:{}, error:{}" , src, typeReference.getType(), e);
             return null;
         }
     }
@@ -90,7 +90,7 @@ public class JsonUtils {
                 return OBJECT_MAPPER.readValue(src, objectClass);
             }
         } catch (Exception e) {
-            log.warn("parse String to Object exception, String:{}, Class<T>:{}, error:{}", src, objectClass.getCanonicalName(), e);
+            log.warn("parse String to Object exception, String:{}, Class<T>:{}, error:{}" , src, objectClass.getCanonicalName(), e);
             return null;
         }
     }
@@ -157,9 +157,9 @@ public class JsonUtils {
      * @date 2018-11-06 12:41
      **/
     private static void appendIndentedNewLine(int indentLevel, StringBuilder stringBuilder) {
-        stringBuilder.append("\n");
+        stringBuilder.append("\n" );
         for (int i = 0; i < indentLevel; i++) {
-            stringBuilder.append("  ");
+            stringBuilder.append("  " );
         }
     }
 }

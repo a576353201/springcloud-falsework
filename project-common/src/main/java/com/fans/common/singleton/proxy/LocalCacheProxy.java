@@ -71,19 +71,19 @@ public class LocalCacheProxy extends AbstractLocalCacheProxy<LocalCacheProxy> {
                 removeEvent();
                 switch (notification.getCause()) {
                     case SIZE:
-                        log.info("--> {} : key({}) was size", this.getClass().getSimpleName(), notification.getKey());
+                        log.info("--> {} : key({}) was size" , this.getClass().getSimpleName(), notification.getKey());
                         break;
                     case EXPIRED:
-                        log.info("--> {} : key({}) was expired", this.getClass().getSimpleName(), notification.getKey());
+                        log.info("--> {} : key({}) was expired" , this.getClass().getSimpleName(), notification.getKey());
                         break;
                     case REPLACED:
-                        log.info("--> {} : key({}) was replaced", this.getClass().getSimpleName(), notification.getKey());
+                        log.info("--> {} : key({}) was replaced" , this.getClass().getSimpleName(), notification.getKey());
                         break;
                     case COLLECTED:
-                        log.info("--> {} : key({}) was collected", this.getClass().getSimpleName(), notification.getKey());
+                        log.info("--> {} : key({}) was collected" , this.getClass().getSimpleName(), notification.getKey());
                         break;
                     case EXPLICIT:
-                        log.info("--> {} : key({}) was removed(explicit)", this.getClass().getSimpleName(), notification.getKey());
+                        log.info("--> {} : key({}) was removed(explicit)" , this.getClass().getSimpleName(), notification.getKey());
                         break;
                     default:
                         break;
@@ -92,12 +92,12 @@ public class LocalCacheProxy extends AbstractLocalCacheProxy<LocalCacheProxy> {
             .build(new CacheLoader<String, Object>() {
                 @Override
                 public Object load(String key) {
-                    return getValueWhenExpired("load", key);
+                    return getValueWhenExpired("load" , key);
                 }
 
                 @Override
                 public ListenableFuture<Object> reload(String key, Object oldValue) {
-                    return Futures.immediateFuture(getValueWhenExpired("reload", key));
+                    return Futures.immediateFuture(getValueWhenExpired("reload" , key));
                 }
 
                 @Override
@@ -116,13 +116,13 @@ public class LocalCacheProxy extends AbstractLocalCacheProxy<LocalCacheProxy> {
     private Object getValueWhenExpired(String sign, String key) {
         switch (sign) {
             case "load":
-                log.info("--> {} : load key ({})", this.getClass().getSimpleName(), key);
+                log.info("--> {} : load key ({})" , this.getClass().getSimpleName(), key);
                 break;
             case "reload":
-                log.info("--> {} : reload key ({})", this.getClass().getSimpleName(), key);
+                log.info("--> {} : reload key ({})" , this.getClass().getSimpleName(), key);
                 break;
             default:
-                log.info("--> {} : loadAll key ({})", this.getClass().getSimpleName(), key);
+                log.info("--> {} : loadAll key ({})" , this.getClass().getSimpleName(), key);
                 break;
         }
         Object data = getDataByKey();
@@ -131,10 +131,10 @@ public class LocalCacheProxy extends AbstractLocalCacheProxy<LocalCacheProxy> {
         } else {
             //如果没有返回值则取旧的值
             if (toMap().containsKey(key)) {
-                log.warn("--> Because the database or redis or ... doesn't have key of value, So return oldValue ({})", get(key));
+                log.warn("--> Because the database or redis or ... doesn't have key of value, So return oldValue ({})" , get(key));
                 return get(key);
             } else {
-                log.warn("--> Because this {} doesn't have key of value, So return null", this.getClass().getSimpleName());
+                log.warn("--> Because this {} doesn't have key of value, So return null" , this.getClass().getSimpleName());
                 return null;
             }
         }

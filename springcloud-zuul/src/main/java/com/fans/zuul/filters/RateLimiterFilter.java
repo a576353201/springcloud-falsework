@@ -20,7 +20,7 @@ import static com.fans.zuul.filters.BaseFilter.forbidden;
 @Component
 public class RateLimiterFilter extends ZuulFilter {
 
-    @SuppressWarnings("UnstableApiUsage")
+    @SuppressWarnings("UnstableApiUsage" )
     private static final RateLimiter RATE_LIMITER = RateLimiter.create(100);
 
     @Override
@@ -38,10 +38,10 @@ public class RateLimiterFilter extends ZuulFilter {
         return true;
     }
 
-    @SuppressWarnings("UnstableApiUsage")
+    @SuppressWarnings("UnstableApiUsage" )
     @Override
     public Object run() throws ZuulException {
-        System.out.println("进入木桶限流算法~~~~");
+        System.out.println("进入木桶限流算法~~~~" );
         RequestContext currentContext = RequestContext.getCurrentContext();
         if (!RATE_LIMITER.tryAcquire()) {
             forbidden(currentContext, new RateLimiterException(10002));

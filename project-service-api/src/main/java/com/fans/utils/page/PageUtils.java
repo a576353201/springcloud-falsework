@@ -96,8 +96,8 @@ public class PageUtils {
 
     public static Map<String, Object> pagingPackaging(Integer page, Integer pageSize) {
         Map<String, Object> result = Maps.newHashMap();
-        result.put("page", page);
-        result.put("limit", pageSize);
+        result.put("page" , page);
+        result.put("limit" , pageSize);
         return result;
     }
 }

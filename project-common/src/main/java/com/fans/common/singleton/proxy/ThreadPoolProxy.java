@@ -64,7 +64,7 @@ public class ThreadPoolProxy extends AbstractThreadPoolProxy<ThreadPoolProxy> {
      * 线程工厂构建基本信息
      */
     private final ThreadFactory threadFactory = new ThreadFactoryBuilder()
-            .setNameFormat("thread-task-runner-%d")
+            .setNameFormat("thread-task-runner-%d" )
             .build();
     /**
      * 线程池

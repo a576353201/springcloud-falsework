@@ -19,6 +19,6 @@ public class StreamConsumer {
 
     @StreamListener(value = MyStreamChannel.INPUT)
     public void receiveMessage(String dumpling) {
-        System.out.println("我吃了第" + dumpling + "个饺子");
+        System.out.println("我吃了第" + dumpling + "个饺子" );
     }
 }

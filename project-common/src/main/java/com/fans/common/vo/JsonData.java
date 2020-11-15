@@ -26,17 +26,17 @@ import java.util.Map;
 @Setter
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@ApiModel(value = "通用返参")
+@ApiModel(value = "通用返参" )
 public class JsonData<T> implements Serializable {
 
     private static final long serialVersionUID = 123456789L;
-    @ApiModelProperty(value = "状态码", dataType = "int")
+    @ApiModelProperty(value = "状态码" , dataType = "int" )
     private Integer code;
-    @ApiModelProperty(value = "信息", dataType = "string")
+    @ApiModelProperty(value = "信息" , dataType = "string" )
     private String msg;
-    @ApiModelProperty(value = "返回数据", dataType = "object")
+    @ApiModelProperty(value = "返回数据" , dataType = "object" )
     private T body;
-    @ApiModelProperty(value = "请求信息(抛出异常时携带)", dataType = "string")
+    @ApiModelProperty(value = "请求信息(抛出异常时携带)" , dataType = "string" )
     private String request;
 
     private JsonData(Integer code) {
@@ -104,10 +104,10 @@ public class JsonData<T> implements Serializable {
 
     public Map<String, Object> toMap() {
         HashMap<String, Object> result = new HashMap<>();
-        result.put("code", code);
-        result.put("msg", msg);
-        result.put("body", body);
-        result.put("request", request);
+        result.put("code" , code);
+        result.put("msg" , msg);
+        result.put("body" , body);
+        result.put("request" , request);
         return result;
     }
 }

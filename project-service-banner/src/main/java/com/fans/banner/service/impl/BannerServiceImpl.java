@@ -7,10 +7,10 @@ import com.fans.banner.dao.BannerDao;
 import com.fans.banner.entity.BannerEntity;
 import com.fans.banner.service.IBannerService;
 import com.fans.banner.vo.BannerVO;
-import com.fans.user.controller.AuthenticationControllerApi;
-import com.fans.user.entity.UserEntity;
 import com.fans.common.utils.JsonUtils;
 import com.fans.common.vo.JsonData;
+import com.fans.user.controller.AuthenticationControllerApi;
+import com.fans.user.entity.UserEntity;
 import com.fans.utils.page.PageUtils;
 import com.fans.utils.page.Paging;
 import com.fans.utils.page.Query;
@@ -31,7 +31,7 @@ import java.util.Map;
  * @description 服务实现层
  * @date 2020-10-25 14:47:34
  **/
-@Service("iBannerService")
+@Service("iBannerService" )
 public class BannerServiceImpl extends ServiceImpl<BannerDao, BannerEntity> implements IBannerService {
 
     @Resource(type = BannerDao.class)
@@ -50,14 +50,14 @@ public class BannerServiceImpl extends ServiceImpl<BannerDao, BannerEntity> impl
     @Resource(type = AuthenticationControllerApi.class)
     private AuthenticationControllerApi authenticationControllerApi;
 
-    @Resource(name = "discoveryClient")
+    @Resource(name = "discoveryClient" )
     private DiscoveryClient discoveryClient;
 
     @Resource(type = RestTemplate.class)
     private RestTemplate restTemplate;
 
 
-    @SuppressWarnings("rawtypes")
+    @SuppressWarnings("rawtypes" )
     @Override
     public UserEntity getUser(long uid) {
         JsonData<UserEntity> body = authenticationControllerApi.getUserinfoById(1L);

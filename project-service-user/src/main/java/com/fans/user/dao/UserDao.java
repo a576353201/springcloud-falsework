@@ -20,15 +20,15 @@ public interface UserDao extends BaseMapper<UserEntity> {
 
     List<UserEntity> findAll();
 
-    UserEntity selectByPrimaryKey(@Param("id") Integer id);
+    UserEntity selectByPrimaryKey(@Param("id" ) Integer id);
 
-    int deleteByPrimaryKey(@Param("id") Integer id);
+    int deleteByPrimaryKey(@Param("id" ) Integer id);
 
     int insertSelective(UserEntity userEntity);
 
-    int insertBatch(@Param("userEntityList") List<UserEntity> userEntityList);
+    int insertBatch(@Param("userEntityList" ) List<UserEntity> userEntityList);
 
     int updateByPrimaryKeySelective(UserEntity userEntity);
 
-    int updateBatchByPrimaryKeySelective(@Param("userEntityList") List<UserEntity> userEntityList);
+    int updateBatchByPrimaryKeySelective(@Param("userEntityList" ) List<UserEntity> userEntityList);
 }

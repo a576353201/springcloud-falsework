@@ -17,7 +17,7 @@ public class IdUtils {
         long millis = System.currentTimeMillis();
         Random random = new Random();
         Integer end = random.nextInt(999);
-        idStr = millis + String.format("%03d", end);
+        idStr = millis + String.format("%03d" , end);
         return idStr;
     }
 
@@ -32,7 +32,7 @@ public class IdUtils {
         Random random = new Random();
         int end2 = random.nextInt(99);
         //如果不足两位前面补0
-        String str = millis + String.format("%02d", end2);
+        String str = millis + String.format("%02d" , end2);
         return new Long(str);
     }
 }

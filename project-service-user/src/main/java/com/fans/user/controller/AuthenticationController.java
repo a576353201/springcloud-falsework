@@ -4,10 +4,6 @@ package com.fans.user.controller;
 import com.fans.common.annotations.Verify;
 import com.fans.common.enumeration.LoginType;
 import com.fans.common.exception.http.NotFountException;
-import com.fans.user.dto.LoginDTO;
-import com.fans.user.dto.TokenDTO;
-import com.fans.user.entity.UserEntity;
-import com.fans.user.service.IAuthenticationService;
 import com.fans.common.utils.EnumUtils;
 import com.fans.common.utils.JwtTokenUtils;
 import com.fans.common.validator.ValidatorUtils;
@@ -16,6 +12,10 @@ import com.fans.common.validator.group.LoginGroup;
 import com.fans.common.vo.AuthenticationInfoVO;
 import com.fans.common.vo.JsonData;
 import com.fans.common.vo.TokenVerifyResultVO;
+import com.fans.user.dto.LoginDTO;
+import com.fans.user.dto.TokenDTO;
+import com.fans.user.entity.UserEntity;
+import com.fans.user.service.IAuthenticationService;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
@@ -41,11 +41,11 @@ import java.io.IOException;
 //熔断方式一 不太实用 @DefaultProperties(defaultFallback = "defaultFallback")
 public class AuthenticationController implements AuthenticationControllerApi {
 
-    @Resource(name = "iAuthenticationService")
+    @Resource(name = "iAuthenticationService" )
     private IAuthenticationService iAuthenticationService;
 
     public JsonData<Object> defaultFallback() {
-        return JsonData.fail("全局降级");
+        return JsonData.fail("全局降级" );
     }
 
 
@@ -84,18 +84,18 @@ public class AuthenticationController implements AuthenticationControllerApi {
 
     @Override
     public void captcha(String uuid, HttpServletResponse response) {
-        response.setHeader("Cache-Control", "no-store, no-cache");
-        response.setContentType("image/jpeg");
+        response.setHeader("Cache-Control" , "no-store, no-cache" );
+        response.setContentType("image/jpeg" );
         //获取图片验证码
         BufferedImage image = iAuthenticationService.getCaptcha(uuid);
         try (ServletOutputStream out = response.getOutputStream()) {
-            ImageIO.write(image, "jpg", out);
+            ImageIO.write(image, "jpg" , out);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    @Value(value = "${server.port}")
+    @Value(value = "${server.port}" )
     private Integer port;
 
     @HystrixCommand //熔断方式（二）粒度更细 推荐使用 (fallbackMethod = "getUserinfoByIdFallback")
@@ -113,9 +113,9 @@ public class AuthenticationController implements AuthenticationControllerApi {
 
     public JsonData<UserEntity> getUserinfoByIdFallback(Long uid) {
         System.err.println("uid:" + uid);
-        System.err.println("服务 getUserinfoById降级");
+        System.err.println("服务 getUserinfoById降级" );
         return JsonData.success(UserEntity.builder()
-                .nickname("hahahahaah")
+                .nickname("hahahahaah" )
                 .build());
     }
 }

@@ -20,7 +20,7 @@ public class RabbitMqConditional implements Condition {
     @Override
     public boolean matches(ConditionContext conditionContext, AnnotatedTypeMetadata annotatedTypeMetadata) {
         Environment environment = conditionContext.getEnvironment();
-        String mongoDbUri = environment.getProperty("spring.rabbitmq.host");
+        String mongoDbUri = environment.getProperty("spring.rabbitmq.host" );
         return StringUtils.isNotBlank(mongoDbUri);
     }
 }

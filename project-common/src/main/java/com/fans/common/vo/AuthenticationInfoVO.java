@@ -20,12 +20,12 @@ import java.io.Serializable;
 @Setter
 @Getter
 @ToString
-@ApiModel(value = "认证后返回信息")
+@ApiModel(value = "认证后返回信息" )
 public class AuthenticationInfoVO implements Serializable {
 
     private static final long serialVersionUID = -20200614110447L;
 
-    @ApiModelProperty(value = "认证token")
+    @ApiModelProperty(value = "认证token" )
     private String token;
 
 }

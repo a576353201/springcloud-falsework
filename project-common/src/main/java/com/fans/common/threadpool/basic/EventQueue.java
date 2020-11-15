@@ -48,7 +48,7 @@ public class EventQueue<T> extends Observable {
                     TimeUnit.MILLISECONDS,
                     workQueue,
                     new ThreadFactoryBuilder()
-                            .setNameFormat(threadName.concat("-thread-task-runner-%d"))
+                            .setNameFormat(threadName.concat("-thread-task-runner-%d" ))
                             .build(), new ThreadPoolExecutor.AbortPolicy()));
             executorMap = EXECUTOR_MAP_BUILDER.build();
         }

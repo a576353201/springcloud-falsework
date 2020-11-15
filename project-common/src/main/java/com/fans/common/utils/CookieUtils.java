@@ -160,7 +160,7 @@ public class CookieUtils {
      **/
     public static void deleteCookie(HttpServletRequest request, HttpServletResponse response,
                                     String cookieName) {
-        doSetCookie(request, response, cookieName, "", -1, false);
+        doSetCookie(request, response, cookieName, "" , -1, false);
     }
 
     /**
@@ -244,7 +244,7 @@ public class CookieUtils {
             cookie.setMaxAge(cookieMaxAge);
         }
         setDomainCookie(cookie, request);
-        cookie.setPath("/");
+        cookie.setPath("/" );
         return cookie;
     }
 
@@ -265,14 +265,14 @@ public class CookieUtils {
         } else {
             serverName = serverName.toLowerCase();
             serverName = serverName.substring(7);
-            final int end = serverName.indexOf("/");
+            final int end = serverName.indexOf("/" );
             serverName = serverName.substring(0, end);
             String str = ":";
             if (serverName.indexOf(str) > 0) {
                 String[] ary = serverName.split(str);
                 serverName = ary[0];
             }
-            final String[] domains = serverName.split("\\.");
+            final String[] domains = serverName.split("\\." );
             int len = domains.length;
             int size = 3;
             if (isIp(serverName)) {
@@ -294,7 +294,7 @@ public class CookieUtils {
         if (null != request) {
             // 设置域名的cookie
             String domainName = getDomainName(request);
-            log.info("--> The cookie domain name is {} ", domainName);
+            log.info("--> The cookie domain name is {} " , domainName);
             String localhost = "localhost";
             if (!localhost.equals(domainName)) {
                 cookie.setDomain(domainName);
@@ -332,8 +332,8 @@ public class CookieUtils {
     public static boolean isIp(String ip) {
         boolean b = false;
         ip = trimSpaces(ip);
-        if (ip.matches("\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}")) {
-            String[] s = ip.split("\\.");
+        if (ip.matches("\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}" )) {
+            String[] s = ip.split("\\." );
             if (Integer.parseInt(s[0]) < 255) {
                 if (Integer.parseInt(s[1]) < 255) {
                     if (Integer.parseInt(s[2]) < 255) {

@@ -27,11 +27,11 @@ import static com.fans.zuul.filters.BaseFilter.forbidden;
 @RefreshScope
 public class IpFilter extends ZuulFilter {
 
-    @Value(value = "${blackIp.continueCounts}")
+    @Value(value = "${blackIp.continueCounts}" )
     private Integer continueCounts;
-    @Value(value = "${blackIp.timeInterval}")
+    @Value(value = "${blackIp.timeInterval}" )
     private Integer timeInterval;
-    @Value(value = "${blackIp.limitTimes}")
+    @Value(value = "${blackIp.limitTimes}" )
     private Integer limitTimes;
 
     @Override
@@ -51,7 +51,7 @@ public class IpFilter extends ZuulFilter {
 
     @Override
     public Object run() throws ZuulException {
-        System.out.println("Ip网关过滤器");
+        System.out.println("Ip网关过滤器" );
 
         System.err.println("continueCounts:" + continueCounts);
         System.err.println("timeInterval: " + timeInterval);

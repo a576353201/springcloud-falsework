@@ -1,7 +1,6 @@
 package com.fans.banner.controller;
 
 
-import com.fans.core.configuration.RabbitmqConfiguration;
 import com.fans.banner.entity.BannerEntity;
 import com.fans.banner.mo.FriendLinkMO;
 import com.fans.banner.repository.MongoDbRepository;
@@ -10,9 +9,10 @@ import com.fans.banner.stream.StreamProducer;
 import com.fans.banner.vo.BannerVO;
 import com.fans.common.constant.CacheKeyConstants;
 import com.fans.common.exception.http.NotFountException;
-import com.fans.user.entity.UserEntity;
 import com.fans.common.utils.FileUtils;
 import com.fans.common.vo.JsonData;
+import com.fans.core.configuration.RabbitmqConfiguration;
+import com.fans.user.entity.UserEntity;
 import com.fans.utils.RedisUtils;
 import com.fans.utils.page.PageUtils;
 import com.fans.utils.page.Paging;
@@ -54,58 +54,58 @@ import java.util.List;
  * @date 2020-10-25 14:47:34
  **/
 @RestController
-@CacheConfig(cacheNames = "banner")
+@CacheConfig(cacheNames = "banner" )
 public class BannerController implements BannerControllerApi {
 
-    @Resource(name = "iBannerService")
+    @Resource(name = "iBannerService" )
     private IBannerService bannerService;
 
     /**
      * 列表
      */
     @Override
-    public JsonData<Paging<BannerVO>> list(@RequestParam(defaultValue = "1", required = false) Integer page,
-                                           @RequestParam(defaultValue = "10", required = false) Integer pageSize) {
+    public JsonData<Paging<BannerVO>> list(@RequestParam(defaultValue = "1" , required = false) Integer page,
+                                           @RequestParam(defaultValue = "10" , required = false) Integer pageSize) {
         Paging<BannerVO> bannerPaging = RedisUtils.getFromCache(CacheKeyConstants.KAPOK, new TypeReference<Paging<BannerVO>>() {
             @Override
             public Type getType() {
                 return super.getType();
             }
-        }, "1", "2");
+        }, "1" , "2" );
         if (bannerPaging == null) {
             List<BannerEntity> all = bannerService.list();
-            RedisUtils.saveCache(CacheKeyConstants.KAPOK, PageUtils.pageByList(page, pageSize, all, BannerVO.class), 0, "1", "2");
-            return JsonData.success("查询录播图列表成功", PageUtils.pageByList(page, pageSize, all, BannerVO.class));
+            RedisUtils.saveCache(CacheKeyConstants.KAPOK, PageUtils.pageByList(page, pageSize, all, BannerVO.class), 0, "1" , "2" );
+            return JsonData.success("查询录播图列表成功" , PageUtils.pageByList(page, pageSize, all, BannerVO.class));
         } else {
-            return JsonData.success("查询列表成功", bannerPaging);
+            return JsonData.success("查询列表成功" , bannerPaging);
         }
     }
 
     @Override
-    @Cacheable(key = "1", unless = "#result.code !=200")
-    public JsonData<Paging<BannerVO>> getBannerListByPage(@RequestParam(defaultValue = "1", required = false) Integer page,
-                                                          @RequestParam(defaultValue = "10", required = false) Integer pageSize) {
+    @Cacheable(key = "1" , unless = "#result.code !=200" )
+    public JsonData<Paging<BannerVO>> getBannerListByPage(@RequestParam(defaultValue = "1" , required = false) Integer page,
+                                                          @RequestParam(defaultValue = "10" , required = false) Integer pageSize) {
         Paging<BannerVO> paging = bannerService.queryPage(PageUtils.pagingPackaging(page, pageSize));
-        return JsonData.success("查询录播图列表成功", paging);
+        return JsonData.success("查询录播图列表成功" , paging);
     }
 
 
     @Override
-    @CacheEvict(key = "1", condition = "#result.code == 200")
-    public JsonData<String> updateBannerName(@ApiParam(value = "轮播图名称", name = "bannerName") @RequestParam String bannerName) {
-        RedisUtils.delCache(CacheKeyConstants.KAPOK, "1");
-        return JsonData.success("修改成功");
+    @CacheEvict(key = "1" , condition = "#result.code == 200" )
+    public JsonData<String> updateBannerName(@ApiParam(value = "轮播图名称" , name = "bannerName" ) @RequestParam String bannerName) {
+        RedisUtils.delCache(CacheKeyConstants.KAPOK, "1" );
+        return JsonData.success("修改成功" );
     }
 
-    @Resource(name = "rabbitTemplate")
+    @Resource(name = "rabbitTemplate" )
     private RabbitTemplate rabbitTemplate;
 
     @Override
     public JsonData<String> rabbitmq() {
         rabbitTemplate.convertAndSend(RabbitmqConfiguration.EXCHANGE_ARTICLE,
                 RabbitmqConfiguration.TEST_A,
-                "这是一条测试消息");
-        return JsonData.success("发送消息成功");
+                "这是一条测试消息" );
+        return JsonData.success("发送消息成功" );
     }
 
     @Override
@@ -119,17 +119,17 @@ public class BannerController implements BannerControllerApi {
         };
         rabbitTemplate.convertAndSend(RabbitmqConfiguration.EXCHANGE_ARTICLE,
                 RabbitmqConfiguration.TEST_A,
-                "这是一条测试消息",
+                "这是一条测试消息" ,
                 messagePostProcessor);
-        return JsonData.success("发送消息成功");
+        return JsonData.success("发送消息成功" );
     }
 
-    @Resource(name = "gridFSBucket")
+    @Resource(name = "gridFSBucket" )
     private GridFSBucket gridFSBucket;
 
     @Override
     public JsonData<String> gridfs() throws FileNotFoundException {
-        ObjectId objectId = gridFSBucket.uploadFromStream("banner.txt", new FileInputStream(new File("C:\\work\\project\\jpa-falsework\\src\\main\\resources\\banner.txt")));
+        ObjectId objectId = gridFSBucket.uploadFromStream("banner.txt" , new FileInputStream(new File("C:\\work\\project\\jpa-falsework\\src\\main\\resources\\banner.txt" )));
         return JsonData.success("存储文件成功,Id为：" + objectId.toString());
     }
 
@@ -141,15 +141,15 @@ public class BannerController implements BannerControllerApi {
 
         //新增
         FriendLinkMO linkMO = mongoDbRepository.save(FriendLinkMO.builder()
-                .id("1")
-                .linkName("淘宝")
-                .linkUrl("www.baidu.com")
+                .id("1" )
+                .linkName("淘宝" )
+                .linkUrl("www.baidu.com" )
                 .isDelete(0)
                 .createTime(new Date())
                 .updateTime(new Date())
                 .build());
         //修改
-        linkMO.setLinkName("京东");
+        linkMO.setLinkName("京东" );
         mongoDbRepository.save(linkMO);
         //查询所有
         List<FriendLinkMO> all = mongoDbRepository.findAll();
@@ -161,12 +161,12 @@ public class BannerController implements BannerControllerApi {
 
     @Override
     public void download(HttpServletRequest request, HttpServletResponse response) {
-        FileUtils.downloadFileByStream(request, response, new File("C:\\Users\\Administrator\\Downloads\\m2.png"), false);
+        FileUtils.downloadFileByStream(request, response, new File("C:\\Users\\Administrator\\Downloads\\m2.png" ), false);
     }
 
     @Override
     public void urlDownload(HttpServletRequest request, HttpServletResponse response) {
-        FileUtils.downloadFileByUrl(request, response, "http://192.168.0.6:8888/kapok/M00/00/00/wKgAaF925a-AIoQUAARuZa3IVd8481.jpg");
+        FileUtils.downloadFileByUrl(request, response, "http://192.168.0.6:8888/kapok/M00/00/00/wKgAaF925a-AIoQUAARuZa3IVd8481.jpg" );
     }
 
     @Override
@@ -181,15 +181,15 @@ public class BannerController implements BannerControllerApi {
     }
 
 
-    @Resource(name = "streamProducer")
+    @Resource(name = "streamProducer" )
     private StreamProducer streamProducer;
 
     @Override
     public JsonData<String> stream() {
         for (int i = 0; i < 10; i++) {
-            streamProducer.sendMessage(i + 1 + "");
+            streamProducer.sendMessage(i + 1 + "" );
         }
-        return JsonData.success("吃饺子成功, 我进行了group配置 你们不能争抢了，同时消息也被持久化了~~~~");
+        return JsonData.success("吃饺子成功, 我进行了group配置 你们不能争抢了，同时消息也被持久化了~~~~" );
     }
 
 }

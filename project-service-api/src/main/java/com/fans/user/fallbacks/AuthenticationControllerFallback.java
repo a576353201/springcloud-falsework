@@ -1,12 +1,12 @@
 package com.fans.user.fallbacks;
 
+import com.fans.common.vo.AuthenticationInfoVO;
+import com.fans.common.vo.JsonData;
+import com.fans.common.vo.TokenVerifyResultVO;
 import com.fans.user.controller.AuthenticationControllerApi;
 import com.fans.user.dto.LoginDTO;
 import com.fans.user.dto.TokenDTO;
 import com.fans.user.entity.UserEntity;
-import com.fans.common.vo.AuthenticationInfoVO;
-import com.fans.common.vo.JsonData;
-import com.fans.common.vo.TokenVerifyResultVO;
 import feign.hystrix.FallbackFactory;
 import org.springframework.stereotype.Component;
 
@@ -45,7 +45,7 @@ public class AuthenticationControllerFallback implements FallbackFactory<Authent
             @Override
             public JsonData<UserEntity> getUserinfoById(Long uid) {
                 return JsonData.success(UserEntity.builder()
-                        .nickname("sssss")
+                        .nickname("sssss" )
                         .build());
             }
         };

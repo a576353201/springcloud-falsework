@@ -19,7 +19,7 @@ public class RedisConditional implements Condition {
     @Override
     public boolean matches(ConditionContext conditionContext, AnnotatedTypeMetadata annotatedTypeMetadata) {
         Environment environment = conditionContext.getEnvironment();
-        String redisHost = environment.getProperty("spring.redis.host");
+        String redisHost = environment.getProperty("spring.redis.host" );
         return StringUtils.isNotBlank(redisHost);
     }
 }

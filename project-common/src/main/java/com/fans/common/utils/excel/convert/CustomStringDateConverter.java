@@ -47,12 +47,12 @@ public class CustomStringDateConverter implements Converter<Date> {
         try {
             String dateStr = cellData.getStringValue();
             if (StringUtils.isNotBlank(dateStr) && !"第八列".equals(cellData.getStringValue())) {
-                DateTimeFormatter dateTimeFormatter = DateTimeFormat.forPattern("yyyy年MM月dd日 HH时mm分ss秒");
+                DateTimeFormatter dateTimeFormatter = DateTimeFormat.forPattern("yyyy年MM月dd日 HH时mm分ss秒" );
                 DateTime dateTime = DateTime.parse(dateStr, dateTimeFormatter);
                 return dateTime.toDate();
             }
         } catch (Exception e) {
-            log.error("-->转化器读取出错:{}", e.getMessage(), e);
+            log.error("-->转化器读取出错:{}" , e.getMessage(), e);
         }
         return null;
     }
@@ -70,9 +70,9 @@ public class CustomStringDateConverter implements Converter<Date> {
         //excel中的时间格式  2020年05月05日
         try {
             DateTime dateTime = new DateTime(value);
-            return new CellData<>(dateTime.toString("yyyy年MM月dd日 HH时mm分ss秒"));
+            return new CellData<>(dateTime.toString("yyyy年MM月dd日 HH时mm分ss秒" ));
         } catch (Exception e) {
-            log.error("-->转化器写入出错:{}", e.getMessage(), e);
+            log.error("-->转化器写入出错:{}" , e.getMessage(), e);
         }
         return new CellData<>(StringUtils.EMPTY);
     }

@@ -30,14 +30,14 @@ public class CustomCellWriteHandler extends CellBaseHandler {
     @Override
     public void afterCellCreate(WriteSheetHolder writeSheetHolder, WriteTableHolder writeTableHolder, Cell cell, Head head, Integer relativeRowIndex, Boolean isHead) {
         //给指定head单元格增加url
-        setHeadUrl(cell, isHead, "https://github.com/alibaba/easyexcel", 0);
+        setHeadUrl(cell, isHead, "https://github.com/alibaba/easyexcel" , 0);
         //给指定head单元格增加特殊颜色（red）
         setHeadStyle(cell, isHead, Lists.newArrayList(1, 3));
     }
 
     @Override
     public void afterCellDispose(WriteSheetHolder writeSheetHolder, WriteTableHolder writeTableHolder, List<CellData> cellDataList, Cell cell, Head head, Integer relativeRowIndex, Boolean isHead) {
-        log.info("--> 第{}行，第{}列写入【{}】完成。", cell.getRowIndex(), cell.getColumnIndex(), cell.getStringCellValue());
+        log.info("--> 第{}行，第{}列写入【{}】完成。" , cell.getRowIndex(), cell.getColumnIndex(), cell.getStringCellValue());
         super.afterCellDispose(writeSheetHolder, writeTableHolder, cellDataList, cell, head, relativeRowIndex, isHead);
     }
 }

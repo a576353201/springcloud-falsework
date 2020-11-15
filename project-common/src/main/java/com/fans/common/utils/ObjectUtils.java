@@ -59,7 +59,7 @@ public class ObjectUtils {
                 }
             }
         } catch (Exception e) {
-            log.error("--> map2Object fail:{}", e.getMessage());
+            log.error("--> map2Object fail:{}" , e.getMessage());
             e.printStackTrace();
         }
         return obj;
@@ -84,7 +84,7 @@ public class ObjectUtils {
             PropertyDescriptor[] propertyDescriptors = beanInfo.getPropertyDescriptors();
             for (PropertyDescriptor propertyDescriptor : propertyDescriptors) {
                 String key = propertyDescriptor.getName();
-                if (key.compareToIgnoreCase("class") == 0) {
+                if (key.compareToIgnoreCase("class" ) == 0) {
                     continue;
                 }
                 Method getter = propertyDescriptor.getReadMethod();
@@ -92,7 +92,7 @@ public class ObjectUtils {
                 map.put(key, value);
             }
         } catch (Exception e) {
-            log.error("--> object2Map fail:{}", e.getMessage());
+            log.error("--> object2Map fail:{}" , e.getMessage());
             e.printStackTrace();
         }
         return map;

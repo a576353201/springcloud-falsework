@@ -1,7 +1,7 @@
 package com.fans.common.properties;
 
-import com.fans.common.properties.factory.YamlConfigFactory;
 import com.fans.common.properties.bean.InterceptorBean;
+import com.fans.common.properties.factory.YamlConfigFactory;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -19,8 +19,8 @@ import java.util.Map;
  * @date 2020-10-27 13:33
  **/
 @Component
-@ConfigurationProperties(prefix = "interceptor")
-@PropertySource(value = "classpath:config/interceptor-bean.yml", factory = YamlConfigFactory.class)
+@ConfigurationProperties(prefix = "interceptor" )
+@PropertySource(value = "classpath:config/interceptor-bean.yml" , factory = YamlConfigFactory.class)
 @Setter
 @Getter
 public class InterceptorProperty {

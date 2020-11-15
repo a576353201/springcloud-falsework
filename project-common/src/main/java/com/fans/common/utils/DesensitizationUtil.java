@@ -14,10 +14,10 @@ public class DesensitizationUtil {
     private static final String SYMBOL = "*";
 
     public static void main(String[] args) {
-        String name = commonDisplay("菜鸟裹裹");
-        String mobile = commonDisplay("18544444444");
-        String mail = commonDisplay("1234567890@163.com");
-        String address = commonDisplay("商都路十里铺100号");
+        String name = commonDisplay("菜鸟裹裹" );
+        String mobile = commonDisplay("18544444444" );
+        String mail = commonDisplay("1234567890@163.com" );
+        String address = commonDisplay("商都路十里铺100号" );
 
         System.out.println(name);
         System.out.println(mobile);

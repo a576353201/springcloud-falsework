@@ -97,14 +97,14 @@ public abstract class BaseEventHandler<T> implements Runnable {
         } catch (Exception e) {
             String name = e.getClass().getName();
             if (name.equals(TimeoutException.class.getName())) {
-                log.error("--> gatherSubmit : callable {} have error {}", callableName, name);
+                log.error("--> gatherSubmit : callable {} have error {}" , callableName, name);
                 try {
-                    throw new Exception("--> gatherSubmit : callable {} have error {}");
+                    throw new Exception("--> gatherSubmit : callable {} have error {}" );
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
             } else {
-                log.error("--> gatherSubmit : callable {} have error", callableName, e);
+                log.error("--> gatherSubmit : callable {} have error" , callableName, e);
             }
         }
 

@@ -1,10 +1,10 @@
 package com.fans.utils;
 
-import com.fans.core.configuration.RedisPool;
 import com.fans.common.constant.CacheKeyConstants;
 import com.fans.common.utils.ApplicationContextHelper;
 import com.fans.common.utils.JsonUtils;
 import com.fans.common.utils.ObjectSerializeUtils;
+import com.fans.core.configuration.RedisPool;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.google.common.base.Joiner;
 import com.google.common.collect.Maps;
@@ -30,7 +30,7 @@ public class RedisUtils {
     private static final RedisPool REDIS_POOL;
 
     static {
-        REDIS_POOL = ApplicationContextHelper.popBean("redisPool", RedisPool.class);
+        REDIS_POOL = ApplicationContextHelper.popBean("redisPool" , RedisPool.class);
     }
 
     /**
@@ -44,7 +44,7 @@ public class RedisUtils {
      * @date 2018-11-16 16:31
      **/
     public static <T> void saveCache(CacheKeyConstants prefix, T value, Integer timeOut, String... keys) {
-        Optional.ofNullable(value).orElseThrow(() -> new RuntimeException("value为空值！！！"));
+        Optional.ofNullable(value).orElseThrow(() -> new RuntimeException("value为空值！！！" ));
         ShardedJedis shardedJedis = null;
         try {
             String key = generateCacheKey(prefix, keys);
@@ -55,7 +55,7 @@ public class RedisUtils {
                 shardedJedis.setex(key, timeOut, JsonUtils.obj2FormattingString(value));
             }
         } catch (Exception e) {
-            log.error("save cache exception, prefix:{}, keys:{}", prefix.name(), JsonUtils.obj2String(keys));
+            log.error("save cache exception, prefix:{}, keys:{}" , prefix.name(), JsonUtils.obj2String(keys));
             log.error(e.getMessage(), e);
         } finally {
             REDIS_POOL.safeClose(shardedJedis);
@@ -77,7 +77,7 @@ public class RedisUtils {
             shardedJedis = REDIS_POOL.instance();
             return JsonUtils.string2Obj(shardedJedis.get(key), typeReference);
         } catch (Exception e) {
-            log.error("get from cache exception, prefix:{}, keys:{}", prefix.name(), JsonUtils.obj2String(keys));
+            log.error("get from cache exception, prefix:{}, keys:{}" , prefix.name(), JsonUtils.obj2String(keys));
             log.error(e.getMessage(), e);
             return null;
         } finally {
@@ -92,7 +92,7 @@ public class RedisUtils {
             shardedJedis = REDIS_POOL.instance();
             return JsonUtils.string2Obj(shardedJedis.get(key), objectClass);
         } catch (Exception e) {
-            log.error("get from cache exception, prefix:{}, keys:{}", prefix.name(), JsonUtils.obj2String(keys));
+            log.error("get from cache exception, prefix:{}, keys:{}" , prefix.name(), JsonUtils.obj2String(keys));
             log.error(e.getMessage(), e);
             return null;
         } finally {
@@ -111,7 +111,7 @@ public class RedisUtils {
      * @date 2018-11-16 16:31
      **/
     public static <T> void saveSecretCache(CacheKeyConstants prefix, T value, Integer timeOut, String... keys) {
-        Optional.ofNullable(value).orElseThrow(() -> new RuntimeException("value为空值！！！"));
+        Optional.ofNullable(value).orElseThrow(() -> new RuntimeException("value为空值！！！" ));
         ShardedJedis shardedJedis = null;
         try {
             String key = generateCacheKey(prefix, keys);
@@ -122,7 +122,7 @@ public class RedisUtils {
                 shardedJedis.setex(key.getBytes(), timeOut, ObjectSerializeUtils.serialization(value));
             }
         } catch (Exception e) {
-            log.error("save cache exception, prefix:{}, keys:{}", prefix.name(), JsonUtils.obj2String(keys));
+            log.error("save cache exception, prefix:{}, keys:{}" , prefix.name(), JsonUtils.obj2String(keys));
             log.error(e.getMessage(), e);
         } finally {
             REDIS_POOL.safeClose(shardedJedis);
@@ -145,7 +145,7 @@ public class RedisUtils {
             byte[] result = shardedJedis.get(key.getBytes());
             return ObjectSerializeUtils.deserialization(result);
         } catch (Exception e) {
-            log.error("get from cache exception, prefix:{}, keys:{}", prefix.name(), JsonUtils.obj2String(keys));
+            log.error("get from cache exception, prefix:{}, keys:{}" , prefix.name(), JsonUtils.obj2String(keys));
             log.error(e.getMessage(), e);
             return null;
         } finally {
@@ -168,7 +168,7 @@ public class RedisUtils {
             shardedJedis = REDIS_POOL.instance();
             shardedJedis.del(key);
         } catch (Exception e) {
-            log.error("del from cache exception, prefix:{}, keys:{}", prefix.name(), JsonUtils.obj2String(keys));
+            log.error("del from cache exception, prefix:{}, keys:{}" , prefix.name(), JsonUtils.obj2String(keys));
             log.error(e.getMessage(), e);
         } finally {
             REDIS_POOL.safeClose(shardedJedis);
@@ -191,7 +191,7 @@ public class RedisUtils {
             shardedJedis = REDIS_POOL.instance();
             shardedJedis.incrBy(key, increment);
         } catch (Exception e) {
-            log.error("incr from cache exception, prefix:{}, keys:{}", prefix.name(), JsonUtils.obj2String(keys));
+            log.error("incr from cache exception, prefix:{}, keys:{}" , prefix.name(), JsonUtils.obj2String(keys));
             log.error(e.getMessage(), e);
         } finally {
             REDIS_POOL.safeClose(shardedJedis);
@@ -205,7 +205,7 @@ public class RedisUtils {
             shardedJedis = REDIS_POOL.instance();
             return shardedJedis.incrBy(key, increment);
         } catch (Exception e) {
-            log.error("incr from cache exception, prefix:{}, keys:{}", prefix.name(), JsonUtils.obj2String(keys));
+            log.error("incr from cache exception, prefix:{}, keys:{}" , prefix.name(), JsonUtils.obj2String(keys));
             log.error(e.getMessage(), e);
         } finally {
             REDIS_POOL.safeClose(shardedJedis);
@@ -233,7 +233,7 @@ public class RedisUtils {
             shardedJedis = REDIS_POOL.instance();
             shardedJedis.decrBy(key, decrement);
         } catch (Exception e) {
-            log.error("decr from cache exception, prefix:{}, keys:{}", prefix.name(), JsonUtils.obj2String(keys));
+            log.error("decr from cache exception, prefix:{}, keys:{}" , prefix.name(), JsonUtils.obj2String(keys));
             log.error(e.getMessage(), e);
         } finally {
             REDIS_POOL.safeClose(shardedJedis);
@@ -247,7 +247,7 @@ public class RedisUtils {
             shardedJedis = REDIS_POOL.instance();
             return shardedJedis.decrBy(key, decrement);
         } catch (Exception e) {
-            log.error("decr from cache exception, prefix:{}, keys:{}", prefix.name(), JsonUtils.obj2String(keys));
+            log.error("decr from cache exception, prefix:{}, keys:{}" , prefix.name(), JsonUtils.obj2String(keys));
             log.error(e.getMessage(), e);
         } finally {
             REDIS_POOL.safeClose(shardedJedis);
@@ -275,7 +275,7 @@ public class RedisUtils {
             shardedJedis = REDIS_POOL.instance();
             return shardedJedis.exists(key);
         } catch (Exception e) {
-            log.error("decr from cache exception, prefix:{}, keys:{}", prefix.name(), JsonUtils.obj2String(keys));
+            log.error("decr from cache exception, prefix:{}, keys:{}" , prefix.name(), JsonUtils.obj2String(keys));
             log.error(e.getMessage(), e);
         } finally {
             REDIS_POOL.safeClose(shardedJedis);
@@ -305,7 +305,7 @@ public class RedisUtils {
             }
             return result;
         } catch (Exception e) {
-            log.error("multiGet from cache exception,keyList:{}", keyList.toString());
+            log.error("multiGet from cache exception,keyList:{}" , keyList.toString());
             log.error(e.getMessage(), e);
             return null;
         } finally {
@@ -329,7 +329,7 @@ public class RedisUtils {
             shardedJedis = REDIS_POOL.instance();
             return shardedJedis.ttl(key);
         } catch (Exception e) {
-            log.error("decr from cache exception, prefix:{}, keys:{}", prefix.name(), JsonUtils.obj2String(keys));
+            log.error("decr from cache exception, prefix:{}, keys:{}" , prefix.name(), JsonUtils.obj2String(keys));
             log.error(e.getMessage(), e);
         } finally {
             REDIS_POOL.safeClose(shardedJedis);
@@ -354,7 +354,7 @@ public class RedisUtils {
             shardedJedis = REDIS_POOL.instance();
             shardedJedis.expire(key, seconds);
         } catch (Exception e) {
-            log.error("decr from cache exception, prefix:{}, keys:{}", prefix.name(), JsonUtils.obj2String(keys));
+            log.error("decr from cache exception, prefix:{}, keys:{}" , prefix.name(), JsonUtils.obj2String(keys));
             log.error(e.getMessage(), e);
         } finally {
             REDIS_POOL.safeClose(shardedJedis);
@@ -364,7 +364,7 @@ public class RedisUtils {
     public static String generateCacheKey(CacheKeyConstants prefix, String... keys) {
         String key = prefix.name();
         if (keys != null && keys.length > 0) {
-            key += ":" + Joiner.on(":").join(keys);
+            key += ":" + Joiner.on(":" ).join(keys);
         }
         return key;
     }

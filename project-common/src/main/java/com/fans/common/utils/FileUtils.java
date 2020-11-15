@@ -54,9 +54,9 @@ public class FileUtils {
             File sourceFile = new File(srcDir);
             compress(sourceFile, zos, sourceFile.getName(), keepDirStructure);
             long end = System.currentTimeMillis();
-            System.out.println("压缩完成，耗时：" + (end - start) + " ms");
+            System.out.println("压缩完成，耗时：" + (end - start) + " ms" );
         } catch (Exception e) {
-            throw new RuntimeException("zip error from ZipUtils", e);
+            throw new RuntimeException("zip error from ZipUtils" , e);
         } finally {
             if (zos != null) {
                 try {
@@ -106,7 +106,7 @@ public class FileUtils {
                 // 要保留原来的文件结构时,需要对空文件夹进行处理
                 if (keepDirStructure) {
                     // 空文件夹的处理
-                    zos.putNextEntry(new ZipEntry(name + "/"));
+                    zos.putNextEntry(new ZipEntry(name + "/" ));
                     // 没有文件，不需要文件的copy
                     zos.closeEntry();
                 }
@@ -135,20 +135,20 @@ public class FileUtils {
      **/
     public static void downloadFileByStream(HttpServletRequest request, HttpServletResponse response, File file, Boolean isView) {
         String filePath = file.getPath();
-        log.info("--> filePath = {}", filePath);
+        log.info("--> filePath = {}" , filePath);
         // 对encode过的filePath处理
-        if (filePath.contains("%")) {
+        if (filePath.contains("%" )) {
             try {
                 filePath = URLDecoder.decode(filePath, Charsets.UTF_8.name());
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
         }
-        log.info("--> 文件大小：{}KB", file.length() / 1024);
+        log.info("--> 文件大小：{}KB" , file.length() / 1024);
         try (FileInputStream in = new FileInputStream(file); ServletOutputStream out = response.getOutputStream();) {
-            String[] dir = filePath.split("/");
+            String[] dir = filePath.split("/" );
             String fileName = dir[dir.length - 1];
-            String[] array = fileName.split("[.]");
+            String[] array = fileName.split("[.]" );
             String fileType = array[array.length - 1].toLowerCase();
             // 设置文件ContentType类型
             if ("jpg,jepg,gif,png".contains(fileType) && isView) {
@@ -156,26 +156,26 @@ public class FileUtils {
                 response.setContentType("image/" + fileType);
             } else if ("pdf".contains(fileType) && isView) {
                 // 判断pdf类型
-                response.setContentType("application/pdf");
+                response.setContentType("application/pdf" );
             } else {
                 // 设置multipart
-                response.setContentType("multipart/form-data");
+                response.setContentType("multipart/form-data" );
                 //设置文件类型
                 String downFileName = fileName.substring(fileName.lastIndexOf(File.separator) + 1);
                 if (StringUtils.isNotBlank(downFileName)) {
                     String headerName = "User-Agent";
-                    if (request.getHeader(headerName).toLowerCase().indexOf("firefox") > 0) {
+                    if (request.getHeader(headerName).toLowerCase().indexOf("firefox" ) > 0) {
                         // firefox浏览器
                         downFileName = new String(downFileName.getBytes(StandardCharsets.UTF_8), StandardCharsets.ISO_8859_1);
-                    } else if (request.getHeader(headerName).toUpperCase().indexOf("MSIE") > 0) {
+                    } else if (request.getHeader(headerName).toUpperCase().indexOf("MSIE" ) > 0) {
                         // IE浏览器
                         downFileName = URLEncoder.encode(downFileName, StandardCharsets.UTF_8.name());
-                    } else if (request.getHeader(headerName).toUpperCase().indexOf("CHROME") > 0) {
+                    } else if (request.getHeader(headerName).toUpperCase().indexOf("CHROME" ) > 0) {
                         // 谷歌
                         downFileName = new String(downFileName.getBytes(StandardCharsets.UTF_8), StandardCharsets.ISO_8859_1);
                     }
                 }
-                response.setHeader("Content-disposition", "attachment;filename=" + downFileName);
+                response.setHeader("Content-disposition" , "attachment;filename=" + downFileName);
             }
             // 读取文件流
             int len;
@@ -201,7 +201,7 @@ public class FileUtils {
             e.printStackTrace();
         }
         if (conn == null) {
-            throw new RuntimeException("url 不合法！！！");
+            throw new RuntimeException("url 不合法！！！" );
         }
         try (InputStream in = conn.getInputStream()) {
             MimeTypes allTypes = MimeTypes.getDefaultMimeTypes();
@@ -224,7 +224,7 @@ public class FileUtils {
      * @author k
      * @date 2020/10/05 16:22
      **/
-    @SuppressWarnings("ResultOfMethodCallIgnored")
+    @SuppressWarnings("ResultOfMethodCallIgnored" )
     public static String fileToBase64(File file) {
         //将图片文件转化为字节数组字符串，并对其进行Base64编码处理
         byte[] fileData = null;

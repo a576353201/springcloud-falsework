@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
  * @description
  * @date 2019-04-01 10:56
  **/
-@Component(value = "payHandler")
+@Component(value = "payHandler" )
 @Slf4j
 public class PayHandler extends BaseEventHandler<PayBean> {
 
@@ -26,15 +26,15 @@ public class PayHandler extends BaseEventHandler<PayBean> {
         PayHandlerFood payHandlerFood = new PayHandlerFood();
         PayHandlerCook payHandlerCook = new PayHandlerCook();
         gatherSubmit(event, 1, TimeUnit.SECONDS, payHandlerCook, payHandlerKitchen, payHandlerFood);
-        log.info("--> 扣款执行开始》》》》》》》");
-        log.info("--> 订单号：{}", event.getOrderNo());
-        log.info("--> 商品名称：{}", event.getProductName());
-        log.info("--> 总价为：{}", event.getPrice());
-        log.info("--> 创建时间：{}", event.getCreateTime());
-        log.info("--> 扣款执行=============================");
-        log.info("--> 扣款 success！");
-        log.info("--> 扣库存执行=============================");
-        log.info("--> 扣库存 success！");
+        log.info("--> 扣款执行开始》》》》》》》" );
+        log.info("--> 订单号：{}" , event.getOrderNo());
+        log.info("--> 商品名称：{}" , event.getProductName());
+        log.info("--> 总价为：{}" , event.getPrice());
+        log.info("--> 创建时间：{}" , event.getCreateTime());
+        log.info("--> 扣款执行=============================" );
+        log.info("--> 扣款 success！" );
+        log.info("--> 扣库存执行=============================" );
+        log.info("--> 扣库存 success！" );
     }
 
     @Override
@@ -46,9 +46,9 @@ public class PayHandler extends BaseEventHandler<PayBean> {
         @Override
         public Boolean call() {
             try {
-                System.out.println("买厨具");
+                System.out.println("买厨具" );
                 Thread.sleep(3000);
-                System.out.println("买好厨具");
+                System.out.println("买好厨具" );
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -60,9 +60,9 @@ public class PayHandler extends BaseEventHandler<PayBean> {
         @Override
         public Boolean call() {
             try {
-                System.out.println("买食材");
+                System.out.println("买食材" );
                 Thread.sleep(2000);
-                System.out.println("买好食材");
+                System.out.println("买好食材" );
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -74,9 +74,9 @@ public class PayHandler extends BaseEventHandler<PayBean> {
         @Override
         public Boolean call() {
             try {
-                System.out.println("做饭");
+                System.out.println("做饭" );
                 Thread.sleep(5000);
-                System.out.println("做好饭");
+                System.out.println("做好饭" );
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

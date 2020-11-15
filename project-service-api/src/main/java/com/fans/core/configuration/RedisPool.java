@@ -19,7 +19,7 @@ import javax.annotation.Resource;
  * @description redis 使用类
  * @date 2018-12-20 14:14
  **/
-@Component("redisPool")
+@Component("redisPool" )
 @Conditional(RedisConditional.class)
 @Slf4j
 public class RedisPool {
@@ -42,7 +42,7 @@ public class RedisPool {
                 jedis.close();
             }
         } catch (Exception e) {
-            log.error("return redis resource exception", e);
+            log.error("return redis resource exception" , e);
         }
     }
 
@@ -52,7 +52,7 @@ public class RedisPool {
                 shardedJedis.close();
             }
         } catch (Exception e) {
-            log.error("return redis resource exception", e);
+            log.error("return redis resource exception" , e);
         }
     }
 }

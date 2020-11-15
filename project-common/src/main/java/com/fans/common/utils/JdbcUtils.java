@@ -45,16 +45,16 @@ public class JdbcUtils {
         Properties properties = new Properties();
         try {
             String classPath = this.getClass()
-                    .getResource("/")
+                    .getResource("/" )
                     .getPath()
-                    .replace("/classes", "")
+                    .replace("/classes" , "" )
                     + "config/ds.properties";
             FileInputStream stream = new FileInputStream(classPath);
             properties.load(stream);
-            String driver = properties.getProperty("jdbc.driver");
-            String url = properties.getProperty("jdbc.url");
-            String username = properties.getProperty("jdbc.username");
-            String password = properties.getProperty("jdbc.password");
+            String driver = properties.getProperty("jdbc.driver" );
+            String url = properties.getProperty("jdbc.url" );
+            String username = properties.getProperty("jdbc.username" );
+            String password = properties.getProperty("jdbc.password" );
             Class.forName(driver);
             connection = DriverManager.getConnection(url, username, password);
         } catch (Exception e) {
@@ -72,7 +72,7 @@ public class JdbcUtils {
             try {
                 resultSet.close();
             } catch (SQLException e) {
-                log.error("SQLException is {}", e.getMessage());
+                log.error("SQLException is {}" , e.getMessage());
             }
         }
 
@@ -81,7 +81,7 @@ public class JdbcUtils {
             try {
                 preparedStatement.close();
             } catch (SQLException e) {
-                log.error("SQLException is {}", e.getMessage());
+                log.error("SQLException is {}" , e.getMessage());
             }
         }
 
@@ -90,7 +90,7 @@ public class JdbcUtils {
             try {
                 callableStatement.close();
             } catch (SQLException e) {
-                log.error("SQLException is {}", e.getMessage());
+                log.error("SQLException is {}" , e.getMessage());
             }
         }
 
@@ -99,7 +99,7 @@ public class JdbcUtils {
             try {
                 connection.close();
             } catch (SQLException e) {
-                log.error("SQLException is {}", e.getMessage());
+                log.error("SQLException is {}" , e.getMessage());
             }
         }
     }
@@ -119,7 +119,7 @@ public class JdbcUtils {
             executeSql(sql, params);
             affectedLine = preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            log.error("SQLException is {}", e.getMessage());
+            log.error("SQLException is {}" , e.getMessage());
         } finally {
             closeAll();
         }
@@ -158,7 +158,7 @@ public class JdbcUtils {
             executeSql(sql, params);
             resultSet = preparedStatement.executeQuery();
         } catch (SQLException e) {
-            log.error("SQLException is {}", e.getMessage());
+            log.error("SQLException is {}" , e.getMessage());
         }
         return resultSet;
     }
@@ -180,7 +180,7 @@ public class JdbcUtils {
             resultSetMetaData = rs.getMetaData();
             columnCount = resultSetMetaData.getColumnCount();
         } catch (SQLException e1) {
-            log.error("SQLException is {}", e1.getMessage());
+            log.error("SQLException is {}" , e1.getMessage());
         }
         List<Map<String, Object>> list = new ArrayList<>();
         try {
@@ -192,7 +192,7 @@ public class JdbcUtils {
                 list.add(map);
             }
         } catch (SQLException e) {
-            log.error("SQLException is {}", e.getMessage());
+            log.error("SQLException is {}" , e.getMessage());
         } finally {
             // 关闭所有资源
             closeAll();
@@ -230,7 +230,7 @@ public class JdbcUtils {
                 }
             }
         } catch (SQLException e) {
-            log.error("SQLException is {}", e.getMessage());
+            log.error("SQLException is {}" , e.getMessage());
         } finally {
             closeAll();
         }

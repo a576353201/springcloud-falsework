@@ -24,13 +24,13 @@ import java.util.Objects;
 @NoArgsConstructor
 @ToString
 public class FtpUtils {
-    private static final String HOST = PropertiesUtils.loadProperties("ftp", "host");
-    private static final String PORT = PropertiesUtils.loadProperties("ftp", "port");
-    private static final String USERNAME = PropertiesUtils.loadProperties("ftp", "userName");
-    private static final String PASSWORD = PropertiesUtils.loadProperties("ftp", "passWord");
-    private static final String BASE_PATH = PropertiesUtils.loadProperties("ftp", "basePath");
-    private static final String URL = PropertiesUtils.loadProperties("ftp", "url");
-    private static String FILE_PATH = new DateTime().toString("/yyyy/MM/dd");
+    private static final String HOST = PropertiesUtils.loadProperties("ftp" , "host" );
+    private static final String PORT = PropertiesUtils.loadProperties("ftp" , "port" );
+    private static final String USERNAME = PropertiesUtils.loadProperties("ftp" , "userName" );
+    private static final String PASSWORD = PropertiesUtils.loadProperties("ftp" , "passWord" );
+    private static final String BASE_PATH = PropertiesUtils.loadProperties("ftp" , "basePath" );
+    private static final String URL = PropertiesUtils.loadProperties("ftp" , "url" );
+    private static String FILE_PATH = new DateTime().toString("/yyyy/MM/dd" );
     private static FTPClient ftpClient = new FTPClient();
 
     /**
@@ -68,12 +68,12 @@ public class FtpUtils {
                 fis = new FileInputStream(fileItem);
                 fileName = fileItem.getName();
                 ftpClient.storeFile(fileName, fis);
-                remotePath.append(URL).append(FILE_PATH).append("/").append(fileName).append(",");
+                remotePath.append(URL).append(FILE_PATH).append("/" ).append(fileName).append("," );
             }
             Objects.requireNonNull(fis).close();
             ftpClient.logout();
         } catch (Exception e) {
-            log.error("【文件上传异常】", e);
+            log.error("【文件上传异常】" , e);
         } finally {
             if (ftpClient.isConnected()) {
                 ftpClient.disconnect();
@@ -116,7 +116,7 @@ public class FtpUtils {
                 try {
                     ftpClient.disconnect();
                 } catch (IOException ioe) {
-                    log.error("--> 下载文件失败!!! 原因:{}", ioe.getMessage(), ioe);
+                    log.error("--> 下载文件失败!!! 原因:{}" , ioe.getMessage(), ioe);
                 }
             }
         }
@@ -124,7 +124,7 @@ public class FtpUtils {
     }
 
     private static void mkdir() throws Exception {
-        String[] dirs = FILE_PATH.split("/");
+        String[] dirs = FILE_PATH.split("/" );
         String tempPath = BASE_PATH;
         for (String dir : dirs) {
             if (null == dir || "".equals(dir)) {
@@ -133,7 +133,7 @@ public class FtpUtils {
             tempPath += "/" + dir;
             if (!ftpClient.changeWorkingDirectory(tempPath)) {
                 if (!ftpClient.makeDirectory(tempPath)) {
-                    throw new Exception("--> 【文件目录创建失败】path : " + tempPath + "");
+                    throw new Exception("--> 【文件目录创建失败】path : " + tempPath + "" );
                 } else {
                     ftpClient.changeWorkingDirectory(tempPath);
                 }
@@ -148,10 +148,10 @@ public class FtpUtils {
             int reply = ftpClient.getReplyCode();
             if (!FTPReply.isPositiveCompletion(reply)) {
                 ftpClient.disconnect();
-                throw new Exception(String.format("【FTPUtil连接服务失败】 replyCode : %s", reply));
+                throw new Exception(String.format("【FTPUtil连接服务失败】 replyCode : %s" , reply));
             }
         } catch (Exception e) {
-            log.error("--> 【FTPUtil连接服务异常】", e);
+            log.error("--> 【FTPUtil连接服务异常】" , e);
         }
     }
 }

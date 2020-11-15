@@ -28,7 +28,7 @@ import static com.fans.common.utils.ReflectUtils.getMavenModel;
 @Configuration
 @Slf4j
 public class ThreadPoolConfiguration {
-    @Bean(name = "poolRegister")
+    @Bean(name = "poolRegister" )
     public PoolRegister<?> poolRegister() {
         return new PoolRegister<>();
     }

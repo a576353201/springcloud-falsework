@@ -21,15 +21,15 @@ public interface BannerItemDao extends BaseMapper<BannerItemEntity> {
 
     List<BannerItemEntity> findAll();
 
-    BannerItemEntity selectByPrimaryKey(@Param("id") Integer id);
+    BannerItemEntity selectByPrimaryKey(@Param("id" ) Integer id);
 
-    int deleteByPrimaryKey(@Param("id") Integer id);
+    int deleteByPrimaryKey(@Param("id" ) Integer id);
 
     int insertSelective(BannerItemEntity bannerItemEntity);
 
-    int insertBatch(@Param("bannerItemEntityList") List<BannerItemEntity> bannerItemEntityList);
+    int insertBatch(@Param("bannerItemEntityList" ) List<BannerItemEntity> bannerItemEntityList);
 
     int updateByPrimaryKeySelective(BannerItemEntity bannerItemEntity);
 
-    int updateBatchByPrimaryKeySelective(@Param("bannerItemEntityList") List<BannerItemEntity> bannerItemEntityList);
+    int updateBatchByPrimaryKeySelective(@Param("bannerItemEntityList" ) List<BannerItemEntity> bannerItemEntityList);
 }

@@ -34,8 +34,8 @@ import java.util.Objects;
  * @date 2018-12-20 14:14
  **/
 @Conditional(value = MailConditional.class)
-@Component(value = "mailUtils")
-@ConfigurationProperties(prefix = "spring.mail")
+@Component(value = "mailUtils" )
+@ConfigurationProperties(prefix = "spring.mail" )
 @Data
 @Slf4j
 public class MailUtils {
@@ -54,7 +54,7 @@ public class MailUtils {
     /**
      * thymeleaf
      */
-    @Resource(name = "templateEngine")
+    @Resource(name = "templateEngine" )
     private TemplateEngine templateEngine;
 
     /**
@@ -76,9 +76,9 @@ public class MailUtils {
             //邮件内容
             simpleMailMessage.setText(mail.getContent());
             javaMailSender.send(simpleMailMessage);
-            log.info("--> 发送成功！！！");
+            log.info("--> 发送成功！！！" );
         } catch (Exception e) {
-            log.error("--> 邮件发送失败,失败原因:{}", e.getMessage());
+            log.error("--> 邮件发送失败,失败原因:{}" , e.getMessage());
 
         }
     }
@@ -96,9 +96,9 @@ public class MailUtils {
             MimeMessageHelper mimeMessageHelper = getMimeMessageHelper(mimeMailMessage, mail);
             mimeMessageHelper.setText(mail.getContent(), true);
             javaMailSender.send(mimeMailMessage);
-            log.info("--> 发送成功！！！");
+            log.info("--> 发送成功！！！" );
         } catch (Exception e) {
-            log.error("--> 邮件发送失败,失败原因:{}", e.getMessage());
+            log.error("--> 邮件发送失败,失败原因:{}" , e.getMessage());
         }
     }
 
@@ -118,9 +118,9 @@ public class MailUtils {
             FileSystemResource fileSystemResource = new FileSystemResource(new File(pathName));
             mimeMessageHelper.addAttachment(Objects.requireNonNull(fileSystemResource.getFilename()), fileSystemResource);
             javaMailSender.send(mimeMailMessage);
-            log.info("--> 发送成功！！！");
+            log.info("--> 发送成功！！！" );
         } catch (Exception e) {
-            log.error("--> 邮件发送失败,失败原因:{}", e.getMessage());
+            log.error("--> 邮件发送失败,失败原因:{}" , e.getMessage());
         }
     }
 
@@ -141,9 +141,9 @@ public class MailUtils {
             FileSystemResource file = new FileSystemResource(new File(pathName));
             mimeMessageHelper.addInline(contentId, file);
             javaMailSender.send(mimeMailMessage);
-            log.info("--> 发送成功！！！");
+            log.info("--> 发送成功！！！" );
         } catch (Exception e) {
-            log.error("--> 邮件发送失败,失败原因:{}", e.getMessage());
+            log.error("--> 邮件发送失败,失败原因:{}" , e.getMessage());
         }
     }
 
@@ -164,9 +164,9 @@ public class MailUtils {
             String text = FreeMarkerTemplateUtils.processTemplateIntoString(template, inParam);
             mimeMessageHelper.setText(text, true);
             javaMailSender.send(mimeMailMessage);
-            log.info("--> 发送成功！！！");
+            log.info("--> 发送成功！！！" );
         } catch (Exception e) {
-            log.error("--> 邮件发送失败,失败原因:{}", e.getMessage());
+            log.error("--> 邮件发送失败,失败原因:{}" , e.getMessage());
         }
 
     }
@@ -181,9 +181,9 @@ public class MailUtils {
             String text = templateEngine.process(templateName, context);
             mimeMessageHelper.setText(text, true);
             javaMailSender.send(mimeMailMessage);
-            log.info("--> 发送成功！！！");
+            log.info("--> 发送成功！！！" );
         } catch (Exception e) {
-            log.error("--> 邮件发送失败,失败原因:{}", e.getMessage());
+            log.error("--> 邮件发送失败,失败原因:{}" , e.getMessage());
         }
 
     }

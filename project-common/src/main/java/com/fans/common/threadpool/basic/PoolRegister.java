@@ -28,7 +28,7 @@ import static com.fans.common.utils.ReflectUtils.getMavenModel;
  * @date 2019-04-01 10:56
  **/
 @Slf4j
-@SuppressWarnings(value = {"unchecked", "rawtypes"})
+@SuppressWarnings(value = {"unchecked" , "rawtypes"})
 public class PoolRegister<T> {
 
     /**
@@ -61,17 +61,17 @@ public class PoolRegister<T> {
                     description = "未定义";
                 }
                 String typeName = aClass.getGenericSuperclass().getTypeName();
-                String beanName = typeName.substring(typeName.indexOf("<") + 1, typeName.indexOf(">"));
+                String beanName = typeName.substring(typeName.indexOf("<" ) + 1, typeName.indexOf(">" ));
                 Class cls = Class.forName(beanName);
                 String simpleName = cls.getSimpleName();
                 eventQueueMapBuilder.put(beanName, new EventQueue(baseEventHandler, corePoolSize, cls, workQueue));
                 threadNameMapBuilder.put(beanName, "The 【"
                         .concat(simpleName)
-                        .concat("】 queue ready !!!  Action : ")
+                        .concat("】 queue ready !!!  Action : " )
                         .concat(description)
                 );
             } catch (Exception e) {
-                log.error("-->  PoolRegister init() Fail", e);
+                log.error("-->  PoolRegister init() Fail" , e);
                 e.printStackTrace();
             }
         });
@@ -81,47 +81,47 @@ public class PoolRegister<T> {
         privateThreadPool.forEach(aClass -> {
             try {
                 String typeName = aClass.getGenericSuperclass().getTypeName();
-                String beanName = typeName.substring(typeName.indexOf("<") + 1, typeName.indexOf(">"));
+                String beanName = typeName.substring(typeName.indexOf("<" ) + 1, typeName.indexOf(">" ));
                 Class cls = Class.forName(beanName);
                 String simpleName = cls.getSimpleName();
-                Object instance = aClass.getDeclaredMethod("getInstance").invoke(null);
-                Object description = aClass.getMethod("getDescription").invoke(instance);
+                Object instance = aClass.getDeclaredMethod("getInstance" ).invoke(null);
+                Object description = aClass.getMethod("getDescription" ).invoke(instance);
                 if (description == null) {
                     description = "未定义";
                 }
                 privateThreadNameMapBuilder.put(beanName, "The ThreadPool 【"
                         .concat(simpleName)
-                        .concat("】 init() @ success !!! Description : ")
+                        .concat("】 init() @ success !!! Description : " )
                         .concat((String) description));
             } catch (Exception e) {
-                log.error("-->  PoolRegister init() Fail", e);
+                log.error("-->  PoolRegister init() Fail" , e);
                 e.printStackTrace();
             }
         });
         loadingCache.forEach(aClass -> {
             try {
                 String typeName = aClass.getGenericSuperclass().getTypeName();
-                String beanName = typeName.substring(typeName.indexOf("<") + 1, typeName.indexOf(">"));
+                String beanName = typeName.substring(typeName.indexOf("<" ) + 1, typeName.indexOf(">" ));
                 Class cls = Class.forName(beanName);
                 String simpleName = cls.getSimpleName();
-                Object instance = aClass.getDeclaredMethod("getInstance").invoke(null);
-                Object description = aClass.getMethod("getDescription").invoke(instance);
+                Object instance = aClass.getDeclaredMethod("getInstance" ).invoke(null);
+                Object description = aClass.getMethod("getDescription" ).invoke(instance);
                 if (description == null) {
                     description = "未定义";
                 }
                 loadingCacheMapBuilder.put(beanName, "The LoadingCache 【"
                         .concat(simpleName)
-                        .concat("】 init() @ success !!! Description : ")
+                        .concat("】 init() @ success !!! Description : " )
                         .concat((String) description));
             } catch (Exception e) {
-                log.error("-->  PoolRegister init() Fail", e);
+                log.error("-->  PoolRegister init() Fail" , e);
                 e.printStackTrace();
             }
         });
         String threadPoolQueueDesc = JsonUtils.obj2FormattingString(THREAD_NAME_MAP.values());
         String privateThreadPoolDesc = JsonUtils.obj2FormattingString(privateThreadNameMapBuilder.build().values());
         String loadingCacheDesc = JsonUtils.obj2FormattingString(loadingCacheMapBuilder.build().values());
-        log.info("\r\n--> PoolRegister init() @" + DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss").print(DateTime.now()));
+        log.info("\r\n--> PoolRegister init() @" + DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss" ).print(DateTime.now()));
         String stringBuilder = "\r\n--> 可用线程队列列表(poolRegister.executeHandler(eventBean)) : \r\n{}" +
                 "\r\n--> 私有线程池列表(ThreadPoolProxyFactory.getThreadPoolProxy()) : \r\n{}" +
                 "\r\n--> 私有缓存池列表(LocalCacheProxyFactory.getLocalCacheProxy()) : \r\n{}";
@@ -153,7 +153,7 @@ public class PoolRegister<T> {
             }
             reflections = new Reflections(groupId);
         } catch (Exception e) {
-            log.error("-->  PoolRegister init() Fail", e);
+            log.error("-->  PoolRegister init() Fail" , e);
             e.printStackTrace();
         }
         assert reflections != null;

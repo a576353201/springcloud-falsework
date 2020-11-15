@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
  * @date 2020-10-30 09:35
  **/
 @Component
-@ConfigurationProperties(prefix = "kaptcha")
+@ConfigurationProperties(prefix = "kaptcha" )
 @Setter
 @Getter
 public class KaptchaProperty {

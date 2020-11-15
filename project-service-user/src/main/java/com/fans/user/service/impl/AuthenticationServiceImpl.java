@@ -4,11 +4,11 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.fans.bo.WeChatBO;
 import com.fans.common.constant.CacheKeyConstants;
 import com.fans.common.exception.http.ParameterException;
+import com.fans.common.utils.JsonUtils;
+import com.fans.common.utils.JwtTokenUtils;
 import com.fans.user.dao.UserDao;
 import com.fans.user.entity.UserEntity;
 import com.fans.user.service.IAuthenticationService;
-import com.fans.common.utils.JsonUtils;
-import com.fans.common.utils.JwtTokenUtils;
 import com.fans.utils.RedisUtils;
 import com.google.code.kaptcha.Producer;
 import lombok.extern.slf4j.Slf4j;
@@ -30,15 +30,15 @@ import java.util.Optional;
  * @description
  * @date 2020-06-14 11:11
  **/
-@Service(value = "iAuthenticationService")
+@Service(value = "iAuthenticationService" )
 @Slf4j
 public class AuthenticationServiceImpl implements IAuthenticationService {
 
-    @Value(value = "${wechat.appid}")
+    @Value(value = "${wechat.appid}" )
     private String appId;
-    @Value(value = "${wechat.appsecret}")
+    @Value(value = "${wechat.appsecret}" )
     private String appSecret;
-    @Value(value = "${wechat.code2session}")
+    @Value(value = "${wechat.code2session}" )
     private String code2SessionUrl;
 
     @Resource(type = Producer.class)
@@ -60,7 +60,7 @@ public class AuthenticationServiceImpl implements IAuthenticationService {
         } catch (Exception exception) {
             exception.printStackTrace();
         }
-        log.info("--> {}", JsonUtils.obj2FormattingString(weChatBO));
+        log.info("--> {}" , JsonUtils.obj2FormattingString(weChatBO));
         assert weChatBO != null;
         return registerUser(weChatBO);
     }

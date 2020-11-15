@@ -1,7 +1,7 @@
 package com.fans.core.configuration;
 
-import com.fans.core.conditionals.RedisConditional;
 import com.fans.common.properties.RedisClusterProperty;
+import com.fans.core.conditionals.RedisConditional;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
@@ -54,7 +54,7 @@ public class RedisConfiguration extends CachingConfigurerSupport {
     @Resource
     private RedisClusterProperty redisClusterProperty;
 
-    @Value(value = "${spring.cache.redis.time-to-live}")
+    @Value(value = "${spring.cache.redis.time-to-live}" )
     private String timeToLive;
 
     private final Jackson2JsonRedisSerializer<Object> jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer<>(Object.class);
@@ -94,7 +94,7 @@ public class RedisConfiguration extends CachingConfigurerSupport {
             return new ShardedJedisPool(config, Lists.newArrayList(jedisShardInfo));
         }
         nodes.forEach(host -> {
-            String[] url = host.split(":");
+            String[] url = host.split(":" );
             if (StringUtils.isBlank(url[1])) {
                 url[1] = "6379";
             }

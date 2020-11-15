@@ -39,7 +39,7 @@ public class GlobalExceptionAdvice {
     @ExceptionHandler(value = Exception.class)
     @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
     public JsonData<?> handleHttpException(HttpServletRequest request, Exception exception) {
-        log.error("--> Exception : {}", exception.getMessage(), exception);
+        log.error("--> Exception : {}" , exception.getMessage(), exception);
         String uri = request.getRequestURI();
         String method = request.getMethod();
         return JsonData.failCodeMsg(9999, exception.getMessage(), method + StringUtils.SPACE + uri);
@@ -77,7 +77,7 @@ public class GlobalExceptionAdvice {
     public JsonData<?> handleBeanValidation(HttpServletRequest req, ConstraintViolationException e) {
         String requestUrl = req.getRequestURI();
         String method = req.getMethod();
-        return JsonData.failCodeMsg(10001, e.getMessage().substring(e.getMessage().indexOf(".") + 1), method + " " + requestUrl);
+        return JsonData.failCodeMsg(10001, e.getMessage().substring(e.getMessage().indexOf("." ) + 1), method + " " + requestUrl);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -93,7 +93,7 @@ public class GlobalExceptionAdvice {
     private String formatAllErrorMessages(List<ObjectError> errors) {
         StringBuffer errorMsg = new StringBuffer();
         errors.forEach(error ->
-                errorMsg.append(error.getDefaultMessage()).append(';').append(" ")
+                errorMsg.append(error.getDefaultMessage()).append(';').append(" " )
         );
         return errorMsg.toString();
     }

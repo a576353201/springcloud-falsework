@@ -47,7 +47,7 @@ public class WebInitialize {
      * @return origin
      */
     public String getOrigin() {
-        return request.getHeader("Origin");
+        return request.getHeader("Origin" );
     }
 
     public String getIp() {

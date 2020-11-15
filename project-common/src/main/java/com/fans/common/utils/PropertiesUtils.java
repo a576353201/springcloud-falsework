@@ -56,9 +56,9 @@ public class PropertiesUtils {
             String line = br.readLine();
             while (line != null) {
                 line = line.trim();
-                if (!line.startsWith("#")) {
-                    String name = line.substring(0, line.indexOf("="));
-                    String value = line.substring(line.indexOf("=") + 1);
+                if (!line.startsWith("#" )) {
+                    String name = line.substring(0, line.indexOf("=" ));
+                    String value = line.substring(line.indexOf("=" ) + 1);
                     if ((StringUtils.isNotBlank(name)) && (StringUtils.isNotBlank(value))) {
                         map.put(name.trim(), value.trim());
                     }
@@ -67,7 +67,7 @@ public class PropertiesUtils {
             }
             return map;
         } catch (Exception e) {
-            log.error("配置文件内容映射Map异常", e);
+            log.error("配置文件内容映射Map异常" , e);
             return null;
         }
     }
@@ -81,7 +81,7 @@ public class PropertiesUtils {
             InputStream in = resource.getInputStream();
             return new InputStreamReader(in, StandardCharsets.UTF_8);
         } catch (Exception e) {
-            log.error("配置文件读取异常", e);
+            log.error("配置文件读取异常" , e);
             return null;
         }
     }
@@ -92,7 +92,7 @@ public class PropertiesUtils {
         try {
             properties.load(reader);
         } catch (IOException e) {
-            log.error("配置文件读取异常", e);
+            log.error("配置文件读取异常" , e);
         }
     }
 
